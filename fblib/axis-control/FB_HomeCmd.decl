@@ -1,0 +1,8 @@
+(*
+ * 功能：回零命令 —— 封装 MC_Home
+ * 作者：fblib / 版本：2.0
+ *)
+FUNCTION_BLOCK FB_HomeCmd EXTENDS FB_MotionCommandBase
+VAR
+    _fbMc : MC_Home;
+END_VAR

@@ -1,0 +1,5 @@
+METHOD Init : BOOL
+VAR_INPUT
+    refAxis : REFERENCE TO AXIS_REF;
+END_VAR
+(* 绑定轴，由控制器在自己的 Init 里逐个调用 *)

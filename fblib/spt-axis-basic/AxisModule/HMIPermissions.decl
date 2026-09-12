@@ -1,0 +1,2 @@
+// 按 PackML 模式自动放行/收回 HMI 控制权
+METHOD PROTECTED HMIPermissions

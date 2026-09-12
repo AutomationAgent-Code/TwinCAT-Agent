@@ -1,0 +1,14 @@
+CASE _CurrentMode OF
+    E_PMLUnitMode.Production:
+        CASE SequenceState OF
+            0: // 生产循环第一步
+                SequenceState := SequenceState + 10;
+
+            10:
+                SequenceState := 0;    // 回到循环起点
+        END_CASE
+
+    E_PMLUnitMode.Manual:
+        // 手动模式的动作（点动、单步）写这里，跟自动完全隔开
+        ;
+END_CASE

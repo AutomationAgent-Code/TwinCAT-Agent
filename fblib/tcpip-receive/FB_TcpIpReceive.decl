@@ -1,0 +1,25 @@
+(*
+ * 功能：TCP/IP 单次轮询接收，封装 Tc2_TcpIp.FB_SocketReceive
+ * 作者：fblib / 版本：1.1
+ * 说明：一次完成可能收到 0 字节或应用报文的一部分；调用方负责组帧与总超时。
+ *)
+FUNCTION_BLOCK FB_TcpIpReceive
+VAR_INPUT
+    bExecute    : BOOL;                        // TRUE 触发一次轮询，完成后撤销以复位
+    sSrvNetId   : T_AmsNetId := '';            // TCP/IP Connection Server AMS NetId，本机留空
+    hSocket     : T_HSOCKET;                   // 已建立连接的 socket 句柄
+    pBuffer     : POINTER TO BYTE;             // 接收缓冲区首地址
+    nBufferSize : UDINT;                       // 缓冲区容量 [range 0..4294967295 byte]
+    tTimeout    : TIME := {{TIMEOUT}};         // 单次命令超时 [range 0..T#24H]
+END_VAR
+VAR_OUTPUT
+    bDone      : BOOL;                         // 本次轮询完成
+    bBusy      : BOOL;                         // 正在接收
+    bError     : BOOL;                         // 接收失败
+    nErrId     : UDINT;                        // TCP/IP Connection Server 错误码
+    nReceived  : UDINT;                        // 本次收到的字节数，0 表示暂无数据
+END_VAR
+VAR
+    eState     : E_TcpIpReceiveState;          // 事务状态机
+    fbReceive  : FB_SocketReceive;             // Beckhoff socket 接收块
+END_VAR

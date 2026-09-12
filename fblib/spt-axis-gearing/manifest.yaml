@@ -1,0 +1,52 @@
+name: 主从轴电子齿轮 (SPT)
+slug: spt-axis-gearing
+category: motion
+family: spt-framework
+style: spt
+archetype: oop
+format: text
+rank: 3
+description: SPT 主从耦合 —— 虚拟主轴模块 + 从轴模块（FB_Component_BasicSlaveAxis），通过 AXIS_REF 属性注入主轴、按齿轮比 GearIn
+use_when: 多轴同步/跟随，一根虚拟主轴带若干从轴（收放卷、飞剪、多工位分度）
+keywords: [主从, 齿轮, 电子齿轮, 耦合, 同步, 跟随, 虚拟轴, 主轴, 从轴,
+           gear, gearin, master, slave, sync, coupling, virtual]
+version: "1.0"
+libraries: [SPT Base Types, SPT Components, SPT MotionControl, Tc2_MC2, Tc3_PackML_V3]
+requires: []
+params:
+  - {name: MASTER_NAME,  default: MainDrive,   desc: 主轴模块 FB 名}
+  - {name: SLAVE_NAME,   default: SlaveStation, desc: 从轴模块 FB 名}
+  - {name: MASTER_VAR,   default: MasterAxis,  desc: 主轴组件变量名}
+  - {name: SLAVE_VAR,    default: FollowAxis,  desc: 从轴组件变量名}
+  - {name: GEAR_RATIO,   default: "0.5",       desc: 齿轮比（从/主）}
+  - {name: MASTER_VELOCITY, default: "100.0",  desc: 主轴速度}
+notes: |
+  接线（在上层 Machine 的 Initialize() 里，注册之后做）：
+      RegisterSubModule({{MASTER_NAME}}实例);
+      RegisterSubModule({{SLAVE_NAME}}实例);
+      从轴实例.MasterAxisRef REF= 主轴实例.AxisRef;
+  顺序很关键：FB_Component_BasicSlaveAxis 的 Master1 引用**必须在组件初始化完成后**再赋，
+  所以从轴模块的 Initialize() 里是先 SUPER^.Initialize() 成功、再 __ISVALIDREF 判断后 REF=。
+  Stop() 会顺带 GearOut，不用单独调解耦。
+objects:
+  - name: "{{MASTER_NAME}}"
+    file: MasterModule
+    kind: fb
+    members:
+      - {name: CyclicLogic, kind: method,   return_type: ""}
+      - {name: Initialize,  kind: method,   return_type: BOOL}
+      - {name: Starting,    kind: method,   return_type: ""}
+      - {name: Execute,     kind: method,   return_type: ""}
+      - {name: Stopping,    kind: method,   return_type: ""}
+      - {name: Aborting,    kind: method,   return_type: ""}
+      - {name: AxisRef,     kind: property, return_type: "REFERENCE TO AXIS_REF", accessors: [Get]}
+  - name: "{{SLAVE_NAME}}"
+    file: SlaveModule
+    kind: fb
+    members:
+      - {name: CyclicLogic,   kind: method,   return_type: ""}
+      - {name: Initialize,    kind: method,   return_type: BOOL}
+      - {name: Starting,      kind: method,   return_type: ""}
+      - {name: Stopping,      kind: method,   return_type: ""}
+      - {name: Aborting,      kind: method,   return_type: ""}
+      - {name: MasterAxisRef, kind: property, return_type: "REFERENCE TO AXIS_REF", accessors: [Set]}

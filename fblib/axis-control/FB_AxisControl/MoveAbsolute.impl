@@ -1,0 +1,13 @@
+MoveAbsolute := FALSE;
+IF _bInitialized AND _fbPower.Status AND (_iActive = 0) THEN
+    IF lrVelocity > 0 THEN
+        _fbMoveAbs.SetTarget(lrPosition, lrVelocity);
+    ELSE
+        _fbMoveAbs.SetTarget(lrPosition, {{DEFAULT_VELOCITY}});
+    END_IF
+    _bDone := FALSE;
+    IF _fbMoveAbs.Start() THEN
+        _iActive     := _fbMoveAbs;    // 多态赋值
+        MoveAbsolute := TRUE;
+    END_IF
+END_IF

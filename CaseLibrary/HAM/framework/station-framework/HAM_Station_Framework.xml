@@ -1,0 +1,2341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.60" creationDateTime="2026-08-05T00:25:24.1154158" />
+  <contentHeader name="PLC" modificationDateTime="2026-08-05T00:25:24.1154158">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="ST_Station_Data">
+        <baseType>
+          <struct>
+            <variable name="sStationName">
+              <type>
+                <string />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Comm. with other stations, main cycle
+Station Constant</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bStation_Enabled">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">Station Input from Main cycle</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bResetERROR">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bErrorStringConfirmed">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bWarningStringConfirmed">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bStation_In_Basic_Pos">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">Station Output to Main cycle</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bStation_ERROR">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bStation_WARNING">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="sStation_ERROR">
+              <type>
+                <string length="250" />
+              </type>
+            </variable>
+            <variable name="iERRORLevel">
+              <type>
+                <USINT />
+              </type>
+            </variable>
+            <variable name="sStation_WARNING">
+              <type>
+                <string length="250" />
+              </type>
+            </variable>
+            <variable name="iOEECategoryNumber">
+              <type>
+                <INT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">OEE Kategória MES adatbázisnak</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bCycle_End_finished">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bStation_Busy">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Signal for ECO mode</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_bStation_OutComm">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Out going communication, One signal for each nest</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_sStation_OutCommString">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> to explain wich signal comuunicates to where</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_sStation_OutCommToolTip">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string length="120" />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> to ad aditional info to the user on the HMI</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_bStation_InComm">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Incomming communication, One signal for each nest</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_sStation_InCommString">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> to explain wich signal comuunicates to where</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_sStation_InCommToolTip">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string length="120" />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> to ad aditional info to the user on the HMI</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_bStepModeActive">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">For internal use, within the FB
+ max. 6 Step chain / station</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_bStepOver">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_iStep">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_StepStatus">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_bSemafor">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> StepTimeOut</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arr_Exceptions">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <derived name="ST_StepTimeoutExceptions" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_bStepTimeOutERROR">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_sStepTimeOutERROR">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_Step_Archive_0">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_Step_Archive_1">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_Step_Archive_2">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_Step_Archive_3">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_Step_Archive_4">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_StepState_Archive_0">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_StepState_Archive_1">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_StepState_Archive_2">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_StepState_Archive_3">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_StepState_Archive_4">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_Sequence_in_Basic_Position">
+              <type>
+                <array>
+                  <dimension lower="0" upper="5" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">TYPE ST_Station_Data :
+STRUCT
+	// Comm. with other stations, main cycle
+//Station Constant
+	sStationName				:STRING;	
+//Station Input from Main cycle
+	bStation_Enabled			:BOOL;
+	bResetERROR					:BOOL;
+	bErrorStringConfirmed		:BOOL;
+	bWarningStringConfirmed		:BOOL;
+		
+//Station Output to Main cycle
+	bStation_In_Basic_Pos		:BOOL;
+	bStation_ERROR				:BOOL;	
+	bStation_WARNING			:BOOL;	
+	sStation_ERROR				:STRING[250];
+	iERRORLevel					:USINT;
+	sStation_WARNING			:STRING[250];
+	iOEECategoryNumber			:INT;	(*OEE Kategória MES adatbázisnak*)
+	bCycle_End_finished			:BOOL;
+	bStation_Busy				:BOOL;	// Signal for ECO mode
+	arr_bStation_OutComm				:ARRAY[0..20] OF BOOL;			// Out going communication, One signal for each nest
+	arr_sStation_OutCommString			:ARRAY[0..20] OF STRING;		// to explain wich signal comuunicates to where
+	arr_sStation_OutCommToolTip			:ARRAY[0..20] OF STRING (120);	// to ad aditional info to the user on the HMI
+	arr_bStation_InComm					:ARRAY[0..20] OF BOOL;			// Incomming communication, One signal for each nest
+	arr_sStation_InCommString			:ARRAY[0..20] OF STRING;		// to explain wich signal comuunicates to where
+	arr_sStation_InCommToolTip			:ARRAY[0..20] OF STRING (120);	// to ad aditional info to the user on the HMI
+//For internal use, within the FB
+
+// max. 6 Step chain / station
+	arr_bStepModeActive			:ARRAY[0..5] OF BOOL;
+	arr_bStepOver				:ARRAY[0..5] OF BOOL;
+	arr_iStep					:ARRAY[0..5] OF UINT;
+	arr_StepStatus				:ARRAY[0..5] OF STRING (255);
+	// StepTimeOut
+	arr_bSemafor				:ARRAY[0..5] OF BOOL;
+	arr_Exceptions				:ARRAY[0..5] OF ST_StepTimeoutExceptions;
+	arr_bStepTimeOutERROR		:ARRAY[0..5] OF BOOL;
+	arr_sStepTimeOutERROR		:ARRAY[0..5] OF STRING[255];
+	
+	arr_Step_Archive_0			:ARRAY[0..40] OF UINT;
+	arr_Step_Archive_1			:ARRAY[0..40] OF UINT;
+	arr_Step_Archive_2			:ARRAY[0..40] OF UINT;
+	arr_Step_Archive_3			:ARRAY[0..40] OF UINT;
+	arr_Step_Archive_4			:ARRAY[0..40] OF UINT;
+	
+	arr_StepState_Archive_0			:ARRAY[0..40] OF STRING(255);
+	arr_StepState_Archive_1			:ARRAY[0..40] OF STRING(255);
+	arr_StepState_Archive_2			:ARRAY[0..40] OF STRING(255);
+	arr_StepState_Archive_3			:ARRAY[0..40] OF STRING(255);
+	arr_StepState_Archive_4			:ARRAY[0..40] OF STRING(255);
+	
+	arr_Sequence_in_Basic_Position	:ARRAY[0..5] OF BOOL;
+END_STRUCT
+END_TYPE
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>a76ea6cc-9788-4c34-af1a-fa868068c2d3</ObjectId>
+          </data>
+        </addData>
+      </dataType>
+      <dataType name="ST_ERROR_Handling">
+        <baseType>
+          <struct>
+            <variable name="sDatAndTime">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="sERRORMessage">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">TYPE ST_ERROR_Handling :
+STRUCT
+	sDatAndTime			:STRING;
+	sERRORMessage		:STRING(255);
+END_STRUCT
+END_TYPE
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>334df06b-53c8-4801-9b8e-40c38faec530</ObjectId>
+          </data>
+        </addData>
+      </dataType>
+    </dataTypes>
+    <pous>
+      <pou name="Base_Station_FB" pouType="functionBlock">
+        <interface>
+          <inOutVars>
+            <variable name="arr_StationData">
+              <type>
+                <array>
+                  <dimension lower="0" upper="1" />
+                  <baseType>
+                    <derived name="ST_Station_Data" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK Base_Station_FB
+VAR_INPUT
+	
+END_VAR
+VAR_OUTPUT
+	
+END_VAR
+
+VAR PERSISTENT
+	
+VAR_IN_OUT
+	arr_StationData						:ARRAY[0..1] OF ST_Station_Data;
+END_VAR
+VAR
+	// ***********************************************************************************Basre projekt variables 
+	iStationNumber						:UINT;
+	
+	fb_StationERROR						:FB_ERROR_Handling_For_Station;
+	arrsErrorString						:ARRAY[0..20]OF STRING[255];
+	arrbError							:ARRAY[0..20]OF BOOL;
+	arrOEEErrorCode						:ARRAY[0..20]OF INT;
+	arrsWarningString					:ARRAY[0..20]OF STRING[250];
+	arrbWarning							:ARRAY[0..20]OF BOOL;
+	fb_StationWarningHandling			:FB_Warning_Handling_For_Stations;
+		
+	bClr								:BOOL;
+	arrClr_Step_Archive					:ARRAY[0..40] OF UINT;
+						
+	fb_StepChainSemafor_STepChain0		:FB_StepChainSemafor_For_Stations;
+	fb_StepTimeOut_STepChain0			:FB_StepTimeOUT_For_Stations;
+	
+	i									:UINT;
+	
+	tonStationEnableDelay				:TON;
+	rtrigTONStationDelay				:R_TRIG;
+	
+	//**************************************************************************************************************
+
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inOutVars>
+          <localVars>
+            <variable name="iStationNumber">
+              <type>
+                <UINT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> ***********************************************************************************Basre projekt variables </xhtml>
+              </documentation>
+            </variable>
+            <variable name="fb_StationERROR">
+              <type>
+                <derived name="FB_ERROR_Handling_For_Station" />
+              </type>
+            </variable>
+            <variable name="arrsErrorString">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrbError">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrOEEErrorCode">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <INT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrsWarningString">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string length="250" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrbWarning">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="fb_StationWarningHandling">
+              <type>
+                <derived name="FB_Warning_Handling_For_Stations" />
+              </type>
+            </variable>
+            <variable name="bClr">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="arrClr_Step_Archive">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="fb_StepChainSemafor_STepChain0">
+              <type>
+                <derived name="FB_StepChainSemafor_For_Stations" />
+              </type>
+            </variable>
+            <variable name="fb_StepTimeOut_STepChain0">
+              <type>
+                <derived name="FB_StepTimeOUT_For_Stations" />
+              </type>
+            </variable>
+            <variable name="i">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="tonStationEnableDelay">
+              <type>
+                <derived name="TON" />
+              </type>
+            </variable>
+            <variable name="rtrigTONStationDelay">
+              <type>
+                <derived name="R_TRIG" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK Base_Station_FB
+VAR_INPUT
+	
+END_VAR
+VAR_OUTPUT
+	
+END_VAR
+
+VAR PERSISTENT
+	
+VAR_IN_OUT
+	arr_StationData						:ARRAY[0..1] OF ST_Station_Data;
+END_VAR
+VAR
+	// ***********************************************************************************Basre projekt variables 
+	iStationNumber						:UINT;
+	
+	fb_StationERROR						:FB_ERROR_Handling_For_Station;
+	arrsErrorString						:ARRAY[0..20]OF STRING[255];
+	arrbError							:ARRAY[0..20]OF BOOL;
+	arrOEEErrorCode						:ARRAY[0..20]OF INT;
+	arrsWarningString					:ARRAY[0..20]OF STRING[250];
+	arrbWarning							:ARRAY[0..20]OF BOOL;
+	fb_StationWarningHandling			:FB_Warning_Handling_For_Stations;
+		
+	bClr								:BOOL;
+	arrClr_Step_Archive					:ARRAY[0..40] OF UINT;
+						
+	fb_StepChainSemafor_STepChain0		:FB_StepChainSemafor_For_Stations;
+	fb_StepTimeOut_STepChain0			:FB_StepTimeOUT_For_Stations;
+	
+	i									:UINT;
+	
+	tonStationEnableDelay				:TON;
+	rtrigTONStationDelay				:R_TRIG;
+	
+	//**************************************************************************************************************
+
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <actions>
+          <action name="A_Init">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">tonStationEnableDelay(IN:=NOT bFirstCompleteCycleOffPLC , PT:=T#30S , Q=&gt; , ET=&gt; );
+rtrigTONStationDelay(CLK:=tonStationEnableDelay.Q , Q=&gt; );
+	
+	IF rtrigTONStationDelay.Q THEN												// HMI induláskor kilövi 0-ba, hiába van bebillentve az első PLC ciklusnál
+		arr_StationData[iStationNumber].bStation_Enabled:=TRUE;					// Ezért van timer-ezve
+	END_IF;
+	
+</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>c043fc88-44d6-4ea8-8ebb-d5352e2ff7d8</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="B_Constants">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">	iStationNumber:=0;  // Lokális állomás, a lokális változót használja
+	arr_StationData[iStationNumber].sStationName:=FC_Locale('','Mérleg','scale');
+
+(*	// Hiba és Warning üzenetek átadása a fő PLC ciklusnak
+	bERROR:=arr_StationData[iStationNumber].bStation_ERROR;
+	sERROR:=arr_StationData[iStationNumber].sStation_ERROR;
+	bWarning:=arr_StationData[iStationNumber].bStation_WARNING;
+	sWarning:=arr_StationData[iStationNumber].sStation_WARNING;
+	
+	arr_StationData[iStationNumber].arr_bStation_OutComm[0];
+	arr_StationData[iStationNumber].arr_sStation_OutCommString[0]:='Mérleg not busy, pohár a helyén van!';
+	arr_StationData[iStationNumber].arr_sStation_OutCommToolTip[0]:='Jelzés a szervónak hogy a mérleg készen áll,pohár a helyén van!';
+	
+	
+	
+	arr_StationData[iStationNumber].arr_bStation_InComm[0];
+	arr_StationData[iStationNumber].arr_sStation_InCommString[0]:='Külső kérés mérleg tárázásra';
+	arr_StationData[iStationNumber].arr_sStation_InCommToolTip[0]:='Külső kérés mérleg tárázásra';
+*)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>207841df-d04b-4fcb-b6f2-60fda8aec23b</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="C_FB_Calls">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">;</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>9b8494df-bde2-4e76-8472-5e17f5d74525</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="D_ERROR_Handling">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">fb_StationERROR(arrsErrorString:=arrsErrorString ,
+						arrbError:=arrbError ,
+						 bEnable:=arr_StationData[iStationNumber].bStation_Enabled,
+						iStationNumber:=iStationNumber,
+						arrOEEErrorCode:=arrOEEErrorCode,
+						sStationERROR=&gt;arr_StationData[iStationNumber].sStation_ERROR,);
+(*// Set array		
+// EL6001 Failure
+arrsErrorString[0]:=TO_STRING(enum_EL6001CtrlErrorID);
+arrbError[0]:=bEL6001CtrlError;
+arrOEEErrorCode[0]:=2136;
+
+// Step timeout ERROR	
+arrsErrorString[14]:=arr_StationData[iStationNumber].arr_sStepTimeOutERROR[0];
+arrbError[14]:= arr_StationData[iStationNumber].arr_bStepTimeOutERROR[0]; 
+arrOEEErrorCode[14]:=2136;
+
+arrsErrorString[15];		// Step sequence ERROR
+arrbError[15];
+arrOEEErrorCode[15];
+
+IF bGlobalResetERROR THEN
+	i:=0;
+	FOR i:=0 TO 20 DO
+		arrbError[i]:=FALSE;
+		arrsErrorString[i]:='';
+	END_FOR 	
+		
+END_IF
+*)
+
+// Warning Handling
+FB_Warning_Handling_For_Stations(arrsWarningString:=arrsWarningString ,
+	 						bEnable:=arr_StationData[iStationNumber].bStation_Enabled,
+							 arrbWarning:=arrbWarning ,
+							 iStationNumber:=iStationNumber ,
+							 sStationWarning=&gt; );
+							 
+arrbWarning[0];	// Step sequence warning 
+arrsWarningString[0];
+
+arrbWarning[15];	// Step sequence warning
+arrsWarningString[15];
+
+// Reset Warning messages
+// Reset Warning messages
+
+IF bGlobalResetWARNING THEN
+	i:=0;
+	FOR i:=0 TO 20 DO
+		arrbWarning[i]:=FALSE;
+		arrsWarningString[i]:='';
+	END_FOR 	
+		
+END_IF</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>84930d4c-9c09-462d-a5e6-0be8da37eae7</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="E_Timers_Edge_Detection">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">;</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>dfa38529-ed56-4d10-805f-1a0322f37eff</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="F_Enable_Signal_Handling">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">//Station is not enabled
+IF NOT arr_StationData[iStationNumber].bStation_Enabled  THEN
+	arr_StationData[iStationNumber].bStation_In_Basic_Pos:=FALSE;
+	arr_StationData[iStationNumber].bStation_ERROR:=FALSE;
+	arr_StationData[iStationNumber].sStation_ERROR:='';
+	
+	arr_StationData[iStationNumber].bStation_WARNING:=FALSE;
+	arr_StationData[iStationNumber].sStation_WARNING:='';
+	
+	arr_StationData[iStationNumber].bCycle_End_finished:=FALSE;
+	arr_StationData[iStationNumber].bStation_Busy:=FALSE;
+	arr_StationData[iStationNumber].bStation_Busy:=FALSE;
+	
+	i:=0;
+		FOR i:=0 TO 20 DO
+			arr_StationData[iStationNumber].arr_bSemafor[i]:=FALSE;
+			arr_StationData[iStationNumber].arr_bStation_OutComm[i]:=FALSE;
+			arr_StationData[iStationNumber].arr_bStation_InComm[i]:=FALSE;
+			arr_StationData[iStationNumber].arr_bStepModeActive[i]:=FALSE;
+			arr_StationData[iStationNumber].arr_bStepOver[i]:=FALSE;
+			arr_StationData[iStationNumber].arr_bStepTimeOutERROR[i]:=FALSE;
+			arr_StationData[iStationNumber].arr_sStepTimeOutERROR[i]:='';
+			arr_StationData[iStationNumber].arr_StepStatus[i]:='';
+		END_FOR 
+					
+	arr_StationData[iStationNumber].stPartStatus:=0;	
+	arr_StationData[iStationNumber].arr_iStep[0]:=0;
+	arr_bNoPartAtInput[1]:=FALSE;
+END_IF</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>1686489b-8b54-4613-9834-c89eee1ea52d</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="G_Step_Sequence">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">(*(******************************************************************* Step sequence archive*)
+IF bClr THEN
+	arr_StationData[iStationNumber].arr_Step_Archive_0:=arrClr_Step_Archive;
+	bClr:=FALSE;
+END_IF
+	
+IF arr_StationData[iStationNumber].arr_Step_Archive_0[0] &lt;&gt; arr_StationData[iStationNumber].arr_iStep[0] THEN
+	FOR i:=40 TO 0 DO
+		arr_StationData[iStationNumber].arr_Step_Archive_0[i]:= arr_StationData[iStationNumber].arr_Step_Archive_0[i-1];
+	END_FOR
+	arr_StationData[iStationNumber].arr_Step_Archive_0[0]:= arr_StationData[iStationNumber].arr_iStep[0];
+END_IF
+
+arr_StationData[iStationNumber].arr_Step_Archive_0[0];
+arr_StationData[iStationNumber].arr_Step_Archive_0[1];
+arr_StationData[iStationNumber].arr_Step_Archive_0[2];
+arr_StationData[iStationNumber].arr_Step_Archive_0[3];
+arr_StationData[iStationNumber].arr_Step_Archive_0[4];
+arr_StationData[iStationNumber].arr_Step_Archive_0[5];
+arr_StationData[iStationNumber].arr_Step_Archive_0[6];
+arr_StationData[iStationNumber].arr_Step_Archive_0[7];
+arr_StationData[iStationNumber].arr_Step_Archive_0[8];
+arr_StationData[iStationNumber].arr_Step_Archive_0[9];
+arr_StationData[iStationNumber].arr_Step_Archive_0[10];
+arr_StationData[iStationNumber].arr_Step_Archive_0[11];
+arr_StationData[iStationNumber].arr_Step_Archive_0[12];
+arr_StationData[iStationNumber].arr_Step_Archive_0[13];
+arr_StationData[iStationNumber].arr_Step_Archive_0[14];
+arr_StationData[iStationNumber].arr_Step_Archive_0[15];
+arr_StationData[iStationNumber].arr_Step_Archive_0[16];
+arr_StationData[iStationNumber].arr_Step_Archive_0[17];
+arr_StationData[iStationNumber].arr_Step_Archive_0[18];
+arr_StationData[iStationNumber].arr_Step_Archive_0[19];
+arr_StationData[iStationNumber].arr_Step_Archive_0[20];
+
+// Step chain semafor
+fb_StepChainSemafor_STepChain0(
+	iStationNumber:=iStationNumber, 
+	iStepChainNumber:=0 , 
+	tStepOverTime:=T#10MS , 
+	bBypass_Automatic:=TRUE);
+	
+//Step timeout exceptions
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[0]:=0;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[1]:=10;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[2]:=1000;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[3]:=1010;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[4]:=10000;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[5]:=25;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[6]:=0;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[7]:=0;	
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[8]:=0;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[9]:=0;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[10]:=0;
+arr_StationData[iStationNumber].arr_Exceptions[0].arrExceptions[11]:=0;
+
+// Step timeout
+fb_StepTimeOut_STepChain0(
+	iStationNumber:=iStationNumber , 
+	iStepChainNumber:=0 , 
+	tTimeOut:=T#20S , 
+	bEnable:= NOT arr_StationData[iStationNumber].arr_bStepModeActive[0] );
+
+// Reset Step Cycle controll if station is in error and a reset error comes
+IF (arr_StationData[iStationNumber].bStation_ERROR 
+	AND arr_StationData[iStationNumber].arr_iStep[0]&lt;&gt; 10000)
+	OR br_trig_BaseMoveActive THEN 
+		bStationWasInERROR:=TRUE;
+END_IF
+
+IF bStationWasInERROR
+	AND NOT arr_StationData[iStationNumber].bStation_ERROR THEN  //Nyugtázták a hibát
+	 	arr_StationData[iStationNumber].arr_iStep[0]:=0;
+		bStationWasInERROR:=FALSE;	 
+END_IF;
+	
+// Step Sequence
+CASE arr_StationData[iStationNumber].arr_iStep[0] OF
+	0:arr_StationData[iStationNumber].arr_StepStatus[0]:='Várakozás állomás engedélyezésre!';
+	
+	sReceivedString:='';
+	sLastReceivedString:='';
+	bStringReceivedArchive:=FALSE;
+	
+	IF arr_StationData[iStationNumber].bStation_Enabled  THEN
+		arr_StationData[iStationNumber].arr_iStep[0]:=arr_StationData[iStationNumber].arr_iStep[0]+10;
+	END_IF
+		
+	10:arr_StationData[iStationNumber].arr_StepStatus[0]:='Várakozás alaphelyzet felvétel kérésre!';
+	 	
+		arr_StationData[iStationNumber].bStation_In_Basic_Pos:=FALSE;
+		
+		arr_StationData[iStationNumber].arr_bStation_OutComm[0]:=FALSE; // Mérleg készen áll, pohár a helyén!		
+		arr_StationData[iStationNumber].arr_bStation_OutComm[1]:=FALSE; // Mérleg végzett a tárázással!
+		arr_StationData[iStationNumber].arr_bStation_OutComm[2]:=FALSE; // Mérleg végzett a súlyméréssel		
+				
+	IF bBaseMoveActive
+		AND NOT arr_StationData[iStationNumber].arr_bSemafor[0] THEN
+			arr_StationData[iStationNumber].arr_iStep[0]:=arr_StationData[iStationNumber].arr_iStep[0]+10;;
+	END_IF
+	
+	
+	
+	10000:	arr_StationData[iStationNumber].arr_StepStatus[0]:='Lépéslánc hiba!';
+	
+		arrbError[15]:=TRUE;
+		
+		IF bGlobalResetERROR THEN
+			arrbError[15]:=FALSE;
+			arrsErrorString[15]:='';
+			arr_StationData[iStationNumber].arr_iStep[0]:=0;	
+			arrOEEErrorCode[15]:=0;
+			bStationWasInERROR:=FALSE;
+		END_IF
+	
+	10100:	arr_StationData[iStationNumber].arr_StepStatus[0]:='Figyelmeztetés aktív!';
+				
+		arrbWarning[15]:=TRUE;
+		
+		IF bGlobalResetWARNING THEN
+			arrbWarning[15]:=FALSE;
+			arrsWarningString[15]:='';
+			arr_StationData[iStationNumber].arr_iStep[0]:=1000;		
+		END_IF
+END_CASE
+*)
+</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>05d2dc43-658d-4904-b73c-cf187a7d874d</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="H_Others">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">;</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>d6f97e5c-6f43-482b-ad19-e6f8bbca8a54</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="I_Outputs">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">;</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>7ef626da-2e01-4671-b379-43a31e9216fc</ObjectId>
+              </data>
+            </addData>
+          </action>
+        </actions>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">// Action calls
+A_Init();
+B_Constants();
+C_FB_Calls();
+D_ERROR_Handling();
+E_Timers_Edge_Detection();
+F_Enable_Signal_Handling();
+G_Step_Sequence();
+H_Others();
+I_Outputs();
+
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK Base_Station_FB
+VAR_INPUT
+	
+END_VAR
+VAR_OUTPUT
+	
+END_VAR
+
+VAR PERSISTENT
+	
+VAR_IN_OUT
+	arr_StationData						:ARRAY[0..1] OF ST_Station_Data;
+END_VAR
+VAR
+	// ***********************************************************************************Basre projekt variables 
+	iStationNumber						:UINT;
+	
+	fb_StationERROR						:FB_ERROR_Handling_For_Station;
+	arrsErrorString						:ARRAY[0..20]OF STRING[255];
+	arrbError							:ARRAY[0..20]OF BOOL;
+	arrOEEErrorCode						:ARRAY[0..20]OF INT;
+	arrsWarningString					:ARRAY[0..20]OF STRING[250];
+	arrbWarning							:ARRAY[0..20]OF BOOL;
+	fb_StationWarningHandling			:FB_Warning_Handling_For_Stations;
+		
+	bClr								:BOOL;
+	arrClr_Step_Archive					:ARRAY[0..40] OF UINT;
+						
+	fb_StepChainSemafor_STepChain0		:FB_StepChainSemafor_For_Stations;
+	fb_StepTimeOut_STepChain0			:FB_StepTimeOUT_For_Stations;
+	
+	i									:UINT;
+	
+	tonStationEnableDelay				:TON;
+	rtrigTONStationDelay				:R_TRIG;
+	
+	//**************************************************************************************************************
+
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>1194f782-a27b-44a9-b650-4681959cd987</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_ERROR_Handling_For_Station" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="bEnable">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="arrsErrorString">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrbError">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrERRORLevel">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <USINT />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Minden hibajelző eszköz beállítja 1-5-ig a hiba súlyosságát</xhtml>
+              </documentation>
+            </variable>
+            <variable name="arrOEEErrorCode">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <INT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="iStationNumber">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_ERROR_Handling_For_Station
+// Összeszedi az állomáson belüli eszközök hibáit és egy string + 1 Bool-t ad ki magából
+// Több hiba esetén kirakja a stringet és a bool-t, majd megvárja hogy a cella hibakezelő
+// feldolgozza és csak utána rakja ki az új hibát
+
+VAR_INPUT
+		bEnable					:BOOL;
+		arrsErrorString			:ARRAY[0..40]OF STRING[255];
+		arrbError				:ARRAY[0..40]OF BOOL;
+		arrERRORLevel			:ARRAY[0..40]OF USINT;			// Minden hibajelző eszköz beállítja 1-5-ig a hiba súlyosságát
+		arrOEEErrorCode			:ARRAY[0..40]OF INT;
+		iStationNumber			:UINT;
+END_VAR
+VAR_OUTPUT
+		sStationERROR				:STRING[255];
+		arrbErrorStringConfirmed	:ARRAY[0..40]OF BOOL;
+END_VAR
+
+VAR
+	i							: INT;
+	iAmountOfERROR				: INT;
+	arrsErrorStringArchive		: ARRAY[0..40]OF STRING[255];
+	arrsCLRErrorStringArchive	: ARRAY[0..40]OF STRING[255];
+	r_TrigResetERROR			: R_TRIG;
+	sErrorString				:STRING;
+		
+
+	iStepNumber					: INT;
+	tofWaitAfterResetERROR		: TOF;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <outputVars>
+            <variable name="sStationERROR">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="arrbErrorStringConfirmed">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_ERROR_Handling_For_Station
+// Összeszedi az állomáson belüli eszközök hibáit és egy string + 1 Bool-t ad ki magából
+// Több hiba esetén kirakja a stringet és a bool-t, majd megvárja hogy a cella hibakezelő
+// feldolgozza és csak utána rakja ki az új hibát
+
+VAR_INPUT
+		bEnable					:BOOL;
+		arrsErrorString			:ARRAY[0..40]OF STRING[255];
+		arrbError				:ARRAY[0..40]OF BOOL;
+		arrERRORLevel			:ARRAY[0..40]OF USINT;			// Minden hibajelző eszköz beállítja 1-5-ig a hiba súlyosságát
+		arrOEEErrorCode			:ARRAY[0..40]OF INT;
+		iStationNumber			:UINT;
+END_VAR
+VAR_OUTPUT
+		sStationERROR				:STRING[255];
+		arrbErrorStringConfirmed	:ARRAY[0..40]OF BOOL;
+END_VAR
+
+VAR
+	i							: INT;
+	iAmountOfERROR				: INT;
+	arrsErrorStringArchive		: ARRAY[0..40]OF STRING[255];
+	arrsCLRErrorStringArchive	: ARRAY[0..40]OF STRING[255];
+	r_TrigResetERROR			: R_TRIG;
+	sErrorString				:STRING;
+		
+
+	iStepNumber					: INT;
+	tofWaitAfterResetERROR		: TOF;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </outputVars>
+          <localVars>
+            <variable name="i">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="iAmountOfERROR">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="arrsErrorStringArchive">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrsCLRErrorStringArchive">
+              <type>
+                <array>
+                  <dimension lower="0" upper="40" />
+                  <baseType>
+                    <string length="255" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="r_TrigResetERROR">
+              <type>
+                <derived name="R_TRIG" />
+              </type>
+            </variable>
+            <variable name="sErrorString">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="iStepNumber">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="tofWaitAfterResetERROR">
+              <type>
+                <derived name="TOF" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_ERROR_Handling_For_Station
+// Összeszedi az állomáson belüli eszközök hibáit és egy string + 1 Bool-t ad ki magából
+// Több hiba esetén kirakja a stringet és a bool-t, majd megvárja hogy a cella hibakezelő
+// feldolgozza és csak utána rakja ki az új hibát
+
+VAR_INPUT
+		bEnable					:BOOL;
+		arrsErrorString			:ARRAY[0..40]OF STRING[255];
+		arrbError				:ARRAY[0..40]OF BOOL;
+		arrERRORLevel			:ARRAY[0..40]OF USINT;			// Minden hibajelző eszköz beállítja 1-5-ig a hiba súlyosságát
+		arrOEEErrorCode			:ARRAY[0..40]OF INT;
+		iStationNumber			:UINT;
+END_VAR
+VAR_OUTPUT
+		sStationERROR				:STRING[255];
+		arrbErrorStringConfirmed	:ARRAY[0..40]OF BOOL;
+END_VAR
+
+VAR
+	i							: INT;
+	iAmountOfERROR				: INT;
+	arrsErrorStringArchive		: ARRAY[0..40]OF STRING[255];
+	arrsCLRErrorStringArchive	: ARRAY[0..40]OF STRING[255];
+	r_TrigResetERROR			: R_TRIG;
+	sErrorString				:STRING;
+		
+
+	iStepNumber					: INT;
+	tofWaitAfterResetERROR		: TOF;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">arrbError[0];arrbError[1];
+arrbError[2];arrbError[3];
+arrbError[4];arrbError[5];
+arrbError[6];arrbError[7];
+arrbError[8];arrbError[9];
+arrbError[10];arrbError[11];
+arrbError[12];arrbError[13];
+arrbError[14];arrbError[15];
+arrbError[16];arrbError[17];
+arrbError[18];arrbError[19];
+arrbError[20];arrbError[21];
+arrbError[22];arrbError[23];
+arrbError[24];arrbError[25];
+arrbError[26];arrbError[27];
+arrbError[28];arrbError[29];
+arrbError[30];arrbError[31];
+arrbError[32];arrbError[33];
+arrbError[34];arrbError[35];
+arrbError[36];arrbError[37];
+arrbError[38];arrbError[39];
+arrbError[40];
+
+
+arrsErrorString[0];arrsErrorString[1];
+arrsErrorString[2];arrsErrorString[3];
+arrsErrorString[4];arrsErrorString[5];
+arrsErrorString[6];arrsErrorString[7];
+arrsErrorString[8];arrsErrorString[9];
+arrsErrorString[10];arrsErrorString[11];
+arrsErrorString[12];arrsErrorString[13];
+arrsErrorString[14];arrsErrorString[15];
+arrsErrorString[16];arrsErrorString[17];
+arrsErrorString[18];arrsErrorString[19];
+arrsErrorString[20];arrsErrorString[21];
+arrsErrorString[22];arrsErrorString[23];
+arrsErrorString[24];arrsErrorString[25];
+arrsErrorString[26];arrsErrorString[27];
+arrsErrorString[28];arrsErrorString[29];
+arrsErrorString[30];arrsErrorString[31];
+arrsErrorString[32];arrsErrorString[33];
+arrsErrorString[34];arrsErrorString[35];
+arrsErrorString[36];arrsErrorString[37];
+arrsErrorString[38];arrsErrorString[39];
+arrsErrorString[40];
+
+// Timers
+tofWaitAfterResetERROR(IN:= , PT:=T#500MS , Q=&gt; , ET=&gt; );
+tofWaitAfterResetERROR.ET;
+
+IF bEnable THEN
+	// Get ERROR bit from every device within the station
+	IF NOT tofWaitAfterResetERROR.Q THEN							// Wait x ms after reset error, to give time to stations to reset their error
+		IF NOT  arr_StationData[iStationNumber].bStation_ERROR THEN
+			FOR i:=0 TO 40 BY 1 DO
+				IF arrbError[i] = TRUE THEN
+					iAmountOfERROR:=iAmountOfERROR+1;
+					IF iAmountOfERROR &gt; 100 THEN
+						iAmountOfERROR:=100;
+					END_IF
+				END_IF
+			END_FOR
+		END_IF
+	ELSE
+		tofWaitAfterResetERROR.IN:=FALSE;
+	END_IF
+	// Set Station ERROR Bit
+	IF iAmountOfERROR &gt; 0 THEN
+		 arr_StationData[iStationNumber].bStation_ERROR:=TRUE;
+	END_IF
+	
+	// Reset ERROR
+	r_TrigResetERROR(CLK:=bGlobalResetERROR , Q=&gt; );
+	
+	IF r_TrigResetERROR.Q THEN
+		iAmountOfERROR:=0;
+		arr_StationData[iStationNumber].bStation_ERROR:=FALSE;
+		arr_StationData[iStationNumber].sStation_ERROR:='';
+		sStationERROR:='';
+		arrsErrorStringArchive:=arrsCLRErrorStringArchive;
+		iStepNumber:=0;
+		tofWaitAfterResetERROR.IN:=TRUE;	
+	END_IF
+	
+	IF  arr_StationData[iStationNumber].bStation_ERROR THEN
+			// ERROR String handling
+			CASE iStepNumber OF 
+				0:// Chek if there is a new ERROR String
+				FOR i:=0 TO 40 DO
+					IF arrsErrorString[i] &lt;&gt; arrsErrorStringArchive[i] 
+						AND arrsErrorString[i]&lt;&gt; '' 
+						AND arrbError[i] = TRUE THEN // csak azt a stringet teszi ki amelyik adja a hiba bitet
+						 arrsErrorStringArchive[i]:= arrsErrorString[i];
+						 arr_StationData[iStationNumber].sStation_ERROR:=FUN_Build_String_5(arr_StationData[iStationNumber].sStationName,'  :',arrsErrorString[i],'ERROR Level: ',INT_TO_STRING(arrERRORLevel[i]));
+						 arr_StationData[iStationNumber].iERRORLevel:=arrERRORLevel[i];
+						 arr_StationData[iStationNumber].iOEECategoryNumber:=arrOEEErrorCode[i];
+						 sStationERROR:=CONCAT( arr_StationData[iStationNumber].sStationName,Concat('  :',arrsErrorString[i]));
+						 iStepNumber:=10;
+						 EXIT;
+					END_IF
+				END_FOR
+				10:// Wait for ERROR String confirmation from MAIN cycle
+				
+				IF arr_StationData[iStationNumber].bErrorStringConfirmed THEN			// Megvárja amíg a main ciklus kiírja a hibát, és csak utánna rak ki újat
+					arr_StationData[iStationNumber].bErrorStringConfirmed:=FALSE;
+					arrbErrorStringConfirmed[i]:=TRUE;
+					arr_StationData[iStationNumber].sStation_ERROR:='';
+					iStepNumber:=20;
+				END_IF
+				20:// Reset Error confirmation signal
+									
+				FOR i:=0 TO 20 DO
+					arrbErrorStringConfirmed[i]:=FALSE;
+				END_FOR
+				iStepNumber:=0;
+			END_CASE
+	ELSE
+			sStationERROR:='';
+	END_IF
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_ERROR_Handling_For_Station
+// Összeszedi az állomáson belüli eszközök hibáit és egy string + 1 Bool-t ad ki magából
+// Több hiba esetén kirakja a stringet és a bool-t, majd megvárja hogy a cella hibakezelő
+// feldolgozza és csak utána rakja ki az új hibát
+
+VAR_INPUT
+		bEnable					:BOOL;
+		arrsErrorString			:ARRAY[0..40]OF STRING[255];
+		arrbError				:ARRAY[0..40]OF BOOL;
+		arrERRORLevel			:ARRAY[0..40]OF USINT;			// Minden hibajelző eszköz beállítja 1-5-ig a hiba súlyosságát
+		arrOEEErrorCode			:ARRAY[0..40]OF INT;
+		iStationNumber			:UINT;
+END_VAR
+VAR_OUTPUT
+		sStationERROR				:STRING[255];
+		arrbErrorStringConfirmed	:ARRAY[0..40]OF BOOL;
+END_VAR
+
+VAR
+	i							: INT;
+	iAmountOfERROR				: INT;
+	arrsErrorStringArchive		: ARRAY[0..40]OF STRING[255];
+	arrsCLRErrorStringArchive	: ARRAY[0..40]OF STRING[255];
+	r_TrigResetERROR			: R_TRIG;
+	sErrorString				:STRING;
+		
+
+	iStepNumber					: INT;
+	tofWaitAfterResetERROR		: TOF;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>9033e319-106f-471b-a4aa-2e878c08594c</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_Warning_Handling_For_Stations" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="bEnable">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="arrsWarningString">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string length="250" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrbWarning">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="iStationNumber">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Warning_Handling_For_Stations
+// Összeszedi az állomáson belüli eszközök figyelmeztetéseit és egy string + 1 Bool-t ad ki magából
+// Több figyelmeztetés esetén mindíg kirakja a stringet és a bool-t, majd megvárja hogy a cella figyelmeztetéskezelő
+// feldolgozza és csak utána rakja ki az új figyelmeztetést
+
+VAR_INPUT
+		bEnable							:BOOL;
+		arrsWarningString				:ARRAY[0..20]OF STRING[250];
+		arrbWarning						:ARRAY[0..20]OF BOOL;
+		iStationNumber					:INT;
+END_VAR
+VAR_OUTPUT
+		bStation_WARNING				:BOOL;
+		sStationWarning					:STRING;
+		arrbWarningConfirmed			:ARRAY[0..20]OF BOOL;
+END_VAR
+VAR
+	i								: INT;
+	iAmountOfWarning				: INT;
+	arrsWarningStringArchive		: ARRAY[0..20]OF STRING(250);
+	arrsCLRWarningStringArchive		: ARRAY[0..20]OF STRING(250);
+	arr_WarningMessagesClr			:ARRAY[0..20] OF STRING[250];
+	r_TrigResetWarning				: R_TRIG;
+		
+	iStepNumber: INT;
+	tofWaitAfterResetWarning: TOF;
+	btest: BOOL;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <outputVars>
+            <variable name="bStation_WARNING">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="sStationWarning">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="arrbWarningConfirmed">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Warning_Handling_For_Stations
+// Összeszedi az állomáson belüli eszközök figyelmeztetéseit és egy string + 1 Bool-t ad ki magából
+// Több figyelmeztetés esetén mindíg kirakja a stringet és a bool-t, majd megvárja hogy a cella figyelmeztetéskezelő
+// feldolgozza és csak utána rakja ki az új figyelmeztetést
+
+VAR_INPUT
+		bEnable							:BOOL;
+		arrsWarningString				:ARRAY[0..20]OF STRING[250];
+		arrbWarning						:ARRAY[0..20]OF BOOL;
+		iStationNumber					:INT;
+END_VAR
+VAR_OUTPUT
+		bStation_WARNING				:BOOL;
+		sStationWarning					:STRING;
+		arrbWarningConfirmed			:ARRAY[0..20]OF BOOL;
+END_VAR
+VAR
+	i								: INT;
+	iAmountOfWarning				: INT;
+	arrsWarningStringArchive		: ARRAY[0..20]OF STRING(250);
+	arrsCLRWarningStringArchive		: ARRAY[0..20]OF STRING(250);
+	arr_WarningMessagesClr			:ARRAY[0..20] OF STRING[250];
+	r_TrigResetWarning				: R_TRIG;
+		
+	iStepNumber: INT;
+	tofWaitAfterResetWarning: TOF;
+	btest: BOOL;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </outputVars>
+          <localVars>
+            <variable name="i">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="iAmountOfWarning">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="arrsWarningStringArchive">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string length="250" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrsCLRWarningStringArchive">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string length="250" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arr_WarningMessagesClr">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <string length="250" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="r_TrigResetWarning">
+              <type>
+                <derived name="R_TRIG" />
+              </type>
+            </variable>
+            <variable name="iStepNumber">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="tofWaitAfterResetWarning">
+              <type>
+                <derived name="TOF" />
+              </type>
+            </variable>
+            <variable name="btest">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Warning_Handling_For_Stations
+// Összeszedi az állomáson belüli eszközök figyelmeztetéseit és egy string + 1 Bool-t ad ki magából
+// Több figyelmeztetés esetén mindíg kirakja a stringet és a bool-t, majd megvárja hogy a cella figyelmeztetéskezelő
+// feldolgozza és csak utána rakja ki az új figyelmeztetést
+
+VAR_INPUT
+		bEnable							:BOOL;
+		arrsWarningString				:ARRAY[0..20]OF STRING[250];
+		arrbWarning						:ARRAY[0..20]OF BOOL;
+		iStationNumber					:INT;
+END_VAR
+VAR_OUTPUT
+		bStation_WARNING				:BOOL;
+		sStationWarning					:STRING;
+		arrbWarningConfirmed			:ARRAY[0..20]OF BOOL;
+END_VAR
+VAR
+	i								: INT;
+	iAmountOfWarning				: INT;
+	arrsWarningStringArchive		: ARRAY[0..20]OF STRING(250);
+	arrsCLRWarningStringArchive		: ARRAY[0..20]OF STRING(250);
+	arr_WarningMessagesClr			:ARRAY[0..20] OF STRING[250];
+	r_TrigResetWarning				: R_TRIG;
+		
+	iStepNumber: INT;
+	tofWaitAfterResetWarning: TOF;
+	btest: BOOL;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">arrbWarning[0];arrbWarning[1];
+arrbWarning[2];arrbWarning[3];
+arrbWarning[4];arrbWarning[5];
+arrbWarning[6];arrbWarning[7];
+arrbWarning[8];arrbWarning[9];
+arrbWarning[10];arrbWarning[11];
+arrbWarning[12];arrbWarning[13];
+arrbWarning[14];arrbWarning[15];
+arrbWarning[16];arrbWarning[17];
+arrbWarning[18];arrbWarning[19];
+arrbWarning[20];
+
+arrsWarningString[0];arrsWarningString[1];
+arrsWarningString[2];arrsWarningString[3];
+arrsWarningString[4];arrsWarningString[5];
+arrsWarningString[6];arrsWarningString[7];
+arrsWarningString[8];arrsWarningString[9];
+arrsWarningString[10];arrsWarningString[11];
+arrsWarningString[12];arrsWarningString[13];
+arrsWarningString[14];arrsWarningString[15];
+arrsWarningString[16];arrsWarningString[17];
+arrsWarningString[18];arrsWarningString[19];
+arrsWarningString[20];
+
+// Timers
+tofWaitAfterResetWarning(IN:= , PT:=T#500MS , Q=&gt; , ET=&gt; );
+tofWaitAfterResetWarning.ET;
+IF bEnable	THEN
+		// Get WARNNG bit from every device within the station
+		IF NOT tofWaitAfterResetWarning.Q THEN							// Wait x ms after reset WARNNG, to give time to stations to reset their WARNING
+			IF NOT  arr_StationData[iStationNumber].bStation_WARNING THEN
+				FOR i:=0 TO 20 BY 1 DO
+					IF arrbWarning[i] = TRUE THEN
+						iAmountOfWarning:=iAmountOfWarning+1;
+						IF iAmountOfWarning &gt; 100 THEN
+							iAmountOfWarning:=100;
+						END_IF
+					END_IF
+				END_FOR
+			END_IF
+		ELSE
+			tofWaitAfterResetWarning.IN:=FALSE;
+		END_IF
+		// Set Station WARNNG Bit
+		IF iAmountOfWarning &gt; 0 THEN
+			 arr_StationData[iStationNumber].bStation_WARNING:=TRUE;
+		END_IF
+		
+		// Reset WARNNG
+		r_TrigResetWarning(CLK:=bGlobalResetWARNING , Q=&gt; );
+		
+		IF r_TrigResetWarning.Q THEN
+			iAmountOfWarning:=0;
+			arr_StationData[iStationNumber].bStation_WARNING:=FALSE;
+			arr_StationData[iStationNumber].sStation_WARNING:='';
+			sStationWarning:='';
+			arrsWarningStringArchive:=arrsCLRWarningStringArchive;
+			arrsWarningString:=arr_WarningMessagesClr;
+			iStepNumber:=0;
+			tofWaitAfterResetWarning.IN:=TRUE;	
+			btest:=TRUE;
+		END_IF
+		
+		// WARNNG String handling
+		CASE iStepNumber OF 
+			0:// Chek if there is a new WARNNG String
+			FOR i:=0 TO 20 DO
+				IF arrsWarningString[i] &lt;&gt; arrsWarningStringArchive[i] 
+					AND arrsWarningString[i]&lt;&gt; '' THEN
+					 arrsWarningStringArchive[i]:= arrsWarningString[i];
+					 arrbWarningConfirmed[i]:=TRUE;
+					 arr_StationData[iStationNumber].sStation_WARNING:=CONCAT( arr_StationData[iStationNumber].sStationName,Concat('  :',arrsWarningString[i]));
+					 sStationWarning:=CONCAT( arr_StationData[iStationNumber].sStationName,Concat('  :',arrsWarningString[i]));
+					 iStepNumber:=10;
+					 EXIT;
+				END_IF
+			END_FOR
+			10:// Wait for Warning String confirmation from MAIN cycle
+			
+			IF arr_StationData[iStationNumber].bWarningStringConfirmed THEN			// Megvárja amíg a main ciklus kiírja a hibát, és csak utánna rak ki újat
+				arr_StationData[iStationNumber].bWarningStringConfirmed:=FALSE;
+				arr_StationData[iStationNumber].sStation_WARNING:='';
+				iStepNumber:=0;
+			END_IF
+			
+		END_CASE
+		
+		arr_StationData[iStationNumber].sStation_WARNING;
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Warning_Handling_For_Stations
+// Összeszedi az állomáson belüli eszközök figyelmeztetéseit és egy string + 1 Bool-t ad ki magából
+// Több figyelmeztetés esetén mindíg kirakja a stringet és a bool-t, majd megvárja hogy a cella figyelmeztetéskezelő
+// feldolgozza és csak utána rakja ki az új figyelmeztetést
+
+VAR_INPUT
+		bEnable							:BOOL;
+		arrsWarningString				:ARRAY[0..20]OF STRING[250];
+		arrbWarning						:ARRAY[0..20]OF BOOL;
+		iStationNumber					:INT;
+END_VAR
+VAR_OUTPUT
+		bStation_WARNING				:BOOL;
+		sStationWarning					:STRING;
+		arrbWarningConfirmed			:ARRAY[0..20]OF BOOL;
+END_VAR
+VAR
+	i								: INT;
+	iAmountOfWarning				: INT;
+	arrsWarningStringArchive		: ARRAY[0..20]OF STRING(250);
+	arrsCLRWarningStringArchive		: ARRAY[0..20]OF STRING(250);
+	arr_WarningMessagesClr			:ARRAY[0..20] OF STRING[250];
+	r_TrigResetWarning				: R_TRIG;
+		
+	iStepNumber: INT;
+	tofWaitAfterResetWarning: TOF;
+	btest: BOOL;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>a06a866f-8594-48be-9247-4a198c9e3e4d</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_StepChainSemafor_For_Stations" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="iStationNumber">
+              <type>
+                <UINT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Constant</xhtml>
+              </documentation>
+            </variable>
+            <variable name="iStepChainNumber">
+              <type>
+                <INT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Constant		</xhtml>
+              </documentation>
+            </variable>
+            <variable name="tStepOverTime">
+              <type>
+                <TIME />
+              </type>
+              <initialValue>
+                <simpleValue value="TIME#500ms" />
+              </initialValue>
+            </variable>
+            <variable name="bBypass_Automatic">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> If stepChain is independent from automatic mode</xhtml>
+              </documentation>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepChainSemafor_For_Stations
+VAR_INPUT
+	iStationNumber				:UINT;   // Constant
+	iStepChainNumber			:INT;	// Constant		
+	tStepOverTime				:TIME:=T#500MS;		
+	bBypass_Automatic			:BOOL;	// If stepChain is independent from automatic mode
+END_VAR
+VAR_OUTPUT
+
+END_VAR
+VAR
+	iStepNumberArchive			:INT;
+	bStartTimer					:BOOL;
+	ton_Step_Over_Time			:TON;
+	rtrig_StepOver				:R_TRIG;	
+	iTest: INT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <localVars>
+            <variable name="iStepNumberArchive">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="bStartTimer">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="ton_Step_Over_Time">
+              <type>
+                <derived name="TON" />
+              </type>
+            </variable>
+            <variable name="rtrig_StepOver">
+              <type>
+                <derived name="R_TRIG" />
+              </type>
+            </variable>
+            <variable name="iTest">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepChainSemafor_For_Stations
+VAR_INPUT
+	iStationNumber				:UINT;   // Constant
+	iStepChainNumber			:INT;	// Constant		
+	tStepOverTime				:TIME:=T#500MS;		
+	bBypass_Automatic			:BOOL;	// If stepChain is independent from automatic mode
+END_VAR
+VAR_OUTPUT
+
+END_VAR
+VAR
+	iStepNumberArchive			:INT;
+	bStartTimer					:BOOL;
+	ton_Step_Over_Time			:TON;
+	rtrig_StepOver				:R_TRIG;	
+	iTest: INT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">//******************************************************** Watch over if step number has changed
+
+IF arr_StationData[iStationNumber].arr_iStep[iStepChainNumber] &lt;&gt; iStepNumberArchive THEN
+    iStepNumberArchive := arr_StationData[iStationNumber].arr_iStep[iStepChainNumber];
+   	 arr_StationData[iStationNumber].arr_bSemafor[iStepChainNumber] := TRUE;
+END_IF;
+
+//********************************************************* Automatic reset of semafor
+ton_Step_Over_Time(IN:=,
+                    PT:=tStepOverTime);
+
+
+// Start timer
+IF NOT arr_StationData[iStationNumber].arr_bStepModeActive[iStepChainNumber]
+    AND  arr_StationData[iStationNumber].arr_bSemafor[iStepChainNumber]
+    AND (bAutomatic
+    		OR bBypass_Automatic
+			OR bBaseMoveActive) THEN
+    	ton_Step_Over_Time.IN := TRUE;
+END_IF;
+
+ton_Step_Over_Time.ET;
+IF ton_Step_Over_Time.Q THEN
+     arr_StationData[iStationNumber].arr_bSemafor[iStepChainNumber] := FALSE;
+	 ton_Step_Over_Time.IN:=FALSE;
+	 iTest:=iTest+1;
+END_IF;
+
+//********************************************************* StepMode Active
+rtrig_StepOver(CLK:=arr_StationData[iStationNumber].arr_bStepOver[iStepChainNumber]);
+
+
+
+IF arr_StationData[iStationNumber].arr_bStepModeActive[iStepChainNumber]
+    AND  arr_StationData[iStationNumber].arr_bSemafor[iStepChainNumber]
+    AND rtrig_StepOver.Q THEN
+    	 arr_StationData[iStationNumber].arr_bSemafor[iStepChainNumber] := FALSE;
+END_IF;
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepChainSemafor_For_Stations
+VAR_INPUT
+	iStationNumber				:UINT;   // Constant
+	iStepChainNumber			:INT;	// Constant		
+	tStepOverTime				:TIME:=T#500MS;		
+	bBypass_Automatic			:BOOL;	// If stepChain is independent from automatic mode
+END_VAR
+VAR_OUTPUT
+
+END_VAR
+VAR
+	iStepNumberArchive			:INT;
+	bStartTimer					:BOOL;
+	ton_Step_Over_Time			:TON;
+	rtrig_StepOver				:R_TRIG;	
+	iTest: INT;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>43330e9a-352f-4e10-9843-869f4175e59f</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_StepTimeOUT_For_Stations" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="iStationNumber">
+              <type>
+                <UINT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Constant</xhtml>
+              </documentation>
+            </variable>
+            <variable name="iStepChainNumber">
+              <type>
+                <UINT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Constant		</xhtml>
+              </documentation>
+            </variable>
+            <variable name="tTimeOut">
+              <type>
+                <TIME />
+              </type>
+              <initialValue>
+                <simpleValue value="TIME#5s0ms" />
+              </initialValue>
+            </variable>
+            <variable name="bEnable">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="sSequenceName">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepTimeOUT_For_Stations
+VAR_INPUT
+	iStationNumber				:UINT;   // Constant
+	iStepChainNumber			:UINT;	// Constant		
+	tTimeOut					:TIME:=	T#5S;		
+	bEnable						:BOOL;		
+	sSequenceName				:STRING;
+END_VAR
+VAR_OUTPUT	
+END_VAR
+VAR
+	iStepArchive				:UINT;		
+	bStartTimer					:BOOL;		
+	i							:UINT;		
+	bException					:BOOL;			
+	tonTimeOut					:TON;
+	sStepTimeOutERROR_Temp		:STRING[255];;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <localVars>
+            <variable name="iStepArchive">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="bStartTimer">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="i">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="bException">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="tonTimeOut">
+              <type>
+                <derived name="TON" />
+              </type>
+            </variable>
+            <variable name="sStepTimeOutERROR_Temp">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepTimeOUT_For_Stations
+VAR_INPUT
+	iStationNumber				:UINT;   // Constant
+	iStepChainNumber			:UINT;	// Constant		
+	tTimeOut					:TIME:=	T#5S;		
+	bEnable						:BOOL;		
+	sSequenceName				:STRING;
+END_VAR
+VAR_OUTPUT	
+END_VAR
+VAR
+	iStepArchive				:UINT;		
+	bStartTimer					:BOOL;		
+	i							:UINT;		
+	bException					:BOOL;			
+	tonTimeOut					:TON;
+	sStepTimeOutERROR_Temp		:STRING[255];;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">IF tTimeOut = T#0S THEN
+	tTimeOut:=T#5S;
+END_IF
+
+
+IF bEnable THEN
+    
+    IF NOT  arr_StationData[iStationNumber].arr_bStepTimeOutERROR[iStepChainNumber] THEN
+        // Exception?
+        bException := FALSE;
+        i := 0;
+        FOR i := 0 TO 20 DO
+            IF arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[i] = arr_StationData[iStationNumber].arr_iStep[iStepChainNumber] THEN // ha tömb egyetlen eleme megegyezik az aktuális lépéssel akkor az kivétel
+                bException := TRUE;
+            END_IF;
+        END_FOR;
+       
+        
+        // NEW Step???
+        IF arr_StationData[iStationNumber].arr_iStep[iStepChainNumber] &lt;&gt; iStepArchive THEN
+            iStepArchive := arr_StationData[iStationNumber].arr_iStep[iStepChainNumber];
+            bStartTimer := FALSE;
+        ELSIF NOT bException THEN
+            bStartTimer := TRUE;
+        END_IF;
+        
+    END_IF;
+	
+    // Start TimeOut
+    tonTimeOut(IN := bStartTimer,
+                    PT :=tTimeOut);
+    
+    //TimeOut ERROR
+    IF tonTimeOut.Q THEN
+        arr_StationData[iStationNumber].arr_bStepTimeOutERROR[iStepChainNumber] := TRUE;
+        sStepTimeOutERROR_Temp := CONCAT(sSequenceName,CONCAT(FC_Locale('',' Lepeslanc idotullepes: ','Step sequence time out: '), (arr_StationData[iStationNumber].arr_StepStatus[iStepChainNumber])));
+        arr_StationData[iStationNumber].arr_sStepTimeOutERROR[iStepChainNumber] := CONCAT(sStepTimeOutERROR_Temp,CONCAT('  STEP: ' ,(INT_TO_STRING(arr_StationData[iStationNumber].arr_iStep[iStepChainNumber]))));
+        bStartTimer := FALSE;
+    END_IF;
+END_IF;
+  // RESET ERROR
+IF bGlobalResetERROR
+    OR NOT bEnable THEN
+    arr_StationData[iStationNumber].arr_bStepTimeOutERROR[iStepChainNumber] := FALSE;
+      arr_StationData[iStationNumber].arr_sStepTimeOutERROR[iStepChainNumber] := '';
+    iStepArchive := 0;
+END_IF;
+
+arr_StationData[iStationNumber].arr_bStepTimeOutERROR[iStepChainNumber];
+arr_StationData[iStationNumber].arr_sStepTimeOutERROR[iStepChainNumber];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[0];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[1];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[2];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[3];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[4];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[5];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[6];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[7];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[8];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[9];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[10];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[11];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[12];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[13];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[14];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[15];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[16];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[17];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[18];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[19];
+arr_StationData[iStationNumber].arr_Exceptions[iStepChainNumber].arrExceptions[20];
+
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepTimeOUT_For_Stations
+VAR_INPUT
+	iStationNumber				:UINT;   // Constant
+	iStepChainNumber			:UINT;	// Constant		
+	tTimeOut					:TIME:=	T#5S;		
+	bEnable						:BOOL;		
+	sSequenceName				:STRING;
+END_VAR
+VAR_OUTPUT	
+END_VAR
+VAR
+	iStepArchive				:UINT;		
+	bStartTimer					:BOOL;		
+	i							:UINT;		
+	bException					:BOOL;			
+	tonTimeOut					:TON;
+	sStepTimeOutERROR_Temp		:STRING[255];;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>25af19cb-7755-437e-9eda-9c547a951896</ObjectId>
+          </data>
+        </addData>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="Base_Station_FB" ObjectId="1194f782-a27b-44a9-b650-4681959cd987">
+          <Object Name="A_Init" ObjectId="c043fc88-44d6-4ea8-8ebb-d5352e2ff7d8" />
+          <Object Name="B_Constants" ObjectId="207841df-d04b-4fcb-b6f2-60fda8aec23b" />
+          <Object Name="C_FB_Calls" ObjectId="9b8494df-bde2-4e76-8472-5e17f5d74525" />
+          <Object Name="D_ERROR_Handling" ObjectId="84930d4c-9c09-462d-a5e6-0be8da37eae7" />
+          <Object Name="E_Timers_Edge_Detection" ObjectId="dfa38529-ed56-4d10-805f-1a0322f37eff" />
+          <Object Name="F_Enable_Signal_Handling" ObjectId="1686489b-8b54-4613-9834-c89eee1ea52d" />
+          <Object Name="G_Step_Sequence" ObjectId="05d2dc43-658d-4904-b73c-cf187a7d874d" />
+          <Object Name="H_Others" ObjectId="d6f97e5c-6f43-482b-ad19-e6f8bbca8a54" />
+          <Object Name="I_Outputs" ObjectId="7ef626da-2e01-4671-b379-43a31e9216fc" />
+        </Object>
+        <Object Name="FB_ERROR_Handling_For_Station" ObjectId="9033e319-106f-471b-a4aa-2e878c08594c" />
+        <Object Name="FB_Warning_Handling_For_Stations" ObjectId="a06a866f-8594-48be-9247-4a198c9e3e4d" />
+        <Object Name="FB_StepChainSemafor_For_Stations" ObjectId="43330e9a-352f-4e10-9843-869f4175e59f" />
+        <Object Name="FB_StepTimeOUT_For_Stations" ObjectId="25af19cb-7755-437e-9eda-9c547a951896" />
+        <Object Name="ST_Station_Data" ObjectId="a76ea6cc-9788-4c34-af1a-fa868068c2d3" />
+        <Object Name="ST_ERROR_Handling" ObjectId="334df06b-53c8-4801-9b8e-40c38faec530" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

@@ -1,0 +1,22 @@
+name: FB_CylinderDualOutput
+slug: spt-cylinder-dual
+category: device
+archetype: oop
+format: text
+description: 双电磁阀气缸组件（SPT SOLID 范式）—— 伸出/缩回各一个输出，互锁；依赖 I_DigitalOutput 抽象，内置空对象
+family: standalone
+style: default
+rank: 14
+use_when: 双电磁阀气缸，伸出/缩回各一路输出且需互锁
+keywords: [气缸, 汽缸, 双阀, 互锁, cylinder, dual, solenoid]
+version: "1.0"
+libraries: []
+requires: [spt-cylinder-single]
+objects:
+  - name: FB_CylinderDualOutput
+    kind: fb
+    members:
+      - {name: FB_Init, kind: method}
+      - {name: Extend,  kind: method}
+      - {name: Retract, kind: method}
+params: []

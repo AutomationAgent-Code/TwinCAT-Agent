@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7E3A9C41-2D5B-4F8A-9C6E-1B0D2A5C8E30}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TwinCATAgent.Xae</RootNamespace>
+    <AssemblyName>TwinCATAgent.Xae</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+    <DeployExtension>false</DeployExtension>
+    <LangVersion>latest</LangVersion>
+    <!-- 32-bit TcXaeShell 15.0 (Program Files (x86)) — the shell that actually loads this
+         package. Referencing the 64-bit 17.0 install's assemblies (Shell.15.0 v17.0.0.0)
+         made the package fail to load in the 15.0 shell (FileNotFoundException, no 17.0.0.0
+         assembly there). Verified via AppEnv\15.0\ActivityLog.xml on 2026-07-20. -->
+    <TcShellIde>C:\Program Files (x86)\Beckhoff\TcXaeShell\Common7\IDE</TcShellIde>
+    <TcShellPublic>C:\Program Files (x86)\Beckhoff\TcXaeShell\Common7\IDE\PublicAssemblies</TcShellPublic>
+    <TcShellPrivate>C:\Program Files (x86)\Beckhoff\TcXaeShell\Common7\IDE\PrivateAssemblies</TcShellPrivate>
+    <WebViewLoaderPath>libs\WebView2Loader.dll</WebViewLoaderPath>
+    <TcThreadingPath>$(TcShellPrivate)\Microsoft.VisualStudio.Threading.dll</TcThreadingPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <!-- DeployExtension deliberately left false: VSSDK's Deploy target (DeployVsixExtensionFiles in
+         Microsoft.VsSDK.targets) resolves its target via GetInstallationDirectoryForInstance, which
+         binds to whatever VS SxS setup instance is building the project (VS2022 itself here) — it
+         cannot cross over to TcXaeShell, which isn't a discoverable VS setup instance. Confirmed
+         empirically 2026-07-20: with DeployExtension=true, F5 silently deployed the pkgdef into
+         VS2022's OWN extensions folder instead of TcXaeShell's. See
+         .claude/memory/vsix-isolated-shell-lessons.md. -->
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release17|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release17\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Design" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+
+  <!-- Visual Studio SDK — referenced from the TcXaeShell install (no NuGet). -->
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Shell.15.0">
+      <HintPath>$(TcShellPublic)\Microsoft.VisualStudio.Shell.15.0.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Framework">
+      <HintPath>$(TcShellPublic)\Microsoft.VisualStudio.Shell.Framework.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop">
+      <HintPath>$(TcShellPublic)\Microsoft.VisualStudio.Shell.Interop.dll</HintPath>
+      <Private>false</Private>    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0">
+      <HintPath>$(TcShellPublic)\Microsoft.VisualStudio.Shell.Interop.10.0.dll</HintPath>
+      <Private>false</Private>    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.11.0">
+      <HintPath>$(TcShellPublic)\Microsoft.VisualStudio.Shell.Interop.11.0.dll</HintPath>
+      <Private>false</Private>    </Reference>
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop">
+      <HintPath>$(TcShellPublic)\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
+      <Private>false</Private>    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Threading">
+      <HintPath>$(TcThreadingPath)</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Interop" Condition="'$(Configuration)' == 'Release17'">
+      <HintPath>$(TcShellPublic)\Microsoft.VisualStudio.Interop.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Utilities">
+      <HintPath>$(TcShellIde)\Microsoft.VisualStudio.Utilities.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="EnvDTE">
+      <HintPath>$(TcShellPublic)\EnvDTE.dll</HintPath>
+      <Private>false</Private>    </Reference>
+    <Reference Include="EnvDTE80">
+      <HintPath>$(TcShellPublic)\EnvDTE80.dll</HintPath>
+      <Private>false</Private>    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core">
+      <HintPath>libs\Microsoft.Web.WebView2.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf">
+      <HintPath>libs\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Native WebView2 loader (win-x86, the shell is 32-bit) + bundled chat UI -->
+  <ItemGroup>
+    <Content Include="$(WebViewLoaderPath)">
+      <Link>WebView2Loader.dll</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="webview\index.html">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="webview\twincat-agent-logo.svg">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="TwinCATAgentPackage.cs" />
+    <Compile Include="XaeBuildPipeService.cs" />
+    <Compile Include="HmiHierarchyProbeContract.cs" />
+    <Compile Include="XaeHmiHierarchyPipeService.cs" />
+    <Compile Include="ShellInteractionService.cs" />
+    <Compile Include="TwinCATAgentToolWindow.cs" />
+    <Compile Include="TwinCATAgentChatControl.xaml.cs">
+      <DependentUpon>TwinCATAgentChatControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="TwinCATAgentChatControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="TwinCATAgentPackage.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source.extension.vsixmanifest" Condition="'$(Configuration)' != 'Release17'">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="source17.extension.vsixmanifest" Condition="'$(Configuration)' == 'Release17'">
+      <SubType>Designer</SubType>
+    </None>
+    <SourceVsixManifest Include="source17.extension.vsixmanifest" Condition="'$(Configuration)' == 'Release17'" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
+</Project>

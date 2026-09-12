@@ -1,0 +1,16 @@
+(*
+ * 功能：方波闪烁发生器 —— bEnable 时按 ON/OFF 时长翻转 bOut
+ * 作者：fblib / 版本：1.0
+ * 说明：循环服务型 FB，每周期调用一次；bEnable=FALSE 时 bOut 复位为 FALSE
+ *)
+FUNCTION_BLOCK FB_Blink
+VAR_INPUT
+    bEnable  : BOOL := TRUE;    // 使能，FALSE 时输出复位
+END_VAR
+VAR_OUTPUT
+    bOut     : BOOL;            // 方波输出
+END_VAR
+VAR
+    tonOn    : TON;             // 高电平计时
+    tonOff   : TON;             // 低电平计时
+END_VAR

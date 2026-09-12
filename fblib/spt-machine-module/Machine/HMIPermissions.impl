@@ -1,0 +1,1 @@
+AllowHMIControl(ThisModuleOnly := TRUE);

@@ -1,0 +1,8 @@
+TYPE E_TcpIpReceiveState :
+(
+    Idle := 0,
+    Receiving := 10,
+    Done := 20,
+    Error := 30
+);
+END_TYPE

@@ -1,0 +1,2 @@
+// Acting 态：复位。基类会调各组件的 Reset() 清报警，本方法只补硬件层复位动作
+METHOD PROTECTED Resetting

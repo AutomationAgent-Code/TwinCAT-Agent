@@ -1,0 +1,9 @@
+METHOD FB_Init : BOOL
+VAR_INPUT
+    bInitRetains  : BOOL;
+    bInCopyCode   : BOOL;
+    ExtendOutput  : I_DigitalOutput;
+    RetractOutput : I_DigitalOutput;
+    ExtendSensor  : I_DigitalInput;
+    RetractSensor : I_DigitalInput;
+END_VAR

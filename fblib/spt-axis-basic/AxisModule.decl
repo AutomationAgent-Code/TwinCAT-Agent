@@ -1,0 +1,8 @@
+FUNCTION_BLOCK {{MODULE_NAME}} EXTENDS FB_PackML_BaseModule
+VAR
+    // 轴组件：包了 FB_BasicAxis，带 I_ComponentBase 的 Busy/Error/Reset
+    {{AXIS_VAR}} : FB_Component_BasicAxis := (Name := '{{AXIS_LABEL}}');
+
+    // 上层给的动作命令（用属性或 EM 直接置位都行）
+    _MoveCommand : BOOL;
+END_VAR

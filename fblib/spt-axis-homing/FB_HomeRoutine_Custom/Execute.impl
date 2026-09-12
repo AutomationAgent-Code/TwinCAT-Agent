@@ -1,0 +1,9 @@
+IF (_Axis = 0) OR _Busy THEN
+    RETURN;                        // 返回 FALSE = 未接受
+END_IF
+
+_Busy        := TRUE;
+_Error       := FALSE;
+_ErrorID     := 0;
+SequenceStep := 10;
+Execute      := TRUE;

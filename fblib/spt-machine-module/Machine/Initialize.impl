@@ -1,0 +1,21 @@
+Initialize := FALSE;
+CASE DescendantSequenceState OF
+    0:
+        // 在这里注册设备模块与机器级组件
+        // RegisterSubModule(Infeed);
+        // RegisterComponent(StackLight);
+
+        _LogModeChanges  := TRUE;    // 模式切换写事件日志
+        _LogStateChanges := TRUE;    // 状态切换写事件日志
+
+        DescendantSequenceState := DescendantSequenceState + 10;
+
+    10: // 让基类去初始化所有已注册的子模块和组件（要跑多个周期）
+        IF SUPER^.Initialize() THEN
+            DescendantSequenceState := DescendantSequenceState + 10;
+        END_IF
+
+    20:
+        Trace('Init complete');      // 只在这一拍打一次，别放循环里
+        Initialize := TRUE;
+END_CASE

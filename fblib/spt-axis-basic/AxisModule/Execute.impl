@@ -1,0 +1,30 @@
+CASE _CurrentMode OF
+    E_PMLUnitMode.Production:
+        CASE SequenceState OF
+            0: // 等上层下命令
+                IF _MoveCommand THEN
+                    _MoveCommand  := FALSE;
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            10:
+                IF {{AXIS_VAR}}.MoveAbsolute({{TARGET_POS}}, 0) THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            20: // 等运动结束（Busy 落 + 无错）
+                IF NOT {{AXIS_VAR}}.Busy AND NOT {{AXIS_VAR}}.Error THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            30:
+                IF {{AXIS_VAR}}.MoveAbsolute(0, 0) THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            40:
+                IF NOT {{AXIS_VAR}}.Busy AND NOT {{AXIS_VAR}}.Error THEN
+                    SequenceState := 0;   // 回到等命令
+                END_IF
+        END_CASE
+END_CASE

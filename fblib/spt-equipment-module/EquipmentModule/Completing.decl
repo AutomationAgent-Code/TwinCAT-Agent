@@ -1,0 +1,2 @@
+// Acting 态：收到 Complete 后收尾（把在制品做完、退料）
+METHOD PROTECTED Completing

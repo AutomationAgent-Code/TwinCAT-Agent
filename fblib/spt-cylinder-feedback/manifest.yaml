@@ -1,0 +1,30 @@
+name: FB_CylinderDualOutputWithFeedback
+slug: spt-cylinder-feedback
+category: device
+archetype: oop
+format: text
+description: 带位置反馈的双阀气缸（SPT SOLID 范式）—— I_CylinderWithFeedback 扩展 I_Cylinder 增加到位检测；组合两个输出 + 两个传感器
+family: standalone
+style: default
+rank: 13
+use_when: 带到位传感器的双阀气缸（要判断真的伸到位/缩到位）
+keywords: [气缸, 汽缸, 反馈, 到位, 传感器, cylinder, feedback, sensor]
+version: "1.0"
+libraries: []
+requires: [spt-cylinder-dual, spt-digital-input]
+objects:
+  - name: I_CylinderWithFeedback
+    kind: interface
+    members:
+      - {name: IsExtended,  kind: property, return_type: BOOL}
+      - {name: IsRetracted, kind: property, return_type: BOOL}
+
+  - name: FB_CylinderDualOutputWithFeedback
+    kind: fb
+    members:
+      - {name: FB_Init,     kind: method}
+      - {name: Extend,      kind: method}
+      - {name: Retract,     kind: method}
+      - {name: IsExtended,  kind: property, return_type: BOOL}
+      - {name: IsRetracted, kind: property, return_type: BOOL}
+params: []

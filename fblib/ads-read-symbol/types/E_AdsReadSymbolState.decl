@@ -1,0 +1,1 @@
+TYPE E_AdsReadSymbolState : (Idle := 0, Reading := 10, Done := 20, Error := 30); END_TYPE

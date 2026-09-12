@@ -1,0 +1,2 @@
+// Acting 态：使能轴，就绪后交还状态机
+METHOD PROTECTED Starting

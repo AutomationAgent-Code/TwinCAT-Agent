@@ -1,0 +1,107 @@
+name: FB_AxisControl
+slug: axis-control
+category: motion
+archetype: oop
+format: text
+description: 单轴控制（Tc2_MC2，命令模式 OOP）—— 运动命令各自成类实现 I_MotionCommand，控制器只做使能与命令调度；新增运动方式无需改控制器
+family: standalone
+style: default
+rank: 10
+use_when: 不用 SPT 框架、想自己做一个带命令模式的单轴控制器（纯 Tc2_MC2）
+keywords: [轴, 单轴, 伺服, 运动, 命令模式, axis, servo, motion, mc2]
+version: "2.0"
+libraries: [Tc2_MC2]
+objects:
+  # ---- 顺序即依赖顺序：枚举 → 接口 → 基类 → 派生类 → 控制器 ----
+  - name: E_AxisState
+    kind: enum
+
+  - name: I_MotionCommand
+    kind: interface
+    members:
+      - {name: Start,       kind: method}
+      - {name: Cyclic,      kind: method}
+      - {name: Abort,       kind: method}
+      - {name: Finished,    kind: property, return_type: BOOL}
+      - {name: Done,        kind: property, return_type: BOOL}
+      - {name: Error,       kind: property, return_type: BOOL}
+      - {name: ErrorId,     kind: property, return_type: UDINT}
+      - {name: ActiveState, kind: property, return_type: E_AxisState}
+
+  - name: I_AxisControl
+    kind: interface
+    members:
+      - {name: Cyclic,       kind: method}
+      - {name: MoveAbsolute, kind: method}
+      - {name: Home,         kind: method}
+      - {name: Stop,         kind: method}
+      - {name: Reset,        kind: method}
+      - {name: Enabled,      kind: property, return_type: BOOL, accessors: [Get, Set]}
+      - {name: Ready,        kind: property, return_type: BOOL}
+      - {name: Busy,         kind: property, return_type: BOOL}
+      - {name: Done,         kind: property, return_type: BOOL}
+      - {name: Error,        kind: property, return_type: BOOL}
+      - {name: ErrorId,      kind: property, return_type: UDINT}
+      - {name: ActPosition,  kind: property, return_type: LREAL}
+      - {name: State,        kind: property, return_type: E_AxisState}
+
+  - name: FB_MotionCommandBase
+    kind: fb
+    members:
+      - {name: Init,        kind: method}
+      - {name: Start,       kind: method}
+      - {name: Cyclic,      kind: method}
+      - {name: Abort,       kind: method}
+      - {name: Finished,    kind: property, return_type: BOOL}
+      - {name: Finish,      kind: method}
+      - {name: Done,        kind: property, return_type: BOOL}
+      - {name: Error,       kind: property, return_type: BOOL}
+      - {name: ErrorId,     kind: property, return_type: UDINT}
+      - {name: ActiveState, kind: property, return_type: E_AxisState}
+
+  - name: FB_MoveAbsoluteCmd
+    kind: fb
+    members:
+      - {name: SetTarget,   kind: method}
+      - {name: Cyclic,      kind: method}
+      - {name: ActiveState, kind: property, return_type: E_AxisState}
+
+  - name: FB_HomeCmd
+    kind: fb
+    members:
+      - {name: Cyclic,      kind: method}
+      - {name: ActiveState, kind: property, return_type: E_AxisState}
+
+  - name: FB_StopCmd
+    kind: fb
+    members:
+      - {name: Cyclic,      kind: method}
+      - {name: ActiveState, kind: property, return_type: E_AxisState}
+
+  - name: FB_AxisControl
+    kind: fb
+    members:
+      - {name: Init,         kind: method}
+      - {name: Cyclic,       kind: method}
+      - {name: MoveAbsolute, kind: method}
+      - {name: Home,         kind: method}
+      - {name: Stop,         kind: method}
+      - {name: Reset,        kind: method}
+      - {name: Enabled,      kind: property, return_type: BOOL}
+      - {name: Ready,        kind: property, return_type: BOOL}
+      - {name: Busy,         kind: property, return_type: BOOL}
+      - {name: Done,         kind: property, return_type: BOOL}
+      - {name: Error,        kind: property, return_type: BOOL}
+      - {name: ErrorId,      kind: property, return_type: UDINT}
+      - {name: ActPosition,  kind: property, return_type: LREAL}
+      - {name: State,        kind: property, return_type: E_AxisState}
+params:
+  - name: DEFAULT_VELOCITY
+    default: "100.0"
+    desc: "MoveAbsolute 传入速度 <=0 时使用"
+  - name: DEFAULT_OVERRIDE
+    default: "100.0"
+    desc: "速度倍率 % (0~100)"
+  - name: HOME_POSITION
+    default: "DEFAULT_HOME_POSITION"
+    desc: "回零后设定的绝对位置"

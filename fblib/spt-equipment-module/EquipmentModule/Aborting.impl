@@ -1,0 +1,13 @@
+CASE SequenceState OF
+    0:
+        NoStateTasksToComplete := FALSE;
+        SequenceState          := SequenceState + 10;
+
+    10: // 断使能、泄压、锁轴 —— 任何一步都不能等一个可能永远不来的完成信号
+        SequenceState := SequenceState + 10;
+
+    20:
+        StateTasksComplete := TRUE;
+END_CASE
+
+SUPER^.Aborting();

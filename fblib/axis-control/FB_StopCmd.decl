@@ -1,0 +1,8 @@
+(*
+ * 功能：停止命令 —— 封装 MC_Stop
+ * 作者：fblib / 版本：2.0
+ *)
+FUNCTION_BLOCK FB_StopCmd EXTENDS FB_MotionCommandBase
+VAR
+    _fbMc : MC_Stop;
+END_VAR

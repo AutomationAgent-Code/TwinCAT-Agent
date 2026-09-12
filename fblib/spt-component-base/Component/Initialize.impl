@@ -1,0 +1,7 @@
+// 严重度 → 上级反应表。默认 Error/Critical 都是 Abort_ImmediateError（整机急停）；
+// 想让本组件出错时只是受控停机，就在这里改。
+_ParentFaultResponseDefinitions[TcEventSeverity.Error] := E_AlarmResponse.Stop_Controlled;
+
+// 配置属性也在这里设（写属性而不是写底层变量，别绕过 Set 里的校验）
+
+Initialize := SUPER^.Initialize();   // 基类会调 CreateEvents()

@@ -1,0 +1,42 @@
+// 子 FB 调用区：每个扫描周期只调用一次；状态机仅决定本周期 Read。
+fbRead(
+    bRead := (eState = E_AdsReadSymbolState.Reading),
+    sNetId := sNetId,
+    nPort := nPort,
+    sVarName := sSymbolName,
+    nDestAddr := pDestination,
+    nLen := nDataLen,
+    tTimeout := tTimeout,
+    eComMode := eAdsComModeSecureCom
+);
+
+CASE eState OF
+    E_AdsReadSymbolState.Idle:
+        bDone := FALSE;
+        bBusy := FALSE;
+        bError := FALSE;
+        nErrId := 0;
+        IF bExecute THEN
+            bBusy := TRUE;
+            eState := E_AdsReadSymbolState.Reading;
+        END_IF
+
+    E_AdsReadSymbolState.Reading:
+        bBusy := fbRead.bBusy;
+        IF fbRead.bError THEN
+            bBusy := FALSE;
+            bError := TRUE;
+            nErrId := fbRead.nErrorId;
+            eState := E_AdsReadSymbolState.Error;
+        ELSIF NOT fbRead.bBusy THEN
+            bBusy := FALSE;
+            bDone := TRUE;
+            eState := E_AdsReadSymbolState.Done;
+        END_IF
+
+    E_AdsReadSymbolState.Done:
+        IF NOT bExecute THEN eState := E_AdsReadSymbolState.Idle; END_IF
+
+    E_AdsReadSymbolState.Error:
+        IF NOT bExecute THEN eState := E_AdsReadSymbolState.Idle; END_IF
+END_CASE

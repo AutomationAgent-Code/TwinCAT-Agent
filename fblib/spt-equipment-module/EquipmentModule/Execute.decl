@@ -1,0 +1,2 @@
+// Acting 态：生产循环。注意 Execute 不用 StateComplete —— 要 Complete 命令才离开
+METHOD PROTECTED Execute

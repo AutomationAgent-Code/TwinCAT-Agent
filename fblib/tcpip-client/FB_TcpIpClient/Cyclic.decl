@@ -1,0 +1,8 @@
+METHOD PUBLIC Cyclic
+VAR_INPUT
+    bEnable      : BOOL;                          // TRUE 时持续维持连接
+    sRemoteHost  : T_IPv4Addr := {{REMOTE_HOST}}; // 服务端 IPv4 地址
+    nRemotePort  : UDINT := {{REMOTE_PORT}};      // 服务端端口
+    sSrvNetId    : T_AmsNetId := '';              // TCP/IP Connection Server AMS NetId
+    tReconnect   : TIME := {{RECONNECT}};         // 重连周期
+END_VAR

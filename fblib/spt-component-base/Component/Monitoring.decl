@@ -1,0 +1,2 @@
+// 唯一允许「判断故障条件并 raise」的地方。由基类 CyclicLogic 自动调用
+METHOD PROTECTED Monitoring

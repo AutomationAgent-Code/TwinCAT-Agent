@@ -1,0 +1,8 @@
+TYPE E_TcpIpSendState :
+(
+    Idle := 0,
+    Sending := 10,
+    Done := 20,
+    Error := 30
+);
+END_TYPE

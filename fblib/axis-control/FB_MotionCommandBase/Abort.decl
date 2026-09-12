@@ -1,0 +1,2 @@
+METHOD Abort
+(* 中止：撤销 Execute，由派生类的 Update 在下一周期送达 MC 块 *)

@@ -1,0 +1,17 @@
+id: ham.motion.motor-axis
+name: HAM Motor Axis Wrapper
+version: "1.0.0"
+publisher: HAM
+category: motion
+subcategory: axis
+type: plcopen
+entry: HAM_Motor_Axis.xml
+maturity: reference
+description: HAM 轴对象及 Power、Home、Move、Jog、Gear、SoE Reset 等动作 Method
+objects: [FB_Motor, ST_PositionCmd]
+libraries: [Tc2_MC2, Tc2_MC2_Drive]
+keywords: [HAM, motor, axis, motion, homing, gearing]
+methods:
+  FB_Motor: [ActPower, ActReset, ActHome, ActMove, ActJog, ActHalt, ActGearInDyn, ActGearOut, ActSetLimits, ActSoEReset]
+notes: 复用前检查轴引用、驱动类型、错误处理对象和项目专用位置结构依赖。
+

@@ -1,0 +1,48 @@
+# fblib 分类目录 —— 决定 `fblib list` 的分组顺序，以及 `fblib find <意图>` 的路由。
+#
+# 用法：写 PLC 代码前先 `fblib find "<要做的事>"`，命中就 `fblib add <slug>`，
+# 别从零手写。没命中再手写，写完用 `fblib extract` 收回库里。
+#
+# family 字段区分两套体系（不要混用）：
+#   spt-framework  接 Beckhoff SPT Application Framework（EXTENDS FB_PackML_BaseModule
+#                  / FB_ComponentBase），需装 SPT 库，命名走 SPT PascalCase 风格
+#   standalone     独立功能块，不依赖任何框架，走本项目 docs/plc_coding_standard.md
+
+version: "1.0"
+
+categories:
+  - name: motion
+    label: 运动控制
+    summary: 轴/伺服/回零/主从耦合/凸轮 —— 写轴程序从这里选
+  - name: framework
+    label: 框架骨架
+    summary: 机器模块 / 设备模块 / 组件基类 / 报警 —— 搭 SPT 工程主干
+  - name: device
+    label: 设备组件
+    summary: 气缸/电磁阀/数字量 IO —— 独立 SOLID 组件，不依赖框架
+  - name: communication
+    label: 通信
+    summary: TCP/IP、串口、Modbus 等外部通信
+  - name: tools
+    label: 工具
+    summary: 闪烁、定时、缩放等小工具
+
+# 意图路由：用户话里出现 when 里任一词，就把该分类整体加权。
+# 关键词写小写；中文不分词，直接子串匹配。
+routes:
+  - category: motion
+    when: [轴, 伺服, 电机, 马达, 运动, 回零, 找零, 归零, 原点, 定位, 点动, 寸动,
+           齿轮, 耦合, 主从, 同步, 凸轮, 飞剪, 收放卷, 张力,
+           axis, servo, motor, motion, home, homing, jog, gear, cam, move, nc]
+  - category: framework
+    when: [框架, 骨架, 主程序, 机器模块, 设备模块, 模块, 组件, 状态机, 模式, 报警, 告警,
+           spt, packml, machine, module, component, state, mode, alarm, event, skeleton]
+  - category: device
+    when: [气缸, 汽缸, 电磁阀, 阀, 夹爪, 夹具, 数字量, 输入, 输出, 传感器, 到位,
+           cylinder, solenoid, valve, digital, input, output, sensor, io]
+  - category: communication
+    when: [通信, 通讯, 网口, 网络, 客户端, 服务端, 串口, 报文,
+           tcp, ip, socket, modbus, serial, client, server, ethernet]
+  - category: tools
+    when: [闪烁, 方波, 心跳, 定时, 计时, 缩放, 工具,
+           blink, flash, heartbeat, timer, scale, util]

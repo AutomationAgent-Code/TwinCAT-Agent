@@ -1,0 +1,7 @@
+(*
+    从轴模块。主轴通过 MasterAxisRef 属性注入（依赖倒置：从轴只依赖 AXIS_REF 抽象，
+    不认识具体是哪个主轴模块），所以换主轴、动态换主都只改一句赋值。
+
+    坑：Master1 REF= 必须等 SUPER^.Initialize() 返回 TRUE 之后再做，
+    组件没初始化完就赋引用会失效 —— 见 Initialize 里的分步。
+*)

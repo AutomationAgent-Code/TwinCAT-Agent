@@ -1,0 +1,2 @@
+// Stop() 会顺带 GearOut，不用单独解耦
+METHOD PROTECTED Stopping

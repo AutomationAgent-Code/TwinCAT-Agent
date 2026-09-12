@@ -1,0 +1,5 @@
+IF __ISVALIDREF(refAxis) THEN
+    _refAxis REF= refAxis;
+    _bReady  := TRUE;
+END_IF
+Init := _bReady;

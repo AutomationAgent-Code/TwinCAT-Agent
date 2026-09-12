@@ -1,0 +1,73 @@
+schema_version: 1
+source:
+  type: eplan_pdf
+  file: "BF eplan.pdf"
+  pages: 25
+  extracted_on: "2026-07-30"
+
+target:
+  ams_net_id: "192.168.1.4.1.1"
+  configuration_mode_required: true
+  note: "目标当前处于 Started；执行硬件扫描前必须确认允许停机并切换 Config。"
+
+topology:
+  controller:
+    tag: "-K620"
+    model: "NXA-CS-CX2033-W10-TC-TRM-CP-M"
+    base_platform: "Beckhoff CX2033"
+
+  cabinet_station:
+    tag: "-A220-K016"
+    coupler: "EK1100"
+    terminals:
+      - { position: 1,  tag: "-A220-K016V1", model: "EL1918", channels: "8 F-DI" }
+      - { position: 2,  tag: "-A220-K016V2", model: "EL1918", channels: "8 F-DI" }
+      - { position: 3,  tag: "-A220-K016T1", model: "EL2904", channels: "4 F-DO", safety_address_drawing: 201 }
+      - { position: 4,  tag: "-A220-K016A1", model: "EL1808", channels: "8 DI" }
+      - { position: 5,  tag: "-A220-K016A2", model: "EL1808", channels: "8 DI" }
+      - { position: 6,  tag: "-A220-K016A3", model: "EL1808", channels: "8 DI" }
+      - { position: 7,  tag: "-A220-K016A4", model: "EL1808", channels: "8 DI" }
+      - { position: 8,  tag: "-A220-K016B1", model: "EL2008", channels: "8 DO" }
+      - { position: 9,  tag: "-A220-K016B2", model: "EL2008", channels: "8 DO" }
+      - { position: 10, tag: "-A220-K016B3", model: "EL2008", channels: "8 DO" }
+      - { position: 11, tag: "-A220-K016E1", model: "EL4004", channels: "4 AO 0..10 V" }
+      - { position: 12, tag: "-A220-K016K1", model: "EL6001", channels: "1 RS232" }
+      - { position: 13, tag: "-A220-K016Z1", model: "EK1122", channels: "2-port EtherCAT junction" }
+      - { position: 14, tag: "-A220-K016Z2", model: "EL9011", channels: "end cap" }
+
+  ethercat_devices:
+    - tag: null
+      vendor: "Bosch Rexroth"
+      model: "HCS01.1E-W0018-A-03-B-ET-EC-EP-S4-HN-PW"
+      description: "IndraDrive HCS01"
+      verification: "verify exact order code against online scan"
+    - tag: null
+      vendor: "Stäubli"
+      model: "Computer-drawn unit CPT"
+      verification: "identify exact EtherCAT device and ESI from online scan"
+    - tag: "-K020"
+      vendor: "Aventics"
+      model: "XV03/05-XVES-EtherCAT"
+      description: "valve terminal"
+      verification: "verify exact model and modular layout from ESI/online scan"
+    - { tag: "-K085S1", vendor: "Beckhoff", model: "EP1957-0022", channels: "8 F-DI + 4 F-DO", safety_address_drawing: null }
+    - { tag: "-K085S2", vendor: "Beckhoff", model: "EP1957-0022", channels: "8 F-DI + 4 F-DO", safety_address_drawing: null }
+    - { tag: "=111-A830", vendor: "Balluff", model: "BIS V-6110-063-C002-SA13", description: "RFID controller 1" }
+    - { tag: "=141-A831", vendor: "Balluff", model: "BIS V-6110-063-C002-SA13", description: "RFID controller 2" }
+    - { tag: "=140+E-K016A1", vendor: "Beckhoff", model: "EP1018-0001", channels: "8 DI" }
+    - { tag: "-K016A2", vendor: "Beckhoff", model: "EPP2624-0002", channels: "digital output" }
+    - { tag: "-K016M1", vendor: "Beckhoff", model: "EPP2816-0010", channels: "digital output" }
+    - { tag: "-K016A3", vendor: "Beckhoff", model: "EPP1018-0001", channels: "8 DI" }
+    - { tag: "-K016A4", vendor: "Beckhoff", model: "EPP1018-0001", channels: "8 DI" }
+    - { tag: "-K016A5", vendor: "Beckhoff", model: "EPP1018-0001", channels: "8 DI" }
+    - { tag: "-K016A6", vendor: "Beckhoff", model: "EPP1018-0001", channels: "8 DI" }
+    - { tag: "-K016A7", vendor: "Beckhoff", model: "EPP1018-0001", channels: "8 DI" }
+    - { tag: "-K016B1", vendor: "Beckhoff", model: "EPP2008-0001", channels: "8 DO" }
+
+execution:
+  preferred_method: "create the offline EtherCAT configuration directly from installed ESI files"
+  reason: "The user requested direct creation without scanning physical hardware."
+  safety:
+    - "Do not scan while production operation must continue."
+    - "Back up the current TwinCAT project before changing the I/O tree."
+    - "Do not activate configuration until the scan result and topology diff are approved."

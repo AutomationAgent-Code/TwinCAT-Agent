@@ -1,0 +1,46 @@
+// 子 FB 调用区：每个扫描周期只调用一次；状态机仅决定本周期 Execute。
+fbReceive(
+    sSrvNetId := sSrvNetId,
+    hSocket := hSocket,
+    cbLen := nBufferSize,
+    pDest := pBuffer,
+    bExecute := (eState = E_TcpIpReceiveState.Receiving),
+    tTimeout := tTimeout
+);
+
+CASE eState OF
+    E_TcpIpReceiveState.Idle:
+        bDone := FALSE;
+        bBusy := FALSE;
+        bError := FALSE;
+        nErrId := 0;
+        nReceived := 0;
+        IF bExecute THEN
+            bBusy := TRUE;
+            eState := E_TcpIpReceiveState.Receiving;
+        END_IF
+
+    E_TcpIpReceiveState.Receiving:
+        bBusy := fbReceive.bBusy;
+        IF fbReceive.bError THEN
+            bBusy := FALSE;
+            bError := TRUE;
+            nErrId := fbReceive.nErrId;
+            eState := E_TcpIpReceiveState.Error;
+        ELSIF NOT fbReceive.bBusy THEN
+            bBusy := FALSE;
+            bDone := TRUE;
+            nReceived := fbReceive.nRecBytes;
+            eState := E_TcpIpReceiveState.Done;
+        END_IF
+
+    E_TcpIpReceiveState.Done:
+        IF NOT bExecute THEN
+            eState := E_TcpIpReceiveState.Idle;
+        END_IF
+
+    E_TcpIpReceiveState.Error:
+        IF NOT bExecute THEN
+            eState := E_TcpIpReceiveState.Idle;
+        END_IF
+END_CASE

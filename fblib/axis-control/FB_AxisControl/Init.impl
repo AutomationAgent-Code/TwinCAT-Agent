@@ -1,0 +1,12 @@
+IF __ISVALIDREF(refAxis) THEN
+    _refAxis REF= refAxis;
+    _fbMoveAbs.Init(refAxis);
+    _fbHome.Init(refAxis);
+    _fbStop.Init(refAxis);
+    // Register commands for uniform cyclic driving (add new types here only)
+    _aCommands[1] := _fbMoveAbs;
+    _aCommands[2] := _fbHome;
+    _aCommands[3] := _fbStop;
+    _bInitialized := TRUE;
+END_IF
+Init := _bInitialized;

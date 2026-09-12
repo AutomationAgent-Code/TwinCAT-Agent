@@ -1,0 +1,103 @@
+# TwinCAT generated
+_Boot/
+_CompileInfo/
+.vs/
+*.suo
+*.bak
+*.~u
+*.tpy
+*.compileinfo
+
+# Python
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+tc_agent/bin/*.exe
+
+# Output
+output/
+_screenshots/
+
+# Temp
+*.tmp
+*.log
+temp/
+tmp/
+~$*
+
+# Reference PDFs (large)
+reference/*.pdf
+
+# IDE
+.idea/
+.vscode/
+
+# tc_agent runtime config (may contain API key)
+tc_agent/config.json
+
+tc_agent/chat_history.json
+
+.tc_agent_history.json
+.TwinCATAgent/
+
+# Runtime databases, lock files, and local credentials (never commit)
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite
+*.sqlite3
+*.pem
+*.pfx
+*.p12
+TwincatAgent.pem
+tc_agent/.empty_xae/
+**/.engineering_servers/
+**/TcHmiSrv.lock*
+
+# Codex/session-local material. Keep the tracked project config only.
+.codex/*
+!.codex/
+!.codex/config.toml
+
+# Local generated deliverables and model/video workspaces.
+outputs/
+digital-human-video/
+
+# coAgent — secrets & machine-local
+.mcp.json
+tc_agent_vsix/deploy_stage/
+*private_key*.pem
+*license-private*.json
+tc_agent/license.json
+
+# Deploy/debug artifacts (this session)
+_deploy_log*.txt
+_reg_backup_*/
+
+# Unrelated task spillover (Beckhoff academy / infosys scraping — belongs elsewhere)
+_infosys_docs/
+beckhoff_academy/
+_scrape*.log
+scrape_beckhoff_academy.py
+scrape_infosys_libs.py
+upload_infosys_to_ragflow.py
+
+# coAgent build outputs & local files
+tc_agent_vsix/bin/
+tc_agent_vsix/obj/
+tc_agent_vsix/*.csproj.user
+tc_agent/*.bak
+tc_agent/*.log
+_backend.log
+_backend.out
+tc_agent/backend.py.sdk.bak
+
+# 打包用的倍福文档索引(374M 大二进制,不入 git,打包时随安装包分发)
+data/ba-docs/

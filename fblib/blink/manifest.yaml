@@ -1,0 +1,18 @@
+name: FB_Blink
+slug: blink
+category: tools
+archetype: cyclic
+format: text
+description: 方波闪烁发生器 —— bEnable 时按 ON/OFF 时长翻转 bOut（心跳/指示灯/看门狗喂狗）
+family: standalone
+style: default
+rank: 10
+use_when: 要一个心跳/闪灯/看门狗方波
+keywords: [闪烁, 方波, 心跳, 指示灯, 看门狗, blink, flash, heartbeat, watchdog]
+version: "1.0"
+libraries: []
+companions: []
+methods: []
+params:
+  - {name: ON_TIME,  default: "T#500MS", desc: 高电平时长}
+  - {name: OFF_TIME, default: "T#500MS", desc: 低电平时长}

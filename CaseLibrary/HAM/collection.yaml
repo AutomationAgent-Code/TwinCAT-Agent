@@ -1,0 +1,16 @@
+id: HAM
+name: HAM Customer Case Library
+version: "1.0.0"
+publisher: HAM
+source_project: 2020_HAM024_48LV_Turnt 1
+description: 从客户 XAE 工程提取的可复用 PLCopen XML 案例集合
+language: [StructuredText]
+default_style: HAM_STYLE.md
+categories:
+  - communication
+  - diagnostics
+  - framework
+  - motion
+  - tools
+discovery: recursive-manifest
+

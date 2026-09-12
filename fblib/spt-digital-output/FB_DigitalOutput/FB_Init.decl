@@ -1,0 +1,7 @@
+METHOD FB_Init : BOOL
+VAR_INPUT
+    bInitRetains : BOOL;            // TRUE: 初始化保持变量（暖/冷复位）
+    bInCopyCode  : BOOL;            // TRUE: 在线改动时实例将被复制
+    Output       : REFERENCE TO BOOL;  // 注入的硬件输出变量
+END_VAR
+(* TwinCAT 隐式调用：实例化时完成依赖注入 *)

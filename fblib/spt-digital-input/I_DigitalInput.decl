@@ -1,0 +1,6 @@
+(*
+ * 功能：数字量输入契约 —— 只暴露只读的 IsActive
+ * 来源：SPT Libraries / SOLID Components / Digital Input
+ * 说明：只读，没有 Set —— 输入不该被程序改写（接口隔离原则 ISP）
+ *)
+INTERFACE I_DigitalInput

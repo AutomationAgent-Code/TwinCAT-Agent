@@ -1,0 +1,2 @@
+// 整个框架的入口。MAIN 每周期调它一次，剩下的层层往下传
+METHOD PUBLIC CyclicLogic

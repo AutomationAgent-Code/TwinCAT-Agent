@@ -1,0 +1,20 @@
+CASE SequenceState OF
+    0:
+        NoStateTasksToComplete := FALSE;
+        SequenceState          := SequenceState + 10;
+
+    10:
+        IF {{AXIS_VAR}}.Enable() THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    20:
+        IF {{AXIS_VAR}}.Enabled THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    30:
+        StateTasksComplete := TRUE;
+END_CASE
+
+SUPER^.Starting();

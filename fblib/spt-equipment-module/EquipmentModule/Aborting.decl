@@ -1,0 +1,2 @@
+// Acting 态：急停。不分模式，且带错也必须能走完
+METHOD PROTECTED Aborting

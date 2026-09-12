@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tc-template"
+dynamic = ["version"]
+description = "TwinCAT Agent and PLC project lifecycle toolkit"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "click>=8.0",
+    "pyyaml>=6.0",
+    "jinja2>=3.0",
+    "jsonschema>=4.18,<5",
+]
+
+[project.optional-dependencies]
+# 面板后端(tc_agent):WS 服务 + 附件抽文字。全是纯 Python,便携包可内置。
+agent = [
+    "websockets>=12.0",
+    "pypdf>=4.0",
+    "openpyxl>=3.1",
+]
+test = [
+    "pytest>=8.0",
+    "coverage[toml]>=7.0",
+]
+windows = [
+    "pywin32>=305",
+    "pyads>=3.4",
+    "pyautogui>=0.9",
+    "pyperclip>=1.8",
+    "comtypes>=1.4",
+]
+img2nc = [
+    "pillow>=9.0",
+    "numpy>=1.20",
+]
+img2nc-contour = [
+    "pillow>=9.0",
+    "numpy>=1.20",
+    "opencv-python>=4.5",
+]
+[project.scripts]
+tc-template = "tc_template.cli:main"
+tc-img2nc = "tc_template.img2nc_cli:main"
+tc-img2nc-ui = "tc_template.img2nc_ui:main"
+
+[tool.setuptools.packages.find]
+include = ["tc_template", "tc_template.*", "tc_agent", "tc_agent.*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "tc_template.__version__"}
+
+[tool.setuptools.package-data]
+tc_template = ["*.ps1"]
+tc_agent = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--strict-config --strict-markers"
+markers = [
+    "unit: isolated tests that require no TwinCAT installation or external service",
+    "integration: process or component integration tests without physical TwinCAT hardware",
+    "ui: browser, WebView2, visual, or accessibility tests",
+    "xae4024: tests that require a TwinCAT 3.1.4024 XAE environment",
+    "xae4026: tests that require a TwinCAT 3.1.4026 XAE environment",
+    "runtime: tests that change or verify a TwinCAT Runtime state",
+    "hardware: tests that require a controller, EtherCAT devices, or motion hardware",
+    "destructive: tests that can change runtime, target, route, I/O, or device state and require explicit approval",
+    "slow: tests unsuitable for the fast pull-request feedback loop",
+]

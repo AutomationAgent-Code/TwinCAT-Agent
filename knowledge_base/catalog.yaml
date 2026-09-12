@@ -1,0 +1,95 @@
+schema_version: 1
+catalog_version: 2026-09-10
+description: >-
+  TwinCAT Agent knowledge sources. This catalog is the authority for what is
+  maintained in knowledge_base and how each source may be used by the agent.
+
+source_kinds:
+  curated-summary: >-
+    Human-maintained summary of a primary manual. Use for orientation and
+    stable workflows; verify exact API details against docs_search/docs_read.
+  implementation-contract: >-
+    Repository-tested engineering contract. Use to constrain tool behavior;
+    it does not replace the installed TwinCAT version or official docs.
+  training-summary: >-
+    Secondary training material condensed for onboarding. Use for concepts,
+    not as evidence for version-sensitive API claims.
+  operational-runbook: >-
+    Repository workflow and safety guidance. It describes this agent, not
+    TwinCAT itself.
+  primary-source: >-
+    Original manual retained for provenance. It is indexed page by page and
+    should be cited when a curated summary is not sufficient.
+
+authority_levels:
+  official-manual-summary: "Official Beckhoff manual summarized by this repository"
+  official-validated-contract: "Official documentation plus repository verification"
+  internal-training-material: "Internal training material; secondary source"
+  repository-observed: "Observed and tested behavior of this repository"
+  official-manual: "Original Beckhoff manual"
+
+sources:
+  - id: tc3-automation-interface
+    path: knowledge_base/tc3_automation_interface.md
+    kind: curated-summary
+    authority: official-manual-summary
+    status: active
+    language: en+zh
+    topics: [automation-interface, COM, XAE, ITcSmTreeItem, project-creation]
+    source_reference: "TC3_Automation_Interface_EN.pdf v1.6.2, 2026-04-01"
+    verification: "Use docs_search/docs_read for exact member signatures and version differences."
+
+  - id: tc3-hmi-engineering
+    path: knowledge_base/tc3_hmi_engineering.md
+    kind: implementation-contract
+    authority: official-validated-contract
+    status: active
+    language: en+zh
+    topics: [HMI, TE2000, markup, ADS, symbols, localization, themes, framework-control]
+    source_reference: "Beckhoff TE2000 InfoSys plus TwinCAT Agent XAE verification"
+    verification: "Read the project Framework/Engineering version before applying any rule."
+
+  - id: tc3-tutorial
+    path: knowledge_base/tc3_tutorial.md
+    kind: training-summary
+    authority: internal-training-material
+    status: active
+    language: zh
+    topics: [getting-started, PLC, visualization, motion, safety, libraries]
+    source_reference: "TwinCAT 3入门教程 V4.18, 243 pages, April 2026"
+    verification: "Treat version-sensitive claims as pointers and verify against official docs."
+
+  - id: tf55xx-tc3-mc3
+    path: knowledge_base/tf55xx_tc3_mc3.md
+    kind: curated-summary
+    authority: official-manual-summary
+    status: active
+    language: en+zh
+    topics: [MC3, TF5500, TF551x, TF553x, TF5550, TF5560, motion, migration]
+    source_reference: knowledge_base/source/TF55xx_TC3_MC3_EN.pdf
+    verification: "Confirm license, build and API details in the matching manual pages."
+    indexed_path_prefix: content/TwinCAT-Agent-Supplement/TF55xx_TC3_MC3_EN/
+
+  - id: twincat-ai-workflow
+    path: knowledge_base/twincat-ai-workflow.md
+    kind: operational-runbook
+    authority: repository-observed
+    status: active
+    language: zh
+    topics: [agent-workflow, templates, PLC, COM, build, verification]
+    source_reference: "TwinCAT Agent repository behavior and tool contracts"
+    verification: "Prefer the current AGENTS.md and tool descriptions when this runbook conflicts."
+
+  - id: tf55xx-tc3-mc3-pdf
+    path: knowledge_base/source/TF55xx_TC3_MC3_EN.pdf
+    kind: primary-source
+    authority: official-manual
+    status: active
+    language: en
+    topics: [MC3, motion, TF55xx]
+    source_reference: "Beckhoff TwinCAT 3 | MC3, version 1.0.3, 2026-08-20"
+    pages: 353
+    sha256: 543513A9838ECFD0F7D68FC61220856B835931D637F5018EDEEF26D6AADB85A5
+    generated_by: scripts/import_pdf_manual.py
+    verification: "Use the matching manual pages for exact API, licensing and safety constraints."
+    indexed_path_prefix: content/TwinCAT-Agent-Supplement/TF55xx_TC3_MC3_EN/

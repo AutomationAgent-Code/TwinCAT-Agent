@@ -1,0 +1,2 @@
+METHOD Cyclic
+(* 每周期调用一次 *)

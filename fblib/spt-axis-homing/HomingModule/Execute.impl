@@ -1,0 +1,36 @@
+CASE SequenceState OF
+    0: // 选一种回零策略（谁先来算谁）
+        IF HomeAbs THEN
+            HomeAbs := FALSE;
+            {{AXIS_VAR}}.HomeMethod := AbsHoming;
+            SequenceState := SequenceState + 10;
+        ELSIF HomeHardStop THEN
+            HomeHardStop := FALSE;
+            {{AXIS_VAR}}.HomeMethod := HardStopHoming;
+            SequenceState := SequenceState + 10;
+        ELSIF HomeSetPos THEN
+            HomeSetPos := FALSE;
+            {{AXIS_VAR}}.HomeMethod := SetPosition;
+            SequenceState := SequenceState + 10;
+        ELSIF HomeCustom THEN
+            HomeCustom := FALSE;
+            {{AXIS_VAR}}.HomeMethod := CustomHoming;
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    10:
+        IF {{AXIS_VAR}}.Home() THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    20: // 回零成功与否看 NC 的 Homed 位
+        IF {{AXIS_VAR}}.Axis.Status.Homed THEN
+            SequenceState := SequenceState + 10;
+        ELSIF {{AXIS_VAR}}.Error THEN
+            SequenceState := 0;          // 出错退回等命令，靠 Clearing 复位
+        END_IF
+
+    30:
+        AxisHomed     := TRUE;
+        SequenceState := 0;
+END_CASE

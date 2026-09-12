@@ -1,0 +1,21 @@
+id: ham.tools.string-utilities
+name: HAM String Utilities
+version: "1.0.0"
+publisher: HAM
+category: tools
+subcategory: string
+type: plcopen
+entry: HAM_String_Utilities.xml
+maturity: reusable
+description: HAM 项目中的字符串拼接、构建和裁剪函数集合
+objects:
+  - FC_ConcatAll
+  - FUN_Build_String_5
+  - FUN_Build_String_10
+  - FUN_Build_String_20
+  - FUN_Build_String_30
+  - FUN_Concat_String_100
+  - FUN_CutString
+  - FB_CutString
+libraries: [Tc2_Standard]
+keywords: [HAM, string, concat, cut, utility]

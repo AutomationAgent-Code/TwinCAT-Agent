@@ -1,0 +1,29 @@
+(*
+ * 功能：OOP TCP/IP 客户端，将连接管理、发送和接收封装为同一个对象
+ * 作者：fblib / 版本：2.0
+ * 说明：上层每周期依次调用 Cyclic、Send、Receive；TCP 为字节流，Receive 只完成一次轮询。
+ *)
+FUNCTION_BLOCK FB_TcpIpClient
+VAR_OUTPUT
+    bConnected       : BOOL;                         // 已连接到服务端
+    bConnectionBusy  : BOOL;                         // 建链或重连进行中
+    bConnectionError : BOOL;                         // 连接管理错误
+    nConnectionErrId : UDINT;                        // 连接错误码
+    bSendDone        : BOOL;                         // 最近一次发送完成
+    bSendBusy        : BOOL;                         // 正在发送
+    bSendError       : BOOL;                         // 发送失败
+    nSendErrId       : UDINT;                        // 发送错误码
+    bReceiveDone     : BOOL;                         // 最近一次轮询完成
+    bReceiveBusy     : BOOL;                         // 正在接收
+    bReceiveError    : BOOL;                         // 接收失败
+    nReceiveErrId    : UDINT;                        // 接收错误码
+    nReceived        : UDINT;                        // 最近一次轮询收到的字节数
+END_VAR
+VAR
+    _hSocket         : T_HSOCKET;                    // 对象内部 socket，调用方无需管理
+    _fbConnection    : FB_ClientServerConnection;    // 连接管理
+    _fbSend          : FB_SocketSend;                // 发送事务
+    _fbReceive       : FB_SocketReceive;             // 接收事务
+    _eSendState, _eReceiveState :                    // FB 内部匿名收发状态枚举
+        (ClientIoIdle, ClientIoExecuting, ClientIoDone, ClientIoError);
+END_VAR

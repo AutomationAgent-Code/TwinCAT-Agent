@@ -1,0 +1,1937 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.60" creationDateTime="2026-08-05T00:25:24.0814317" />
+  <contentHeader name="PLC" modificationDateTime="2026-08-05T00:25:24.0814317">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="ST_PositionCmd">
+        <baseType>
+          <struct>
+            <variable name="nNo">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="fPosX">
+              <type>
+                <LREAL />
+              </type>
+            </variable>
+            <variable name="fPosY">
+              <type>
+                <LREAL />
+              </type>
+            </variable>
+            <variable name="fPosZ">
+              <type>
+                <LREAL />
+              </type>
+            </variable>
+            <variable name="fVelo">
+              <type>
+                <LREAL />
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">TYPE ST_PositionCmd :
+STRUCT
+	nNo:	INT;
+	fPosX:	LREAL;
+	fPosY:	LREAL;
+	fPosZ:	LREAL;
+	fVelo:	LREAL;
+END_STRUCT
+END_TYPE
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>736a3787-4ca3-4fb3-b032-a98c0f306861</ObjectId>
+          </data>
+        </addData>
+      </dataType>
+    </dataTypes>
+    <pous>
+      <pou name="FB_Motor" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="sName">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="bEMYOK">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bStandAlone">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="TRUE" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">nincs NCI-be összekapcsolva: önállóan használható</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bErrorAck">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bDisableManualCmd">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">Manual control disable</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bActivateGearIn">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Tengely kuplungolása Master-el, pl. Handwheel</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bGearOut">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="refMaster_Axis">
+              <type>
+                <derived name="AXIS_REF" />
+              </type>
+            </variable>
+            <variable name="rGearingRatio">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="rPosition1">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="rVelocity1">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="bBufferedMove">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="rPosition2">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="rVelocity2">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="rOverride">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="10" />
+              </initialValue>
+            </variable>
+            <variable name="bGoPosition">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Automatic movement called by the PLC program</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bGoPosition_Manual">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Manual movement called by the HMI</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bEnablePositive">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="TRUE" />
+              </initialValue>
+            </variable>
+            <variable name="bEnableNegative">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="TRUE" />
+              </initialValue>
+            </variable>
+            <variable name="bIncremental">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">True: Incremental encoder, false: absolut encoder</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bCalibrationCam">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">Véghelyzet érzékelő</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bHalt">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bAxisEnabled">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="lrNegLimit">
+              <type>
+                <LREAL />
+              </type>
+            </variable>
+            <variable name="lrPosLimit">
+              <type>
+                <LREAL />
+              </type>
+            </variable>
+            <variable name="rMinVelocity">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="rMaxVelocity">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="bErrorStringConfirmed">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Hibakezelő blokknak kell, ha a külső app feldolgozta az adott hibastringet akkor bebillenti, reset a blokkban történik</xhtml>
+              </documentation>
+            </variable>
+            <variable name="e_JogMode">
+              <type>
+                <derived name="E_JogMode" />
+              </type>
+              <initialValue>
+                <simpleValue value="MC_JOGMODE_INCHING" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Jog mode</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bJogForward">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bJogBackwards">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bJogMovementInAuto">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Ha Automatában kell JOG-ban mozogni. pl. AX5000-el hajtott körasztal </xhtml>
+              </documentation>
+            </variable>
+            <variable name="rJogInching">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="0.1" />
+              </initialValue>
+            </variable>
+            <variable name="rP2Jog">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="50" />
+              </initialValue>
+            </variable>
+            <variable name="lrMAnualOverride">
+              <type>
+                <LREAL />
+              </type>
+              <initialValue>
+                <simpleValue value="10" />
+              </initialValue>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Motor
+VAR_INPUT
+	sName				:STRING;
+	bEMYOK				:BOOL;
+	bStandAlone			:BOOL := TRUE; //nincs NCI-be összekapcsolva: önállóan használható
+	bErrorAck			:BOOL;
+	bDisableManualCmd	:BOOL;	(*Manual control disable*)
+// Gearing
+	bActivateGearIn		:BOOL;	// Tengely kuplungolása Master-el, pl. Handwheel
+	bGearOut			:BOOL;
+	refMaster_Axis		:AXIS_REF;
+	rGearingRatio		:REAL;
+	
+	rPosition1			:REAL;
+	rVelocity1			:REAL;
+	bBufferedMove		:BOOL;
+	rPosition2			:REAL;
+	rVelocity2			:REAL;
+	rOverride			:REAL:=10;
+	bGoPosition			:BOOL;	// Automatic movement called by the PLC program
+	bGoPosition_Manual	:BOOL;	// Manual movement called by the HMI
+	bEnablePositive		:BOOL := TRUE;
+	bEnableNegative		:BOOL := TRUE;
+	bIncremental		:BOOL := FALSE;	//True: Incremental encoder, false: absolut encoder
+	bCalibrationCam		:BOOL;	//Véghelyzet érzékelő
+	bHalt				:BOOL;
+	bAxisEnabled		:BOOL;
+	lrNegLimit			:LREAL;	
+	lrPosLimit			:LREAL;
+	rMinVelocity		:REAL;
+	rMaxVelocity		:REAL;
+	bErrorStringConfirmed	:BOOL; // Hibakezelő blokknak kell, ha a külső app feldolgozta az adott hibastringet akkor bebillenti, reset a blokkban történik
+// Jog mode
+	e_JogMode			:E_JogMode:=MC_JOGMODE_INCHING;
+	bJogForward			:BOOL;
+	bJogBackwards		:BOOL;
+	bJogMovementInAuto	:BOOL;  // Ha Automatában kell JOG-ban mozogni. pl. AX5000-el hajtott körasztal 
+	rJogInching			:REAL:=0.1;
+	rP2Jog				:REAL:=50;
+	lrMAnualOverride	:LREAL:=10;
+END_VAR
+VAR_OUTPUT
+	/// axis reference data structure 
+	Axis				:AXIS_REF;
+	bInGear				:BOOL;
+	bReady				:BOOL;
+	bBusy				:BOOL;
+	bDone				:BOOL;
+	bHaltDone			:BOOL;
+	bError				:BOOL;
+	sError				:STRING(255);(*hiba string*)
+	iOEECategoryNumber	:INT;	(*OEE Kategória MES adatbázisnak*)
+END_VAR
+
+VAR_IN_OUT
+	
+END_VAR
+
+VAR
+	nState				:UINT;
+	nStatePrevious		:UINT;
+	fbRunTrig			:R_TRIG;		(*Indulás trigger*)	
+	
+	PowerAxis			:MC_Power;
+	PowerAxisOut		:ST_McOutputs;
+	MoveAxis1			:MC_MoveAbsolute;
+	MoveAbsoluteOut1	:ST_McOutputs;
+	MoveAxis2			:MC_MoveAbsolute;
+	MoveAbsoluteOut2	:ST_McOutputs;
+	Reset				:MC_Reset;
+	ResetOut			:ST_McOutputs;
+	SoEReset			:FB_SoEReset;
+	SoEResetOut			:ST_McOutputs;
+	Home				:MC_Home;
+	HomeOut				:ST_McOutputs;
+	fbJog				:MC_Jog;
+	fb_GearInDyn		:MC_GearInDyn;
+	fb_GearOut			:MC_GearOut;
+	
+	i_uiSlaveINnOp		AT %I*	:UINT;
+	
+	rMinPosLimit		:REAL;
+	rMaxPosLimit		:REAL;
+	
+	Halt				:MC_Halt;
+	HaltOut				:ST_McOutputs;
+	fb_DriveDiag		:FB_SoEReadDiagNumber;
+	bIsInitalized		:BOOL;
+//	fbAlarm				:FB_TcAlarm;
+	nGlobalAxisErrorID	:UDINT;
+	GetSoft_NegLimit	:Tc2_MC2.MC_ReadParameter;
+	SetSoft_NegLimit	:Tc2_MC2.MC_WriteParameter;
+	GetSoft_PosLimit	:Tc2_MC2.MC_ReadParameter;
+	SetSoft_PosLimit	:Tc2_MC2.MC_WriteParameter;	
+	
+	fbGetManualVelo		:Tc2_MC2.MC_ReadParameter;
+	lrManualVelo		:LREAL;
+
+		
+	
+	fb_ErrorHandling	:FB_ERROR_Handling_For_FBs;
+	bTestGearIn			: BOOL;
+	bTestGearOut		: BOOL;
+	ctuGearIn			: CTU;
+	bTest				: BOOL;
+	rtrigbEMYOK			: R_TRIG;
+	bEMYOKisBack		: BOOL;
+	bLimitsAreSet		: BOOL;
+	bPosLimitRead		: BOOL;
+	bMinLimitRead		: BOOL;
+	
+	bClr				:BOOL;
+	arr_Step_Archive	:ARRAY[0..30] OF UINT;
+	arrClr_Step_Archive	:ARRAY[0..30] OF UINT;
+	i					:INT;
+	rtrig_ManualMove: R_TRIG;
+	bThisIsManualMovement: BOOL;
+	tonbEMYOK			:TON;
+END_VAR</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <outputVars>
+            <variable name="Axis">
+              <type>
+                <derived name="AXIS_REF" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> axis reference data structure </xhtml>
+              </documentation>
+            </variable>
+            <variable name="bInGear">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bReady">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bBusy">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bDone">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bHaltDone">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bError">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="sError">
+              <type>
+                <string length="255" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">hiba string</xhtml>
+              </documentation>
+            </variable>
+            <variable name="iOEECategoryNumber">
+              <type>
+                <INT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">OEE Kategória MES adatbázisnak</xhtml>
+              </documentation>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Motor
+VAR_INPUT
+	sName				:STRING;
+	bEMYOK				:BOOL;
+	bStandAlone			:BOOL := TRUE; //nincs NCI-be összekapcsolva: önállóan használható
+	bErrorAck			:BOOL;
+	bDisableManualCmd	:BOOL;	(*Manual control disable*)
+// Gearing
+	bActivateGearIn		:BOOL;	// Tengely kuplungolása Master-el, pl. Handwheel
+	bGearOut			:BOOL;
+	refMaster_Axis		:AXIS_REF;
+	rGearingRatio		:REAL;
+	
+	rPosition1			:REAL;
+	rVelocity1			:REAL;
+	bBufferedMove		:BOOL;
+	rPosition2			:REAL;
+	rVelocity2			:REAL;
+	rOverride			:REAL:=10;
+	bGoPosition			:BOOL;	// Automatic movement called by the PLC program
+	bGoPosition_Manual	:BOOL;	// Manual movement called by the HMI
+	bEnablePositive		:BOOL := TRUE;
+	bEnableNegative		:BOOL := TRUE;
+	bIncremental		:BOOL := FALSE;	//True: Incremental encoder, false: absolut encoder
+	bCalibrationCam		:BOOL;	//Véghelyzet érzékelő
+	bHalt				:BOOL;
+	bAxisEnabled		:BOOL;
+	lrNegLimit			:LREAL;	
+	lrPosLimit			:LREAL;
+	rMinVelocity		:REAL;
+	rMaxVelocity		:REAL;
+	bErrorStringConfirmed	:BOOL; // Hibakezelő blokknak kell, ha a külső app feldolgozta az adott hibastringet akkor bebillenti, reset a blokkban történik
+// Jog mode
+	e_JogMode			:E_JogMode:=MC_JOGMODE_INCHING;
+	bJogForward			:BOOL;
+	bJogBackwards		:BOOL;
+	bJogMovementInAuto	:BOOL;  // Ha Automatában kell JOG-ban mozogni. pl. AX5000-el hajtott körasztal 
+	rJogInching			:REAL:=0.1;
+	rP2Jog				:REAL:=50;
+	lrMAnualOverride	:LREAL:=10;
+END_VAR
+VAR_OUTPUT
+	/// axis reference data structure 
+	Axis				:AXIS_REF;
+	bInGear				:BOOL;
+	bReady				:BOOL;
+	bBusy				:BOOL;
+	bDone				:BOOL;
+	bHaltDone			:BOOL;
+	bError				:BOOL;
+	sError				:STRING(255);(*hiba string*)
+	iOEECategoryNumber	:INT;	(*OEE Kategória MES adatbázisnak*)
+END_VAR
+
+VAR_IN_OUT
+	
+END_VAR
+
+VAR
+	nState				:UINT;
+	nStatePrevious		:UINT;
+	fbRunTrig			:R_TRIG;		(*Indulás trigger*)	
+	
+	PowerAxis			:MC_Power;
+	PowerAxisOut		:ST_McOutputs;
+	MoveAxis1			:MC_MoveAbsolute;
+	MoveAbsoluteOut1	:ST_McOutputs;
+	MoveAxis2			:MC_MoveAbsolute;
+	MoveAbsoluteOut2	:ST_McOutputs;
+	Reset				:MC_Reset;
+	ResetOut			:ST_McOutputs;
+	SoEReset			:FB_SoEReset;
+	SoEResetOut			:ST_McOutputs;
+	Home				:MC_Home;
+	HomeOut				:ST_McOutputs;
+	fbJog				:MC_Jog;
+	fb_GearInDyn		:MC_GearInDyn;
+	fb_GearOut			:MC_GearOut;
+	
+	i_uiSlaveINnOp		AT %I*	:UINT;
+	
+	rMinPosLimit		:REAL;
+	rMaxPosLimit		:REAL;
+	
+	Halt				:MC_Halt;
+	HaltOut				:ST_McOutputs;
+	fb_DriveDiag		:FB_SoEReadDiagNumber;
+	bIsInitalized		:BOOL;
+//	fbAlarm				:FB_TcAlarm;
+	nGlobalAxisErrorID	:UDINT;
+	GetSoft_NegLimit	:Tc2_MC2.MC_ReadParameter;
+	SetSoft_NegLimit	:Tc2_MC2.MC_WriteParameter;
+	GetSoft_PosLimit	:Tc2_MC2.MC_ReadParameter;
+	SetSoft_PosLimit	:Tc2_MC2.MC_WriteParameter;	
+	
+	fbGetManualVelo		:Tc2_MC2.MC_ReadParameter;
+	lrManualVelo		:LREAL;
+
+		
+	
+	fb_ErrorHandling	:FB_ERROR_Handling_For_FBs;
+	bTestGearIn			: BOOL;
+	bTestGearOut		: BOOL;
+	ctuGearIn			: CTU;
+	bTest				: BOOL;
+	rtrigbEMYOK			: R_TRIG;
+	bEMYOKisBack		: BOOL;
+	bLimitsAreSet		: BOOL;
+	bPosLimitRead		: BOOL;
+	bMinLimitRead		: BOOL;
+	
+	bClr				:BOOL;
+	arr_Step_Archive	:ARRAY[0..30] OF UINT;
+	arrClr_Step_Archive	:ARRAY[0..30] OF UINT;
+	i					:INT;
+	rtrig_ManualMove: R_TRIG;
+	bThisIsManualMovement: BOOL;
+	tonbEMYOK			:TON;
+END_VAR</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </outputVars>
+          <localVars>
+            <variable name="nState">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="nStatePrevious">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="fbRunTrig">
+              <type>
+                <derived name="R_TRIG" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">Indulás trigger</xhtml>
+              </documentation>
+            </variable>
+            <variable name="PowerAxis">
+              <type>
+                <derived name="MC_Power" />
+              </type>
+            </variable>
+            <variable name="PowerAxisOut">
+              <type>
+                <derived name="ST_McOutputs" />
+              </type>
+            </variable>
+            <variable name="MoveAxis1">
+              <type>
+                <derived name="MC_MoveAbsolute" />
+              </type>
+            </variable>
+            <variable name="MoveAbsoluteOut1">
+              <type>
+                <derived name="ST_McOutputs" />
+              </type>
+            </variable>
+            <variable name="MoveAxis2">
+              <type>
+                <derived name="MC_MoveAbsolute" />
+              </type>
+            </variable>
+            <variable name="MoveAbsoluteOut2">
+              <type>
+                <derived name="ST_McOutputs" />
+              </type>
+            </variable>
+            <variable name="Reset">
+              <type>
+                <derived name="MC_Reset" />
+              </type>
+            </variable>
+            <variable name="ResetOut">
+              <type>
+                <derived name="ST_McOutputs" />
+              </type>
+            </variable>
+            <variable name="SoEReset">
+              <type>
+                <derived name="FB_SoEReset" />
+              </type>
+            </variable>
+            <variable name="SoEResetOut">
+              <type>
+                <derived name="ST_McOutputs" />
+              </type>
+            </variable>
+            <variable name="Home">
+              <type>
+                <derived name="MC_Home" />
+              </type>
+            </variable>
+            <variable name="HomeOut">
+              <type>
+                <derived name="ST_McOutputs" />
+              </type>
+            </variable>
+            <variable name="fbJog">
+              <type>
+                <derived name="MC_Jog" />
+              </type>
+            </variable>
+            <variable name="fb_GearInDyn">
+              <type>
+                <derived name="MC_GearInDyn" />
+              </type>
+            </variable>
+            <variable name="fb_GearOut">
+              <type>
+                <derived name="MC_GearOut" />
+              </type>
+            </variable>
+            <variable name="i_uiSlaveINnOp" address="%I*">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="rMinPosLimit">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="rMaxPosLimit">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="Halt">
+              <type>
+                <derived name="MC_Halt" />
+              </type>
+            </variable>
+            <variable name="HaltOut">
+              <type>
+                <derived name="ST_McOutputs" />
+              </type>
+            </variable>
+            <variable name="fb_DriveDiag">
+              <type>
+                <derived name="FB_SoEReadDiagNumber" />
+              </type>
+            </variable>
+            <variable name="bIsInitalized">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="nGlobalAxisErrorID">
+              <type>
+                <UDINT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">	fbAlarm				:FB_TcAlarm;</xhtml>
+              </documentation>
+            </variable>
+            <variable name="GetSoft_NegLimit">
+              <type>
+                <derived name="Tc2_MC2.MC_ReadParameter" />
+              </type>
+            </variable>
+            <variable name="SetSoft_NegLimit">
+              <type>
+                <derived name="Tc2_MC2.MC_WriteParameter" />
+              </type>
+            </variable>
+            <variable name="GetSoft_PosLimit">
+              <type>
+                <derived name="Tc2_MC2.MC_ReadParameter" />
+              </type>
+            </variable>
+            <variable name="SetSoft_PosLimit">
+              <type>
+                <derived name="Tc2_MC2.MC_WriteParameter" />
+              </type>
+            </variable>
+            <variable name="fbGetManualVelo">
+              <type>
+                <derived name="Tc2_MC2.MC_ReadParameter" />
+              </type>
+            </variable>
+            <variable name="lrManualVelo">
+              <type>
+                <LREAL />
+              </type>
+            </variable>
+            <variable name="fb_ErrorHandling">
+              <type>
+                <derived name="FB_ERROR_Handling_For_FBs" />
+              </type>
+            </variable>
+            <variable name="bTestGearIn">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bTestGearOut">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="ctuGearIn">
+              <type>
+                <derived name="CTU" />
+              </type>
+            </variable>
+            <variable name="bTest">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="rtrigbEMYOK">
+              <type>
+                <derived name="R_TRIG" />
+              </type>
+            </variable>
+            <variable name="bEMYOKisBack">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bLimitsAreSet">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bPosLimitRead">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bMinLimitRead">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bClr">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="arr_Step_Archive">
+              <type>
+                <array>
+                  <dimension lower="0" upper="30" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrClr_Step_Archive">
+              <type>
+                <array>
+                  <dimension lower="0" upper="30" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="i">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="rtrig_ManualMove">
+              <type>
+                <derived name="R_TRIG" />
+              </type>
+            </variable>
+            <variable name="bThisIsManualMovement">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="tonbEMYOK">
+              <type>
+                <derived name="TON" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Motor
+VAR_INPUT
+	sName				:STRING;
+	bEMYOK				:BOOL;
+	bStandAlone			:BOOL := TRUE; //nincs NCI-be összekapcsolva: önállóan használható
+	bErrorAck			:BOOL;
+	bDisableManualCmd	:BOOL;	(*Manual control disable*)
+// Gearing
+	bActivateGearIn		:BOOL;	// Tengely kuplungolása Master-el, pl. Handwheel
+	bGearOut			:BOOL;
+	refMaster_Axis		:AXIS_REF;
+	rGearingRatio		:REAL;
+	
+	rPosition1			:REAL;
+	rVelocity1			:REAL;
+	bBufferedMove		:BOOL;
+	rPosition2			:REAL;
+	rVelocity2			:REAL;
+	rOverride			:REAL:=10;
+	bGoPosition			:BOOL;	// Automatic movement called by the PLC program
+	bGoPosition_Manual	:BOOL;	// Manual movement called by the HMI
+	bEnablePositive		:BOOL := TRUE;
+	bEnableNegative		:BOOL := TRUE;
+	bIncremental		:BOOL := FALSE;	//True: Incremental encoder, false: absolut encoder
+	bCalibrationCam		:BOOL;	//Véghelyzet érzékelő
+	bHalt				:BOOL;
+	bAxisEnabled		:BOOL;
+	lrNegLimit			:LREAL;	
+	lrPosLimit			:LREAL;
+	rMinVelocity		:REAL;
+	rMaxVelocity		:REAL;
+	bErrorStringConfirmed	:BOOL; // Hibakezelő blokknak kell, ha a külső app feldolgozta az adott hibastringet akkor bebillenti, reset a blokkban történik
+// Jog mode
+	e_JogMode			:E_JogMode:=MC_JOGMODE_INCHING;
+	bJogForward			:BOOL;
+	bJogBackwards		:BOOL;
+	bJogMovementInAuto	:BOOL;  // Ha Automatában kell JOG-ban mozogni. pl. AX5000-el hajtott körasztal 
+	rJogInching			:REAL:=0.1;
+	rP2Jog				:REAL:=50;
+	lrMAnualOverride	:LREAL:=10;
+END_VAR
+VAR_OUTPUT
+	/// axis reference data structure 
+	Axis				:AXIS_REF;
+	bInGear				:BOOL;
+	bReady				:BOOL;
+	bBusy				:BOOL;
+	bDone				:BOOL;
+	bHaltDone			:BOOL;
+	bError				:BOOL;
+	sError				:STRING(255);(*hiba string*)
+	iOEECategoryNumber	:INT;	(*OEE Kategória MES adatbázisnak*)
+END_VAR
+
+VAR_IN_OUT
+	
+END_VAR
+
+VAR
+	nState				:UINT;
+	nStatePrevious		:UINT;
+	fbRunTrig			:R_TRIG;		(*Indulás trigger*)	
+	
+	PowerAxis			:MC_Power;
+	PowerAxisOut		:ST_McOutputs;
+	MoveAxis1			:MC_MoveAbsolute;
+	MoveAbsoluteOut1	:ST_McOutputs;
+	MoveAxis2			:MC_MoveAbsolute;
+	MoveAbsoluteOut2	:ST_McOutputs;
+	Reset				:MC_Reset;
+	ResetOut			:ST_McOutputs;
+	SoEReset			:FB_SoEReset;
+	SoEResetOut			:ST_McOutputs;
+	Home				:MC_Home;
+	HomeOut				:ST_McOutputs;
+	fbJog				:MC_Jog;
+	fb_GearInDyn		:MC_GearInDyn;
+	fb_GearOut			:MC_GearOut;
+	
+	i_uiSlaveINnOp		AT %I*	:UINT;
+	
+	rMinPosLimit		:REAL;
+	rMaxPosLimit		:REAL;
+	
+	Halt				:MC_Halt;
+	HaltOut				:ST_McOutputs;
+	fb_DriveDiag		:FB_SoEReadDiagNumber;
+	bIsInitalized		:BOOL;
+//	fbAlarm				:FB_TcAlarm;
+	nGlobalAxisErrorID	:UDINT;
+	GetSoft_NegLimit	:Tc2_MC2.MC_ReadParameter;
+	SetSoft_NegLimit	:Tc2_MC2.MC_WriteParameter;
+	GetSoft_PosLimit	:Tc2_MC2.MC_ReadParameter;
+	SetSoft_PosLimit	:Tc2_MC2.MC_WriteParameter;	
+	
+	fbGetManualVelo		:Tc2_MC2.MC_ReadParameter;
+	lrManualVelo		:LREAL;
+
+		
+	
+	fb_ErrorHandling	:FB_ERROR_Handling_For_FBs;
+	bTestGearIn			: BOOL;
+	bTestGearOut		: BOOL;
+	ctuGearIn			: CTU;
+	bTest				: BOOL;
+	rtrigbEMYOK			: R_TRIG;
+	bEMYOKisBack		: BOOL;
+	bLimitsAreSet		: BOOL;
+	bPosLimitRead		: BOOL;
+	bMinLimitRead		: BOOL;
+	
+	bClr				:BOOL;
+	arr_Step_Archive	:ARRAY[0..30] OF UINT;
+	arrClr_Step_Archive	:ARRAY[0..30] OF UINT;
+	i					:INT;
+	rtrig_ManualMove: R_TRIG;
+	bThisIsManualMovement: BOOL;
+	tonbEMYOK			:TON;
+END_VAR</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <actions>
+          <action name="ActGearInDyn">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">IF nState = 1000 THEN 
+	fb_GearInDyn(
+		Master:=refMaster_Axis , 
+		Slave:=Axis , 
+		Enable:=bActivateGearIn OR bTestGearIn , 
+		GearRatio:=rGearingRatio , 
+		Acceleration:= , 
+		Deceleration:= , 
+		Jerk:= , 
+		BufferMode:= , 
+		Options:= , 
+		InGear=&gt;bInGear , 
+		Busy=&gt; , 
+		Active=&gt; , 
+		CommandAborted=&gt; , 
+		Error=&gt; , 
+		ErrorID=&gt; );
+		
+		ctuGearIn(
+		CU:=bActivateGearIn , 
+		RESET:= , 
+		PV:= , 
+		Q=&gt; , 
+		CV=&gt; );
+END_IF
+
+	ctuGearIn.CV;
+	</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>8cab0ef5-bf7b-4d8d-9537-8637e07dd4a2</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActGearOut">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">
+fb_GearOut(
+	Slave:=Axis , 
+	Execute:=bGearOut OR bTestGearOut , 
+	Options:= , 
+	Done=&gt; , 
+	Busy=&gt; , 
+	Error=&gt; , 
+	ErrorID=&gt; );</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>9c590616-170c-4e75-9e32-e79212ae1518</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActHalt">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">Halt(
+	Axis:= Axis, 
+	Execute:= Halt.Execute, 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= , 
+	Options:= , 
+	Done=&gt; HaltOut.Done, 
+	Busy=&gt; HaltOut.Busy, 
+	Active=&gt; HaltOut.Active, 
+	CommandAborted=&gt; HaltOut.CommandAborted, 
+	Error=&gt; HaltOut.Error, 
+	ErrorID=&gt; HaltOut.ErrorID);</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>d64387a1-84ef-4808-802d-9f345bf5f861</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActHome">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">Home(
+	Axis:= Axis, 
+	Execute:= Home.Execute, 
+	Position:= Home.Position, 
+	HomingMode:= MC_DefaultHoming, 
+	BufferMode:= , 
+	Options:= , 
+	bCalibrationCam:= bCalibrationCam, 
+	Done=&gt; HomeOut.Done, 
+	Busy=&gt; HomeOut.Busy, 
+	Active=&gt; HomeOut.Active, 
+	CommandAborted=&gt; HomeOut.CommandAborted, 
+	Error=&gt; HomeOut.Error, 
+	ErrorID=&gt; HomeOut.ErrorID);</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>75b59085-8c54-4992-8c7c-7dd5a590590e</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActJog">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">// Read Manual veolcity from drive
+	fbGetManualVelo(
+			Axis:= Axis, 
+			Enable:= TRUE, 
+			ParameterNumber:=MC_AxisParameter.AxisManualVelocityFast,
+			ReadMode:= Tc2_MC2.READMODE_CYCLIC,
+			Value=&gt;lrManualVelo );
+
+IF bManual THEN
+// Set current Manual speed (HMI csúszka alapján %-osan számolja
+	fbJog.Velocity:=(lrMAnualOverride/100)*lrManualVelo;
+ELSE
+// Set current AUTOMATIC speed (HMI csúszka alapján %-osan számolja
+	fbJog.Velocity:=(lrMAnualOverride/100)*rP2Jog;
+END_IF
+	
+
+	
+	
+(*IF (nState = 1000 OR fbJog.Error)	AND				    // If it is in error, it should be possible to acknowledge it
+   (NOT bAutomatic OR bJogMovementInAuto)				// Only go to JOG when Drive is ready and not doing anything else and Manual is in the cell 
+THEN*)
+fbJog(
+	Axis:= Axis, 
+	JogForward:= bJogForward,  
+	JogBackwards:= bJogBackwards,  
+	Mode:=e_JogMode , 
+	Position:=rJogInching , 
+	Velocity:= , 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	Done=&gt; , 
+	Busy=&gt; , 
+	Active=&gt; , 
+	CommandAborted=&gt; , 
+	Error=&gt; , 
+	ErrorID=&gt; );
+
+(*END_IF *)
+
+	fbJog.JogForward;
+	fbJog.JogBackwards;
+	fbJog.Mode;
+	fbJog.Velocity;
+	fbJog.Position;
+	fbJog.Acceleration;
+	fbJog.Deceleration;
+	fbJog.Jerk;
+	fbJog.Done;
+	fbJog.Busy;
+	fbJog.Active;
+	fbJog.CommandAborted;
+	fbJog.Error;
+	fbJog.ErrorID;
+	
+	
+</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>be2efe6e-edff-4e50-994d-0be57ccae109</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActMove">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">MoveAxis1(
+	Axis:= Axis, 
+	Execute:= MoveAxis1.Execute, 
+	Position:= MoveAxis1.Position, 
+	Velocity:=MoveAxis1.Velocity, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= MoveAxis1.BufferMode, 
+	Options:= , 
+	Done=&gt; MoveAbsoluteOut1.Done, 
+	Busy=&gt; MoveAbsoluteOut1.Busy, 
+	Active=&gt;MoveAbsoluteOut1.Active, 
+	CommandAborted=&gt;MoveAbsoluteOut1.CommandAborted, 
+	Error=&gt; MoveAbsoluteOut1.Error, 
+	ErrorID=&gt; MoveAbsoluteOut1.ErrorID);
+	
+MoveAxis2(
+	Axis:= Axis, 
+	Execute:= MoveAxis2.Execute, 
+	Position:= MoveAxis2.Position, 
+	Velocity:= MoveAxis2.Velocity, 
+	Acceleration:= , 
+	Deceleration:= , 
+	Jerk:= , 
+	BufferMode:= MoveAxis2.BufferMode, 
+	Options:= , 
+	Done=&gt; MoveAbsoluteOut2.Done, 
+	Busy=&gt; MoveAbsoluteOut2.Busy, 
+	Active=&gt; MoveAbsoluteOut2.Active, 
+	CommandAborted=&gt; MoveAbsoluteOut2.CommandAborted, 
+	Error=&gt; MoveAbsoluteOut2.Error, 
+	ErrorID=&gt; MoveAbsoluteOut2.ErrorID);</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>ffa23cbc-6bd3-4715-a135-39acb75dd941</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActPower">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">PowerAxis(
+	Axis:= Axis, 
+	Enable:= PowerAxis.Enable, 
+	Enable_Positive:= PowerAxis.Enable AND bEnablePositive, 
+	Enable_Negative:= PowerAxis.Enable AND bEnableNegative, 
+	Override:= 100, 
+	BufferMode:= , 
+	Options:= , 
+	Status=&gt; PowerAxisOut.Done, 
+	Busy=&gt; PowerAxisOut.Busy, 
+	Active=&gt; PowerAxisOut.Active, 
+	Error=&gt; PowerAxisOut.Error, 
+	ErrorID=&gt; PowerAxisOut.ErrorID);</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>25556966-5f13-495a-836c-0b2c3bdd2f55</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActReset">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">Reset(
+	Axis:= Axis, 
+	Execute:= Reset.Execute, 
+	Done=&gt; ResetOut.Done, 
+	Busy=&gt; ResetOut.Busy, 
+	Error=&gt; ResetOut.Error, 
+	ErrorID=&gt; ResetOut.ErrorID);</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>f68d03ff-abb6-45b0-97c8-1d97a5f29681</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActSetLimits">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">IF  bEMYOK THEN 
+	IF NOT bPosLimitRead THEN
+	
+		GetSoft_PosLimit(
+			Axis:= Axis, 
+			Enable:= NOT GetSoft_PosLimit.Busy AND NOT GetSoft_PosLimit.Error AND NOT SetSoft_PosLimit.Execute , 
+			ParameterNumber:=MC_AxisParameter.SWLimitPos,
+			ReadMode:= Tc2_MC2.READMODE_CYCLIC,
+			Value=&gt;lrPosLimit );
+			rMaxPosLimit:=lrPosLimit-2;
+			
+		IF GetSoft_PosLimit.Valid THEN
+			bPosLimitRead:=TRUE;
+		END_IF
+	END_IF
+	
+	IF NOT bMinLimitRead THEN
+		GetSoft_NegLimit(
+			Axis:= Axis, 
+			Enable:= NOT GetSoft_NegLimit.Busy AND NOT GetSoft_NegLimit.Error AND NOT SetSoft_NegLimit.Execute, 
+			ParameterNumber:= MC_AxisParameter.SWLimitNeg, 
+			ReadMode:= Tc2_MC2.READMODE_CYCLIC,
+			Value=&gt;lrNegLimit );
+			
+			rMinPosLimit:=lrNegLimit+2;
+		
+			IF GetSoft_NegLimit.Valid THEN
+				bMinLimitRead:=TRUE;
+			END_IF
+	END_IF
+		
+	IF lrPosLimit &lt;&gt; 0 THEN    // Ha nincs beállítva akkor ne írja be a nullás értéket
+		SetSoft_PosLimit(
+			Axis:= Axis, 
+			Execute:= NOT GetSoft_PosLimit.Busy AND GetSoft_PosLimit.Valid AND GetSoft_PosLimit.Value &lt;&gt; lrPosLimit, 
+			ParameterNumber:= 2, 
+			Value:= lrPosLimit);
+	END_IF;
+	
+	IF lrNegLimit &lt;&gt; 0 THEN    // Ha nincs beállítva akkor ne írja be a nullás értéket
+		SetSoft_NegLimit(
+			Axis:= Axis, 
+			Execute:= NOT GetSoft_NegLimit.Busy AND GetSoft_NegLimit.Valid AND GetSoft_NegLimit.Value &lt;&gt; lrNegLimit, 
+			ParameterNumber:= 3, 
+			Value:= lrNegLimit);
+	END_IF
+
+END_IF</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>d27e7a43-d849-4067-9b16-e3ccbb9bcfa9</ObjectId>
+              </data>
+            </addData>
+          </action>
+          <action name="ActSoEReset">
+            <body>
+              <ST>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">SoEReset(
+	Axis:= Axis, 
+	Execute:= SoEReset.Execute, 
+	Busy=&gt; SoEResetOut.Busy, 
+	Error=&gt; SoEResetOut.Error, 
+	AdsErrId=&gt; SoEResetOut.ErrorID, 
+	SercosErrId=&gt; );</xhtml>
+              </ST>
+            </body>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                <ObjectId>5e770a34-1ca2-4eb6-b8fc-c4184d0faff3</ObjectId>
+              </data>
+            </addData>
+          </action>
+        </actions>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">(*Hibakezelés*)
+IF nState &gt; 0
+	AND nState &lt; 10000
+THEN
+	nStatePrevious := nState;
+END_IF
+
+(*Emergency*)
+
+IF NOT bEMYOK THEN
+	nState := 0;
+	bBusy:= FALSE;
+	bDone:= FALSE;
+END_IF
+
+IF bHalt THEN
+	bHalt:=FALSE;
+	Halt.Execute := TRUE;
+	bHaltDone:=FALSE;
+ELSIF Halt.Done THEN
+	bHaltDone:=TRUE;
+	Halt.Execute := FALSE;
+END_IF
+// Override ellenőrzése, nem lehet nagyobb mint 100%
+IF rOverride &gt; 100 THEN
+ 	rOverride:=100;
+ELSIF rOverride &lt; 1 THEN 
+	rOverride:=1;
+END_IF
+ 
+IF lrMAnualOverride &gt; 100 THEN 
+	 lrMAnualOverride:=100;
+ELSIF lrMAnualOverride &lt; 1 THEN 
+	lrMAnualOverride:=1;
+END_IF
+//(*Error*)
+//sError := '';
+//bError := FALSE;
+
+Axis.Status.DriveDeviceError;
+Axis.Status.Error;
+PowerAxisOut.Error;
+MoveAbsoluteOut1.CommandAborted;
+MoveAbsoluteOut1.Error;
+ResetOut.Error;
+SoEResetOut.Error;
+PowerAxis.Error;
+MoveAxis1.CommandAborted;
+MoveAxis1.Error;
+
+tonbEMYOK(IN:=bEMYOK , PT:=T#1S , Q=&gt; , ET=&gt; );
+
+rtrigbEMYOK(CLK:=tonbEMYOK.Q , Q=&gt; );
+
+IF rtrigbEMYOK.Q THEN
+	bEMYOKisBack:=TRUE;
+END_IF
+
+IF i_uiSlaveINnOp = 8  THEN // Ne dobáljon hibát ha nem megy még az EtherCat
+	fb_ErrorHandling(
+		bEnable:=TRUE , 
+		sName:=sName , 
+		arrsErrorString:= , 
+		arrbError:= , 
+		arrOEEErrorCode:= , 
+		sERROR=&gt;sError , 
+		bERROR=&gt;bError , 
+		iOEECategoryNumber=&gt;iOEECategoryNumber , 
+		bErrorStringConfirmed:=bErrorStringConfirmed );
+	
+	// Set ERROR Array
+	// PowerAxis ERROR
+	fb_ErrorHandling.arrbError[0]:=PowerAxisOut.Error;
+	fb_ErrorHandling.arrsErrorString[0]:=CONCAT(sName,concat(FC_Locale('',' MC_Power hiba, hibakód: ',' MC_Power error, error code: '),UDINT_TO_STRING(PowerAxisOut.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[0]:=2136;	
+	
+	// MoveAxis1 ERROR
+	fb_ErrorHandling.arrbError[1]:=MoveAxis1.Error;
+	fb_ErrorHandling.arrsErrorString[1]:=CONCAT(sName,concat(FC_Locale('',' MC_MoveAbsolute 1  hiba, hibakód: ',' MC_MoveAbsolute 1 error, error code: ') ,UDINT_TO_STRING(MoveAxis1.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[1]:=2136;	
+	
+	// MoveAxis2 ERROR
+	fb_ErrorHandling.arrbError[2]:=MoveAxis2.Error;
+	fb_ErrorHandling.arrsErrorString[2]:=CONCAT(sName,concat(FC_Locale('',' MC_MoveAbsolute 2 hiba, hibakód: ',' MC_MoveAbsolute 2 error, error code: '),UDINT_TO_STRING(MoveAxis2.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[2]:=2136;	
+	
+	// RESET ERROR
+	fb_ErrorHandling.arrbError[3]:=Reset.Error;
+	fb_ErrorHandling.arrsErrorString[3]:=CONCAT(sName,concat(FC_Locale('',' MC_Reset hiba, hibakód: ',' MC_Reset error, error code: '),UDINT_TO_STRING(Reset.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[3]:=2136;	
+	
+	// SOE_RESET ERROR
+	fb_ErrorHandling.arrbError[4]:=SoEReset.Error;
+	fb_ErrorHandling.arrsErrorString[4]:=CONCAT(sName,concat(FC_Locale('',' FB_SoEReset hiba, hibakód: ',' FB_SoEReset error, error code: ') ,UDINT_TO_STRING(SoEReset.AdsErrId)));
+	fb_ErrorHandling.arrOEEErrorCode[4]:=2136;	
+	
+	// HOME ERROR
+	fb_ErrorHandling.arrbError[5]:=Home.Error;
+	fb_ErrorHandling.arrsErrorString[5]:=CONCAT(sName,concat(FC_Locale('',' Homing hiba, hibakód: ',' Homing error, error code: ') ,UDINT_TO_STRING(Home.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[5]:=2136;	
+	
+	// Jog ERROR
+	fb_ErrorHandling.arrbError[6]:=fbJog.Error;
+	fb_ErrorHandling.arrsErrorString[6]:=CONCAT(sName,concat(FC_Locale('',' Jog hiba, hibakód: ',' Jog error, error code: '),UDINT_TO_STRING(fbJog.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[6]:=2136;
+	
+	// Halt ERROR
+	fb_ErrorHandling.arrbError[7]:=Halt.Error;
+	fb_ErrorHandling.arrsErrorString[7]:=CONCAT(sName,concat(FC_Locale('',' Halt hiba, hibakód: ',' Halt error, error code: '),UDINT_TO_STRING(Halt.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[7]:=2136;
+	
+	// fb_DriveDiag ERROR
+	fb_ErrorHandling.arrbError[8]:=fb_DriveDiag.Error;
+	fb_ErrorHandling.arrsErrorString[8]:=CONCAT(sName,concat(FC_Locale('',' DriveDiag hiba, hibakód: ',' DriveDiag error, error code: '),UDINT_TO_STRING(fb_DriveDiag.AdsErrId)));
+	fb_ErrorHandling.arrOEEErrorCode[8]:=2136;
+	
+	// GetSoft_NegLimit ERROR
+	fb_ErrorHandling.arrbError[9]:=GetSoft_NegLimit.Error;
+	fb_ErrorHandling.arrsErrorString[9]:=CONCAT(sName,concat(FC_Locale('',' GetSoft_NegLimit hiba, hibakód: ',' GetSoft_NegLimit error, error code: '),UDINT_TO_STRING(GetSoft_NegLimit.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[9]:=2136;
+	
+	// SetSoft_NegLimit ERROR
+	fb_ErrorHandling.arrbError[10]:=SetSoft_NegLimit.Error;
+	fb_ErrorHandling.arrsErrorString[10]:=CONCAT(sName,concat(FC_Locale('',' SetSoft_NegLimit hiba, hibakód: ',' SetSoft_NegLimit error, error code: '),UDINT_TO_STRING(SetSoft_NegLimit.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[10]:=2136;
+	
+	// GetSoft_PosLimit ERROR
+	fb_ErrorHandling.arrbError[11]:=GetSoft_PosLimit.Error;
+	fb_ErrorHandling.arrsErrorString[11]:=CONCAT(sName,concat(FC_Locale('',' GetSoft_PosLimit hiba, hibakód: ',' GetSoft_PosLimit error, error code: '),UDINT_TO_STRING(GetSoft_PosLimit.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[11]:=2136;
+	
+	// SetSoft_PosLimit ERROR
+	fb_ErrorHandling.arrbError[12]:=SetSoft_PosLimit.Error;
+	fb_ErrorHandling.arrsErrorString[12]:=CONCAT(sName,concat(FC_Locale('',' SetSoft_PosLimit hiba, hibakód: ',' GetSoft_PosLimit error, error code: '),UDINT_TO_STRING(SetSoft_PosLimit.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[12]:=2136;
+	
+	// Drive ERROR
+	fb_ErrorHandling.arrbError[13]:=Axis.Status.DriveDeviceError;
+	fb_ErrorHandling.arrsErrorString[13]:=CONCAT(STR1:= sName, STR2:= FC_Locale('',' drive hiba ',' Drive error '));
+	fb_ErrorHandling.arrOEEErrorCode[13]:=2136;
+	
+	// ERROR
+	fb_ErrorHandling.arrbError[14]:=Axis.Status.Error;
+	fb_ErrorHandling.arrsErrorString[14]:=CONCAT(STR1:= sName, STR2:=FC_Locale('',' hiba ',' error '));
+	fb_ErrorHandling.arrOEEErrorCode[14]:=2136;	
+	
+	// Gearing ERROR
+	fb_ErrorHandling.arrbError[15]:=fb_GearInDyn.Error;
+	fb_ErrorHandling.arrsErrorString[15]:=CONCAT(sName,concat(FC_Locale('',' Kuplungolási hiba, hibakód: ',' Coupling error, error code: ') ,UDINT_TO_STRING(fb_GearInDyn.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[15]:=2136;	
+	
+	// GearOut ERROR
+	fb_ErrorHandling.arrbError[16]:=fb_GearOut.Error;
+	fb_ErrorHandling.arrsErrorString[16]:=CONCAT(sName,concat(FC_Locale('', ' Kuplung szétkapcsolási hiba, hibakód: ',' Decoupling error, error code: ') ,UDINT_TO_STRING(fb_GearOut.ErrorID)));
+	fb_ErrorHandling.arrOEEErrorCode[16]:=2136;	
+	
+	// Sequence ERROR
+	fb_ErrorHandling.arrbError[17];
+	fb_ErrorHandling.arrsErrorString[17];
+	fb_ErrorHandling.arrOEEErrorCode[17];
+END_IF
+(* update the axis status at the beginning of each cycle *)
+Axis();
+(******************************************************************* Step sequence archive*)
+IF bClr THEN
+	arr_Step_Archive:=arrClr_Step_Archive;
+	bClr:=FALSE;
+END_IF
+	
+IF arr_Step_Archive[0] &lt;&gt; nState THEN
+	FOR i:=40 TO 1 BY -1 DO
+		arr_Step_Archive[i]:= arr_Step_Archive[i-1];
+	END_FOR
+		arr_Step_Archive[0]:= nState;
+END_IF
+
+arr_Step_Archive[0];
+arr_Step_Archive[1];
+arr_Step_Archive[2];
+arr_Step_Archive[3];
+arr_Step_Archive[4];
+arr_Step_Archive[5];
+arr_Step_Archive[6];
+arr_Step_Archive[7];
+arr_Step_Archive[8];
+arr_Step_Archive[9];
+arr_Step_Archive[10];
+arr_Step_Archive[11];
+arr_Step_Archive[12];
+arr_Step_Archive[13];
+arr_Step_Archive[14];
+arr_Step_Archive[15];
+arr_Step_Archive[16];
+arr_Step_Archive[17];
+arr_Step_Archive[18];
+arr_Step_Archive[19];
+arr_Step_Archive[20];
+arr_Step_Archive[21];
+arr_Step_Archive[22];
+arr_Step_Archive[23];
+arr_Step_Archive[24];
+arr_Step_Archive[25];
+arr_Step_Archive[26];
+arr_Step_Archive[27];
+arr_Step_Archive[28];
+arr_Step_Archive[29];
+arr_Step_Archive[30];
+
+
+fbRunTrig(CLK:= bGoPosition, Q=&gt; );
+rtrig_ManualMove(CLK:=bGoPosition_Manual, Q=&gt; );
+
+IF rtrig_ManualMove.Q THEN
+	bThisIsManualMovement:=TRUE;
+END_IF
+
+CASE nState OF
+	(* Vészkör bontva - Alaphelyzet felvétel *)
+	0:(* Működtetések törlése - Vészkör ellenőrzés *)
+		MoveAxis1.Execute := FALSE;
+		MoveAxis2.Execute := FALSE;
+		Reset.Execute := FALSE;
+		PowerAxis.Enable := FALSE;
+		Home.Execute := FALSE;
+		bReady:=FALSE;
+		bThisIsManualMovement:=FALSE;
+		
+		IF bEMYOK THEN
+			IF Axis.Status.Error
+				OR Axis.Status.DriveDeviceError
+			THEN
+				nState := 15000;
+			ELSIF bAxisEnabled THEN
+				nState := nState + 10;
+			END_IF
+		END_IF
+
+	10: (*Tengely engedélyezése*)
+		PowerAxis.Enable := TRUE;
+		IF PowerAxis.Status THEN
+			IF bIncremental THEN
+				IF bStandAlone THEN
+					nState := nState + 10;
+				END_IF
+			ELSE
+				nState := 1000;
+			END_IF
+			
+		ELSIF PowerAxis.Error THEN
+			nState := 15000;
+		END_IF		
+
+	20: (*Home OK?*)
+		IF Axis.Status.Homed THEN
+			nState := 1000;
+		END_IF
+		
+	30: (*Parancsra vár*)
+		IF fbRunTrig.Q THEN
+			bDone:= FALSE;
+			bBusy:= TRUE;
+			nState := nState + 10;
+		END_IF
+		
+	40: (*Home-olás*)
+		Home.Execute := TRUE;
+		IF Home.Done THEN
+			Home.Execute := FALSE;
+			bBusy:= FALSE;
+			bDone:= TRUE;
+			nState := 1000;
+		ELSIF Home.CommandAborted OR Home.Error THEN
+			nState := 15000;
+		END_IF		
+		
+	(* Automata mód - Alaphelyzet *)
+	1000: (*Parancsra vár*)
+		bReady:=TRUE;
+		IF (fbRunTrig.Q OR rtrig_ManualMove.Q)AND bStandAlone AND NOT bActivateGearIn AND NOT bInGear // OK
+			AND ( rVelocity1 &gt; 0 
+					OR rVelocity2 &gt; 0 ) THEN
+			bReady:=FALSE;
+			bDone:= FALSE;
+			bBusy:= TRUE;
+			nState := nState + 10;		
+		ELSIF NOT bAxisEnabled THEN
+				nState :=0;
+		END_IF
+		IF Axis.Status.Error																		// ERROR
+			OR Axis.Status.DriveDeviceError	THEN
+				nState := 15000;
+				fb_ErrorHandling.arrsErrorString[17]:='Axis in ERROR!';
+				bReady:=FALSE;
+		ELSIF (fbRunTrig.Q OR  rtrig_ManualMove.Q)		// 0-ás sebességgel akarják mozgatni a szervót
+			AND ( rVelocity1 = 0 
+					AND rVelocity2 = 0 ) THEN
+			fb_ErrorHandling.arrbError[17]:=TRUE;
+			fb_ErrorHandling.arrsErrorString[17]:=FC_Locale('', 'Nincs sebesség megadva a szervó mozgatásához!','No velocity set for the movement!');
+			nState := 15000;
+			bReady:=FALSE;
+		ELSIF (fbRunTrig.Q OR  rtrig_ManualMove.Q)		// Requested position is below negativ limit switch
+			AND rPosition1 &lt; lrNegLimit THEN
+			fb_ErrorHandling.arrbError[17]:=TRUE;
+			fb_ErrorHandling.arrsErrorString[17]:=FC_Locale('', 'Meghívott pozíció negatív limitswithc alatt!','Requested position is below limit switch!');
+			nState := 15000;
+			bReady:=FALSE;	
+		ELSIF (fbRunTrig.Q OR  rtrig_ManualMove.Q)		// Requested position is below negativ limit switch
+			AND rPosition1 &gt; lrPosLimit THEN
+			fb_ErrorHandling.arrbError[17]:=TRUE;
+			fb_ErrorHandling.arrsErrorString[17]:=FC_Locale('', 'Meghívott pozíció pozitív limitswitch felett!','Requested position is above limit switch!');
+			nState := 15000;
+			bReady:=FALSE;
+		END_IF
+		
+	1010: (*Pozícióra*)
+		MoveAxis1.Position := rPosition1;
+		IF bThisIsManualMovement THEN 
+			MoveAxis1.Velocity := (rVelocity1*(lrMAnualOverride/100));
+		ELSE
+			MoveAxis1.Velocity := (rVelocity1*(rOverride/100));
+		END_IF
+		MoveAxis1.BufferMode := MC_Buffered;
+		MoveAxis1.Execute := TRUE;
+		(*Közvetlen pozícióra*)
+		IF NOT bBufferedMove THEN
+			IF MoveAxis1.Done THEN
+				MoveAxis1.Execute := FALSE;
+				bBusy:= FALSE;
+				bDone:= TRUE;
+				nState := 1000;
+			ELSIF MoveAxis1.CommandAborted OR MoveAxis1.Error THEN
+				nState := 15000;
+				IF MoveAxis1.CommandAborted THEN 
+					fb_ErrorHandling.arrsErrorString[17]:='MC_MoveAbsolute 1 command aborted!';
+				END_IF
+			END_IF
+		ELSE
+		(*Van buffer parancs*)
+			IF MoveAxis1.Active THEN
+				MoveAxis1.Execute := FALSE;
+				nState := 1020;
+			ELSIF MoveAxis1.CommandAborted OR MoveAxis1.Error THEN
+				nState := 15000;
+				IF MoveAxis1.CommandAborted THEN 
+					fb_ErrorHandling.arrsErrorString[17]:='MC_MoveAbsolute 1 command aborted!';
+				END_IF
+			END_IF	
+		END_IF
+
+	1020: (*Buffer*)
+		MoveAxis2.Position := rPosition2;
+		MoveAxis2.Velocity := (rVelocity2*(rOverride/100));
+		MoveAxis2.BufferMode := MC_BlendingLow;
+		MoveAxis2.Execute := TRUE;
+		IF MoveAxis2.Done THEN
+			MoveAxis2.Execute := FALSE;
+			bBusy:= FALSE;
+			bDone:= TRUE;
+			nState := 1000;
+		ELSIF MoveAxis2.CommandAborted OR MoveAxis2.Error THEN
+			nState := 15000;
+			IF MoveAxis2.CommandAborted THEN 
+				fb_ErrorHandling.arrsErrorString[17]:='MC_MoveAbsolute 2 command aborted!';
+			END_IF
+		END_IF
+
+	15000:(* Hiba *)
+		bReady:=FALSE;
+		bBusy := FALSE;
+		fb_ErrorHandling.arrbError[17]:=TRUE;
+		nState := 15010;
+		iOEECategoryNumber:=2136;
+		
+	15010:(* Hibanyugta *)
+		IF bErrorAck 
+			OR (bEMYOKisBack AND bActivateGearIn) THEN		// Kéziekrékre van kuplungolva nyitva van az ajtó és nyomogatják a dead-man gombot
+				iOEECategoryNumber:=0;
+				Halt.Execute := FALSE;
+				bHaltDone:=FALSE;
+				bEMYOKisBack:=FALSE;
+				
+				IF Axis.Status.DriveDeviceError THEN (* axis drive error requires reset *)
+					SoEReset.Execute := TRUE;
+					nState := 15020;
+				ELSIF Axis.Status.Error THEN (* axis error requires reset *)
+					Reset.Execute := TRUE;
+					nState := 15030;
+				ELSE
+					nState := 0;
+				END_IF
+				fb_ErrorHandling.arrbError[17]:=FALSE;
+				fb_ErrorHandling.arrsErrorString[17]:='';
+		END_IF
+		
+	15020: (*Drive Reset*)
+		IF NOT SoEReset.Busy THEN
+			SoEReset.Execute := FALSE;
+			nState := 15025;
+		ELSIF SoEReset.Error THEN
+			nState := 0; (* can't do anything here *)
+		END_IF	
+		
+	15025:
+		IF Axis.Status.Error THEN (* axis error requires reset *)
+				Reset.Execute := TRUE;
+				nState := 15030;
+		ELSE
+				nState := 0;
+		END_IF;
+		
+	15030: (*Reset*)
+		IF Reset.Done THEN
+			Reset.Execute := FALSE;
+			nState := 0;
+		ELSIF Reset.Error THEN
+			nState := 0; (* can't do anything here *)
+		END_IF	
+END_CASE
+
+ActPower();	(* call the power function block *)
+
+ActMove();	(* call the move function block *)
+ActReset();	(* call the reset function block *)
+ActSoEReset();	(* call the SoEreset function block *)
+ActHome();	(* call the home function block *)
+ActJog();
+ActHalt();
+ActSetLimits();
+ActGearInDyn();
+ActGearOut();
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Motor
+VAR_INPUT
+	sName				:STRING;
+	bEMYOK				:BOOL;
+	bStandAlone			:BOOL := TRUE; //nincs NCI-be összekapcsolva: önállóan használható
+	bErrorAck			:BOOL;
+	bDisableManualCmd	:BOOL;	(*Manual control disable*)
+// Gearing
+	bActivateGearIn		:BOOL;	// Tengely kuplungolása Master-el, pl. Handwheel
+	bGearOut			:BOOL;
+	refMaster_Axis		:AXIS_REF;
+	rGearingRatio		:REAL;
+	
+	rPosition1			:REAL;
+	rVelocity1			:REAL;
+	bBufferedMove		:BOOL;
+	rPosition2			:REAL;
+	rVelocity2			:REAL;
+	rOverride			:REAL:=10;
+	bGoPosition			:BOOL;	// Automatic movement called by the PLC program
+	bGoPosition_Manual	:BOOL;	// Manual movement called by the HMI
+	bEnablePositive		:BOOL := TRUE;
+	bEnableNegative		:BOOL := TRUE;
+	bIncremental		:BOOL := FALSE;	//True: Incremental encoder, false: absolut encoder
+	bCalibrationCam		:BOOL;	//Véghelyzet érzékelő
+	bHalt				:BOOL;
+	bAxisEnabled		:BOOL;
+	lrNegLimit			:LREAL;	
+	lrPosLimit			:LREAL;
+	rMinVelocity		:REAL;
+	rMaxVelocity		:REAL;
+	bErrorStringConfirmed	:BOOL; // Hibakezelő blokknak kell, ha a külső app feldolgozta az adott hibastringet akkor bebillenti, reset a blokkban történik
+// Jog mode
+	e_JogMode			:E_JogMode:=MC_JOGMODE_INCHING;
+	bJogForward			:BOOL;
+	bJogBackwards		:BOOL;
+	bJogMovementInAuto	:BOOL;  // Ha Automatában kell JOG-ban mozogni. pl. AX5000-el hajtott körasztal 
+	rJogInching			:REAL:=0.1;
+	rP2Jog				:REAL:=50;
+	lrMAnualOverride	:LREAL:=10;
+END_VAR
+VAR_OUTPUT
+	/// axis reference data structure 
+	Axis				:AXIS_REF;
+	bInGear				:BOOL;
+	bReady				:BOOL;
+	bBusy				:BOOL;
+	bDone				:BOOL;
+	bHaltDone			:BOOL;
+	bError				:BOOL;
+	sError				:STRING(255);(*hiba string*)
+	iOEECategoryNumber	:INT;	(*OEE Kategória MES adatbázisnak*)
+END_VAR
+
+VAR_IN_OUT
+	
+END_VAR
+
+VAR
+	nState				:UINT;
+	nStatePrevious		:UINT;
+	fbRunTrig			:R_TRIG;		(*Indulás trigger*)	
+	
+	PowerAxis			:MC_Power;
+	PowerAxisOut		:ST_McOutputs;
+	MoveAxis1			:MC_MoveAbsolute;
+	MoveAbsoluteOut1	:ST_McOutputs;
+	MoveAxis2			:MC_MoveAbsolute;
+	MoveAbsoluteOut2	:ST_McOutputs;
+	Reset				:MC_Reset;
+	ResetOut			:ST_McOutputs;
+	SoEReset			:FB_SoEReset;
+	SoEResetOut			:ST_McOutputs;
+	Home				:MC_Home;
+	HomeOut				:ST_McOutputs;
+	fbJog				:MC_Jog;
+	fb_GearInDyn		:MC_GearInDyn;
+	fb_GearOut			:MC_GearOut;
+	
+	i_uiSlaveINnOp		AT %I*	:UINT;
+	
+	rMinPosLimit		:REAL;
+	rMaxPosLimit		:REAL;
+	
+	Halt				:MC_Halt;
+	HaltOut				:ST_McOutputs;
+	fb_DriveDiag		:FB_SoEReadDiagNumber;
+	bIsInitalized		:BOOL;
+//	fbAlarm				:FB_TcAlarm;
+	nGlobalAxisErrorID	:UDINT;
+	GetSoft_NegLimit	:Tc2_MC2.MC_ReadParameter;
+	SetSoft_NegLimit	:Tc2_MC2.MC_WriteParameter;
+	GetSoft_PosLimit	:Tc2_MC2.MC_ReadParameter;
+	SetSoft_PosLimit	:Tc2_MC2.MC_WriteParameter;	
+	
+	fbGetManualVelo		:Tc2_MC2.MC_ReadParameter;
+	lrManualVelo		:LREAL;
+
+		
+	
+	fb_ErrorHandling	:FB_ERROR_Handling_For_FBs;
+	bTestGearIn			: BOOL;
+	bTestGearOut		: BOOL;
+	ctuGearIn			: CTU;
+	bTest				: BOOL;
+	rtrigbEMYOK			: R_TRIG;
+	bEMYOKisBack		: BOOL;
+	bLimitsAreSet		: BOOL;
+	bPosLimitRead		: BOOL;
+	bMinLimitRead		: BOOL;
+	
+	bClr				:BOOL;
+	arr_Step_Archive	:ARRAY[0..30] OF UINT;
+	arrClr_Step_Archive	:ARRAY[0..30] OF UINT;
+	i					:INT;
+	rtrig_ManualMove: R_TRIG;
+	bThisIsManualMovement: BOOL;
+	tonbEMYOK			:TON;
+END_VAR</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>da16eb19-ec2c-4320-ad2a-74705c711f69</ObjectId>
+          </data>
+        </addData>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="FB_Motor" ObjectId="da16eb19-ec2c-4320-ad2a-74705c711f69">
+          <Object Name="ActGearInDyn" ObjectId="8cab0ef5-bf7b-4d8d-9537-8637e07dd4a2" />
+          <Object Name="ActGearOut" ObjectId="9c590616-170c-4e75-9e32-e79212ae1518" />
+          <Object Name="ActHalt" ObjectId="d64387a1-84ef-4808-802d-9f345bf5f861" />
+          <Object Name="ActHome" ObjectId="75b59085-8c54-4992-8c7c-7dd5a590590e" />
+          <Object Name="ActJog" ObjectId="be2efe6e-edff-4e50-994d-0be57ccae109" />
+          <Object Name="ActMove" ObjectId="ffa23cbc-6bd3-4715-a135-39acb75dd941" />
+          <Object Name="ActPower" ObjectId="25556966-5f13-495a-836c-0b2c3bdd2f55" />
+          <Object Name="ActReset" ObjectId="f68d03ff-abb6-45b0-97c8-1d97a5f29681" />
+          <Object Name="ActSetLimits" ObjectId="d27e7a43-d849-4067-9b16-e3ccbb9bcfa9" />
+          <Object Name="ActSoEReset" ObjectId="5e770a34-1ca2-4eb6-b8fc-c4184d0faff3" />
+        </Object>
+        <Object Name="ST_PositionCmd" ObjectId="736a3787-4ca3-4fb3-b032-a98c0f306861" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

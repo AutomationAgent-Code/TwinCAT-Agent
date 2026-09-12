@@ -1,0 +1,3 @@
+// REF= 是引用绑定（不是取值拷贝）
+_Output REF= Output;
+FB_Init := TRUE;

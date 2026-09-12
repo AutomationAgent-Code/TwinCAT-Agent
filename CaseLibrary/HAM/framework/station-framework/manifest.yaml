@@ -1,0 +1,24 @@
+id: ham.framework.station
+name: HAM Station Framework
+version: "1.0.0"
+publisher: HAM
+category: framework
+subcategory: station
+type: plcopen
+entry: HAM_Station_Framework.xml
+maturity: reference
+description: HAM 站级 FB 骨架，包含初始化、常量、FB 调用、错误、定时器、步骤和输出 Method
+objects:
+  - Base_Station_FB
+  - FB_ERROR_Handling_For_Station
+  - FB_Warning_Handling_For_Stations
+  - FB_StepChainSemafor_For_Stations
+  - FB_StepTimeOUT_For_Stations
+  - ST_Station_Data
+  - ST_ERROR_Handling
+libraries: [Tc2_Standard, Tc2_System]
+keywords: [HAM, station, framework, step-chain, error, warning]
+methods:
+  Base_Station_FB: [A_Init, B_Constants, C_FB_Calls, D_ERROR_Handling, E_Timers_Edge_Detection, F_Enable_Signal_Handling, G_Step_Sequence, H_Others, I_Outputs]
+notes: 这是风格骨架和参考实现；导入独立项目之前需要继续补齐 HMI、OEE 和全局数据依赖。
+

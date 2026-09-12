@@ -1,0 +1,5 @@
+METHOD Init : BOOL
+VAR_INPUT
+    refAxis : REFERENCE TO AXIS_REF;   // 要控制的 NC 轴
+END_VAR
+(* 绑定轴并初始化各命令对象，上电调用一次 *)

@@ -1,0 +1,29 @@
+(*
+ * 功能：单客户端 TCP/IP 服务端连接管理，初始化监听句柄并接受客户端
+ * 作者：fblib / 版本：1.0
+ * 说明：循环服务型 FB；bEnable=TRUE 时监听，输出 hSocket 供发送/接收模板使用。
+ *)
+FUNCTION_BLOCK FB_TcpIpServer
+VAR_INPUT
+    bEnable      : BOOL;                          // TRUE 时保持监听并接受一个客户端
+    sSrvNetId    : T_AmsNetId := '';              // TCP/IP Connection Server AMS NetId，本机留空
+    sLocalHost   : T_IPv4Addr := {{LOCAL_HOST}};   // 本地监听地址，空字符串表示所有接口
+    nLocalPort   : UDINT := {{LOCAL_PORT}};        // 本地监听端口 [range 1..65535]
+    tReconnect   : TIME := {{RECONNECT}};          // 接受连接轮询周期 [range T#1MS..T#24H]
+END_VAR
+VAR_OUTPUT
+    bConnected   : BOOL;                          // 已接受客户端连接
+    bBusy        : BOOL;                          // 连接管理进行中
+    bError       : BOOL;                          // 连接管理错误
+    nErrId       : UDINT;                         // TCP/IP Connection Server 错误码
+    hSocket      : T_HSOCKET;                     // 客户端连接句柄
+END_VAR
+VAR
+    hServer      : T_HSERVER;                     // 服务端监听句柄
+    bInitialized : BOOL;                          // 句柄已按当前参数初始化
+    bInitOk      : BOOL;                          // F_CreateServerHnd 返回值
+    fbConnection : FB_ServerClientConnection;     // 单客户端连接管理
+END_VAR
+VAR CONSTANT
+    ERR_INVALID_SERVER_CONFIG : UDINT := 16#80000001; // F_CreateServerHnd 参数非法
+END_VAR

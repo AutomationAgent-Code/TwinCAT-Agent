@@ -1,0 +1,39 @@
+// 单次 Receive 只轮询一次；TCP 分片累计和应用层总超时由上层协议负责
+CASE _eReceiveState OF
+    ClientIoIdle:
+        _fbReceive(bExecute := FALSE);
+        bReceiveDone := FALSE;
+        bReceiveBusy := FALSE;
+        bReceiveError := FALSE;
+        nReceiveErrId := 0;
+        nReceived := 0;
+        IF bExecute THEN
+            bReceiveBusy := TRUE;
+            _eReceiveState := ClientIoExecuting;
+        END_IF
+
+    ClientIoExecuting:
+        _fbReceive(sSrvNetId := sSrvNetId, hSocket := _hSocket,
+            cbLen := nBufferSize, pDest := pBuffer,
+            bExecute := TRUE, tTimeout := tTimeout);
+        bReceiveBusy := _fbReceive.bBusy;
+        IF _fbReceive.bError THEN
+            bReceiveBusy := FALSE;
+            bReceiveError := TRUE;
+            nReceiveErrId := _fbReceive.nErrId;
+            _eReceiveState := ClientIoError;
+        ELSIF NOT _fbReceive.bBusy THEN
+            bReceiveBusy := FALSE;
+            bReceiveDone := TRUE;
+            nReceived := _fbReceive.nRecBytes;
+            _eReceiveState := ClientIoDone;
+        END_IF
+
+    ClientIoDone:
+        _fbReceive(bExecute := FALSE);
+        IF NOT bExecute THEN _eReceiveState := ClientIoIdle; END_IF
+
+    ClientIoError:
+        _fbReceive(bExecute := FALSE);
+        IF NOT bExecute THEN _eReceiveState := ClientIoIdle; END_IF
+END_CASE

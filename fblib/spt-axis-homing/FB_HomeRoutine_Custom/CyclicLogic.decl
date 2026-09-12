@@ -1,0 +1,2 @@
+// 回零序列本体。每周期调用，MC 块在这里推进
+METHOD PUBLIC CyclicLogic

@@ -1,0 +1,15 @@
+Stop := FALSE;
+IF NOT _bInitialized THEN
+    RETURN;
+END_IF
+// Abort whatever runs; its Execute:=FALSE reaches the MC block on the next
+// Cyclic() because all commands are driven every scan.
+IF _iActive <> 0 THEN
+    _iActive.Abort();
+    _iActive := 0;
+    _bDone   := FALSE;
+    IF _fbStop.Start() THEN
+        _iActive := _fbStop;
+        Stop     := TRUE;
+    END_IF
+END_IF

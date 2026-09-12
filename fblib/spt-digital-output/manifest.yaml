@@ -1,0 +1,25 @@
+name: FB_DigitalOutput
+slug: spt-digital-output
+category: device
+archetype: oop
+format: text
+description: 数字量输出组件（SPT SOLID 范式）—— FB_Init 注入硬件 BOOL 引用，经 On 属性读写；可作为气缸等上层组件的依赖
+family: standalone
+style: default
+rank: 20
+use_when: 要把一个数字量输出点包成可注入、可替换的组件
+keywords: [数字量, 输出, do, 线圈, 阀, digital, output, coil]
+version: "1.0"
+libraries: []
+objects:
+  - name: I_DigitalOutput
+    kind: interface
+    members:
+      - {name: "On", kind: property, return_type: BOOL, accessors: [Get, Set]}
+
+  - name: FB_DigitalOutput
+    kind: fb
+    members:
+      - {name: FB_Init, kind: method}
+      - {name: "On",      kind: property, return_type: BOOL, accessors: [Get, Set]}
+params: []

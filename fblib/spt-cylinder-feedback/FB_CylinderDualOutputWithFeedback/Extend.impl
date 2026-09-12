@@ -1,0 +1,2 @@
+ExtendOutput.On  := TRUE;
+RetractOutput.On := FALSE;

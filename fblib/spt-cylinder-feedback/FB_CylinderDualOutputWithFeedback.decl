@@ -1,0 +1,30 @@
+(*
+ * 功能：带到位反馈的双阀气缸 —— 两个输出控制动作，两个传感器判断到位
+ * 来源：SPT Libraries / SOLID Components / Cylinder / Dual Output with Sensor Feedback
+ * 说明：全部依赖注入且只依赖抽象（I_DigitalOutput / I_DigitalInput），四路依赖
+ *       各配空对象兜底。实例化写法：
+ *         fbExt    : FB_DigitalOutput(Output := bExtVar);
+ *         fbRet    : FB_DigitalOutput(Output := bRetVar);
+ *         fbExtSns : FB_DigitalInput(Input := bExtSnsVar);
+ *         fbRetSns : FB_DigitalInput(Input := bRetSnsVar);
+ *         fbCyl    : FB_CylinderDualOutputWithFeedback(
+ *                        ExtendOutput := fbExt,  RetractOutput := fbRet,
+ *                        ExtendSensor := fbExtSns, RetractSensor := fbRetSns);
+ *)
+FUNCTION_BLOCK FB_CylinderDualOutputWithFeedback IMPLEMENTS I_CylinderWithFeedback
+VAR
+    ExtendOutput      : I_DigitalOutput;
+    RetractOutput     : I_DigitalOutput;
+    ExtendSensor      : I_DigitalInput;
+    RetractSensor     : I_DigitalInput;
+
+    // 空对象兜底（四路依赖各一份）
+    NullEO            : BOOL;
+    NullExtendOutput  : FB_DigitalOutput(Output := NullEO);
+    NullRO            : BOOL;
+    NullRetractOutput : FB_DigitalOutput(Output := NullRO);
+    NullES            : BOOL;
+    NullExtendSensor  : FB_DigitalInput(Input := NullES);
+    NullRS            : BOOL;
+    NullRetractSensor : FB_DigitalInput(Input := NullRS);
+END_VAR

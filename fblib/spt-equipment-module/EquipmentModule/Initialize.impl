@@ -1,0 +1,19 @@
+Initialize := FALSE;
+CASE DescendantSequenceState OF
+    0:
+        // 注册本模块的组件与下级子模块
+        // RegisterComponent(Clamp);
+        // RegisterSubModule(SubStation);
+
+        _LogModeChanges  := FALSE;
+        _LogStateChanges := FALSE;
+        DescendantSequenceState := DescendantSequenceState + 10;
+
+    10:
+        IF SUPER^.Initialize() THEN
+            DescendantSequenceState := DescendantSequenceState + 10;
+        END_IF
+
+    20:
+        Initialize := TRUE;
+END_CASE

@@ -1,0 +1,7 @@
+METHOD PROTECTED Finish
+VAR_INPUT
+    bDone   : BOOL;    // 是否成功完成
+    bError  : BOOL;    // 是否出错
+    nErrId  : UDINT;   // 错误码
+END_VAR
+(* 派生类在命令结束时调用，统一落结果并撤 Execute *)

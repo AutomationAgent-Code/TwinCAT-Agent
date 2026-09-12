@@ -1,0 +1,18 @@
+// 对象连接生命周期由 Cyclic 统一维护
+_fbConnection(
+    sSrvNetId := sSrvNetId,
+    nMode := 0,
+    sRemoteHost := sRemoteHost,
+    nRemotePort := nRemotePort,
+    bEnable := bEnable,
+    tReconnect := tReconnect
+);
+_hSocket := _fbConnection.hSocket;
+bConnectionBusy := _fbConnection.bBusy;
+bConnectionError := _fbConnection.bError;
+nConnectionErrId := _fbConnection.nErrId;
+bConnected := (_fbConnection.eState = eSOCKET_CONNECTED);
+
+IF NOT bEnable THEN
+    bConnected := FALSE;
+END_IF

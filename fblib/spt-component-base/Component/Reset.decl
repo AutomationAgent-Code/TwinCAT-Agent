@@ -1,0 +1,2 @@
+// 清报警 + 硬件复位。通常由上级 EM 的 Clearing 状态调过来
+METHOD PUBLIC Reset : BOOL

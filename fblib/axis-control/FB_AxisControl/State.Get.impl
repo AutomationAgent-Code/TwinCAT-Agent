@@ -1,0 +1,11 @@
+// 状态是【推导】出来的，不再手工维护状态变量；
+// 具体运动状态由当前命令自报（多态）。
+IF _bError THEN
+    State := E_AxisState.Error;
+ELSIF NOT _fbPower.Status THEN
+    State := E_AxisState.Disabled;
+ELSIF _iActive <> 0 THEN
+    State := _iActive.ActiveState;
+ELSE
+    State := E_AxisState.Idle;
+END_IF

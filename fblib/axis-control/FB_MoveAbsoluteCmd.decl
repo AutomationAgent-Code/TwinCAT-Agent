@@ -1,0 +1,11 @@
+(*
+ * 功能：绝对定位命令 —— 封装 MC_MoveAbsolute
+ * 作者：fblib / 版本：2.0
+ * 说明：SetTarget() 设目标后由控制器 Start()/Update() 驱动。
+ *)
+FUNCTION_BLOCK FB_MoveAbsoluteCmd EXTENDS FB_MotionCommandBase
+VAR
+    _fbMc      : MC_MoveAbsolute;
+    _lrPosition : LREAL;
+    _lrVelocity : LREAL;
+END_VAR

@@ -1,0 +1,2 @@
+// 暴露给从轴做耦合源。只读 —— 主轴不接受别人改自己的引用
+PROPERTY AxisRef : REFERENCE TO AXIS_REF

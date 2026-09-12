@@ -1,0 +1,5 @@
+IF _bInitialized AND __ISVALIDREF(_refAxis) THEN
+    ActPosition := _refAxis.NcToPlc.ActPos;
+ELSE
+    ActPosition := 0.0;
+END_IF

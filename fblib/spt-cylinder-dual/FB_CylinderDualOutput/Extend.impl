@@ -1,0 +1,2 @@
+ExtendOutput.On  := TRUE;
+RetractOutput.On := FALSE;   // 互锁：两个阀不可同时得电

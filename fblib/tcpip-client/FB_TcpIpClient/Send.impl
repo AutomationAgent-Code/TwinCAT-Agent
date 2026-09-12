@@ -1,0 +1,37 @@
+// 发送事务完全封装在 Client 对象内部
+CASE _eSendState OF
+    ClientIoIdle:
+        _fbSend(bExecute := FALSE);
+        bSendDone := FALSE;
+        bSendBusy := FALSE;
+        bSendError := FALSE;
+        nSendErrId := 0;
+        IF bExecute THEN
+            bSendBusy := TRUE;
+            _eSendState := ClientIoExecuting;
+        END_IF
+
+    ClientIoExecuting:
+        _fbSend(sSrvNetId := sSrvNetId, hSocket := _hSocket,
+            cbLen := nDataLen, pSrc := pData,
+            bExecute := TRUE, tTimeout := tTimeout);
+        bSendBusy := _fbSend.bBusy;
+        IF _fbSend.bError THEN
+            bSendBusy := FALSE;
+            bSendError := TRUE;
+            nSendErrId := _fbSend.nErrId;
+            _eSendState := ClientIoError;
+        ELSIF NOT _fbSend.bBusy THEN
+            bSendBusy := FALSE;
+            bSendDone := TRUE;
+            _eSendState := ClientIoDone;
+        END_IF
+
+    ClientIoDone:
+        _fbSend(bExecute := FALSE);
+        IF NOT bExecute THEN _eSendState := ClientIoIdle; END_IF
+
+    ClientIoError:
+        _fbSend(bExecute := FALSE);
+        IF NOT bExecute THEN _eSendState := ClientIoIdle; END_IF
+END_CASE

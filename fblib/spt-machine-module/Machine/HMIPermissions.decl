@@ -1,0 +1,2 @@
+// 不调这个，SPT 自带 Visu 点不动状态机
+METHOD PROTECTED HMIPermissions

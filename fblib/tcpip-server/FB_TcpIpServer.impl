@@ -1,0 +1,44 @@
+// 子 FB 调用区：每个扫描周期只调用一次；bEnable 决定连接管理是否处于使能状态。
+fbConnection(
+    hServer := hServer,
+    eMode := eACCEPT_ALL,
+    sRemoteHost := '',
+    nRemotePort := 0,
+    bEnable := bEnable AND bInitialized,
+    tReconnect := tReconnect
+);
+
+// 禁用后关闭连接，并允许下次使能时按输入参数重新初始化服务句柄。
+IF NOT bEnable THEN
+    bInitialized := FALSE;
+    bConnected := FALSE;
+    bBusy := FALSE;
+    bError := FALSE;
+    nErrId := 0;
+    RETURN;
+END_IF
+
+// 服务句柄必须先初始化，之后才能交给连接管理块
+IF NOT bInitialized THEN
+    bInitOk := F_CreateServerHnd(
+        hServer := hServer,
+        sSrvNetId := sSrvNetId,
+        sLocalHost := sLocalHost,
+        nLocalPort := nLocalPort,
+        nMode := LISTEN_MODE_CLOSEALL,
+        bEnable := TRUE
+    );
+    bInitialized := bInitOk;
+    bError := NOT bInitOk;
+    IF NOT bInitOk THEN
+        nErrId := ERR_INVALID_SERVER_CONFIG; // F_CreateServerHnd 不提供详细错误码
+        RETURN;
+    END_IF
+END_IF
+
+// 接受一个客户端；多客户端场景应为每个连接各建一个 FB_ServerClientConnection。
+hSocket := fbConnection.hSocket;
+bBusy := fbConnection.bBusy;
+bError := fbConnection.bError;
+nErrId := fbConnection.nErrId;
+bConnected := (fbConnection.eState = eSOCKET_CONNECTED);

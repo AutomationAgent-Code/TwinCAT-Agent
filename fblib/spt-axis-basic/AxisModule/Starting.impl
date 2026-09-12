@@ -1,0 +1,23 @@
+CASE _CommandedMode OF
+    E_PMLUnitMode.Production:
+        CASE SequenceState OF
+            0:
+                NoStateTasksToComplete := FALSE;
+                SequenceState          := SequenceState + 10;
+
+            10: // 方法返回值 = 命令是否被接受，不是完成
+                IF {{AXIS_VAR}}.Enable() THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            20: // 完成看状态位
+                IF {{AXIS_VAR}}.Enabled THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            30:
+                StateTasksComplete := TRUE;
+        END_CASE
+END_CASE
+
+SUPER^.Starting();

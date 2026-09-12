@@ -1,0 +1,6 @@
+F_CreateAllEventsInClass(Alarms     := Alarms,
+                         ClassSize  := SIZEOF(TC_EVENTS.{{EVENT_CLASS}}),
+                         pInitEvent := ADR(TC_EVENTS.{{EVENT_CLASS}}.InitReferenceEvent),
+                         Prefix     := Name);
+
+SUPER^.CreateEvents();   // 别漏 —— 基类自己也有事件要建

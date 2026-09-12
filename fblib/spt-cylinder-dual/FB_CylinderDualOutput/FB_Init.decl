@@ -1,0 +1,7 @@
+METHOD FB_Init : BOOL
+VAR_INPUT
+    bInitRetains  : BOOL;
+    bInCopyCode   : BOOL;
+    ExtendOutput  : I_DigitalOutput;
+    RetractOutput : I_DigitalOutput;
+END_VAR

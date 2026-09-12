@@ -1,0 +1,12 @@
+_fbMc(Axis := _refAxis, Execute := _bExecute,
+      Position := {{HOME_POSITION}}, HomingMode := MC_DefaultHoming);
+
+IF _bExecute THEN
+    IF _fbMc.Done THEN
+        Finish(bDone := TRUE, bError := FALSE, nErrId := 0);
+    ELSIF _fbMc.Error THEN
+        Finish(bDone := FALSE, bError := TRUE, nErrId := _fbMc.ErrorID);
+    ELSIF _fbMc.CommandAborted THEN
+        Finish(bDone := FALSE, bError := FALSE, nErrId := 0);
+    END_IF
+END_IF

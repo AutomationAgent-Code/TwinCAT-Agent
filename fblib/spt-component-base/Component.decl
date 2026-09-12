@@ -1,0 +1,17 @@
+FUNCTION_BLOCK {{COMP_NAME}} EXTENDS FB_ComponentBase
+VAR
+    // ---- 硬件 / 被包的东西 ----
+    // IO : ST_IO_{{COMP_NAME}};        // 硬件点位收进结构体，别裸 AT %Q*
+
+    // ---- 报警：数组长度必须与 tmc 里的事件数一致（下标从 1 开始，
+    //      InitReferenceEvent 不占位，它只用来做引用） ----
+    Alarms : ARRAY[1..ALARM_COUNT] OF FB_TcAlarm;
+
+    // ---- HMI 三段式 ----
+    // {{COMP_NAME}}_HMI      : ST_{{COMP_NAME}}_HMI;   // Config/Command/Status
+    HMICommandDescendant_RT : R_TRIG;
+END_VAR
+
+VAR CONSTANT
+    ALARM_COUNT : INT := {{ALARM_COUNT}};
+END_VAR

@@ -1,0 +1,11 @@
+// NOTE: MC_Stop keeps the axis blocked while Execute is TRUE, so it is vital
+// that this block keeps being called with Execute=FALSE after finishing.
+_fbMc(Axis := _refAxis, Execute := _bExecute);
+
+IF _bExecute THEN
+    IF _fbMc.Done THEN
+        Finish(bDone := TRUE, bError := FALSE, nErrId := 0);
+    ELSIF _fbMc.Error THEN
+        Finish(bDone := FALSE, bError := TRUE, nErrId := _fbMc.ErrorID);
+    END_IF
+END_IF

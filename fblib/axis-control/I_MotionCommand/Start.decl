@@ -1,0 +1,2 @@
+METHOD Start : BOOL
+(* 启动本命令；返回是否受理 *)

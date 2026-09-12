@@ -1,0 +1,2 @@
+// Wait 态：基类是空的，这里的代码要自己写；不需要调 SUPER
+METHOD PROTECTED Idle

@@ -1,0 +1,30 @@
+CASE SequenceState OF
+    0:
+        NoStateTasksToComplete := FALSE;
+        SequenceState          := SequenceState + 10;
+
+    10: // 带错也放行 —— 急停路径不能被自身的错误卡死
+        IF {{AXIS_VAR}}.Stop() OR {{AXIS_VAR}}.Error THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    20:
+        IF {{AXIS_VAR}}.Stopped THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    30:
+        IF {{AXIS_VAR}}.Disable() THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    40:
+        IF NOT {{AXIS_VAR}}.Enabled THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    50:
+        StateTasksComplete := TRUE;
+END_CASE
+
+SUPER^.Aborting();

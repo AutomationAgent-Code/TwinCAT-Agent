@@ -1,0 +1,24 @@
+(*
+ * 功能：TCP/IP 字节缓冲区发送事务，封装 Tc2_TcpIp.FB_SocketSend
+ * 作者：fblib / 版本：1.1
+ * 说明：bExecute 上升沿启动一次发送；调用方必须保证 pData 指向的缓冲区在 bBusy 期间有效。
+ *)
+FUNCTION_BLOCK FB_TcpIpSend
+VAR_INPUT
+    bExecute   : BOOL;                         // TRUE 触发一次发送，完成后撤销以复位
+    sSrvNetId  : T_AmsNetId := '';             // TCP/IP Connection Server AMS NetId，本机留空
+    hSocket    : T_HSOCKET;                    // 已建立连接的 socket 句柄
+    pData      : POINTER TO BYTE;              // 发送缓冲区首地址
+    nDataLen   : UDINT;                        // 发送字节数 [range 0..4294967295 byte]
+    tTimeout   : TIME := {{TIMEOUT}};          // 发送超时 [range 0..T#24H]
+END_VAR
+VAR_OUTPUT
+    bDone      : BOOL;                         // 发送完成
+    bBusy      : BOOL;                         // 正在发送
+    bError     : BOOL;                         // 发送失败
+    nErrId     : UDINT;                        // TCP/IP Connection Server 错误码
+END_VAR
+VAR
+    eState     : E_TcpIpSendState;             // 事务状态机
+    fbSend     : FB_SocketSend;                // Beckhoff socket 发送块
+END_VAR

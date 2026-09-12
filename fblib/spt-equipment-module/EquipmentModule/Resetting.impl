@@ -1,0 +1,13 @@
+CASE SequenceState OF
+    0:
+        NoStateTasksToComplete := FALSE;
+        SequenceState          := SequenceState + 10;
+
+    10: // 这里放本模块的复位动作（回安全位、清缓存…）
+        SequenceState := SequenceState + 10;
+
+    20:
+        StateTasksComplete := TRUE;
+END_CASE
+
+SUPER^.Resetting();

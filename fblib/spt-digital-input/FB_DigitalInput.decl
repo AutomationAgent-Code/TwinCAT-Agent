@@ -1,0 +1,12 @@
+(*
+ * 功能：数字量输入组件 —— 把一个硬件 BOOL 输入包成对象
+ * 来源：SPT Libraries / SOLID Components / Digital Input
+ * 说明：实例化写法：
+ *         bSensorVar AT %I* : BOOL;
+ *         fbSensor   : FB_DigitalInput(Input := bSensorVar);
+ *       ⚠ 被注入的硬件变量必须【先于】本组件声明。
+ *)
+FUNCTION_BLOCK FB_DigitalInput IMPLEMENTS I_DigitalInput
+VAR
+    _Input : REFERENCE TO BOOL;   // 注入的硬件输入
+END_VAR

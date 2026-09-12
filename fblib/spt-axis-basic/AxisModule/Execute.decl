@@ -1,0 +1,2 @@
+// Acting 态：生产动作。注意 Execute 不用 StateComplete，要 Complete 命令才走 Completing
+METHOD PROTECTED Execute

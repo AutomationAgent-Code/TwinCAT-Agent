@@ -1,0 +1,2 @@
+METHOD Cyclic
+(* Overrides base: drives this command's MC block every scan *)

@@ -1,0 +1,9 @@
+FUNCTION_BLOCK {{ROUTINE_NAME}} EXTENDS FB_CyclicFB IMPLEMENTS I_MotionSequence
+VAR
+    _Axis    : I_BasicAxis;           // 由 FB_Component_BasicAxis 注入
+
+    _McHome  : MC_Home;
+    _Position : LREAL;
+    _Options  : ST_HomingOptions;
+    SequenceStep : UDINT;
+END_VAR

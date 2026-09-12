@@ -1,0 +1,23 @@
+; The InstalledProducts key is intentionally retained for package migration.
+; The stable package GUID below remains the extension upgrade identity.
+[$RootKey$\InstalledProducts\TcCoAgentPackage]
+@="TwinCAT Agent"
+"PID"="0.2.0"
+; TcXaeShell 15.0 parses pkgdef values as the legacy code page. Keep this
+; deployment-only registration file ASCII; localized text belongs in the
+; VSIX manifest and managed assembly resources, not in pkgdef.
+"ProductDetails"="TwinCAT Agent AI assistant panel for TwinCAT XAE."
+[$RootKey$\Packages\{6b6f9d1e-7c4e-4a6b-9e2d-1f0a5c8b3e21}]
+@="TwinCATAgentPackage"
+"InprocServer32"="$WinDir$\SYSTEM32\MSCOREE.DLL"
+"Class"="TwinCATAgent.Xae.TwinCATAgentPackage"
+"Assembly"="TwinCATAgent.Xae, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null"
+"CodeBase"="$PackageFolder$\TwinCATAgent.Xae.dll"
+"AllowsBackgroundLoad"=dword:00000001
+[$RootKey$\Menus]
+"{6b6f9d1e-7c4e-4a6b-9e2d-1f0a5c8b3e21}"=", Menus.ctmenu, 1"
+[$RootKey$\ToolWindows\{a1c2e3f4-5b6d-4e7f-8a9b-0c1d2e3f4a5b}]
+@="{6b6f9d1e-7c4e-4a6b-9e2d-1f0a5c8b3e21}"
+"Name"="TwinCATAgent.Xae.TwinCATAgentToolWindow"
+"Orientation"="Right"
+"Style"="Tabbed"

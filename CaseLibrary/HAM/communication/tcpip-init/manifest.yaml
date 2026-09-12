@@ -1,0 +1,15 @@
+id: ham.communication.tcpip-init
+name: HAM TCP/IP Socket Initializer
+version: "1.0.0"
+publisher: HAM
+category: communication
+subcategory: tcpip
+type: plcopen
+entry: HAM_TcpIp_Init.xml
+maturity: reference
+description: PLC 初始化或下载后关闭遗留 socket 连接
+objects: [FB_InitTCPIP]
+libraries: [Tc2_TcpIp]
+keywords: [HAM, tcp, socket, close-all, initialization]
+notes: 原实现引用项目初始化标志 bInitTCPIP，复用时应改为显式输入或项目全局变量。
+

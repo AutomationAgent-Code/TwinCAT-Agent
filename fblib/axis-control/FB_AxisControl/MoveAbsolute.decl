@@ -1,0 +1,6 @@
+METHOD MoveAbsolute : BOOL
+VAR_INPUT
+    lrPosition : LREAL;   // 目标绝对位置
+    lrVelocity : LREAL;   // 速度，<=0 用默认值
+END_VAR
+(* 启动一次绝对定位；仅在就绪且无命令在跑时受理 *)

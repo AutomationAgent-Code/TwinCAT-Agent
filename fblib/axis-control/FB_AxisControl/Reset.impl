@@ -1,0 +1,6 @@
+// 登记复位请求，由 Cyclic 里的 MC_Reset 执行
+Reset := FALSE;
+IF _bInitialized THEN
+    _bReqReset := TRUE;
+    Reset      := TRUE;
+END_IF

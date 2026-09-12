@@ -1,0 +1,30 @@
+CASE SequenceState OF
+    0:
+        NoStateTasksToComplete := FALSE;
+        SequenceState          := SequenceState + 10;
+
+    10:
+        IF {{MASTER_VAR}}.Stop() OR {{MASTER_VAR}}.Error THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    20:
+        IF {{MASTER_VAR}}.Stopped THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    30:
+        IF {{MASTER_VAR}}.Disable() THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    40:
+        IF NOT {{MASTER_VAR}}.Enabled THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    50:
+        StateTasksComplete := TRUE;
+END_CASE
+
+SUPER^.Aborting();

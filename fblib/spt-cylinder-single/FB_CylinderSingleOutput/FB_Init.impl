@@ -1,0 +1,7 @@
+// 未注入(=0)则挂空对象，后续调用不会碰到空引用
+IF ExtendOutput = 0 THEN
+    THIS^.ExtendOutput := NullExtendOutput;
+ELSE
+    THIS^.ExtendOutput := ExtendOutput;
+END_IF
+FB_Init := TRUE;

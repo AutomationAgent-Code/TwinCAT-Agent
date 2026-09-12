@@ -1,0 +1,2 @@
+// 选策略 → 回零 → 等 Homed
+METHOD PROTECTED Execute

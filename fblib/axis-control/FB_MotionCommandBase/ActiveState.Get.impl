@@ -1,0 +1,2 @@
+// 基类默认；派生类各自重写成自己代表的状态
+ActiveState := E_AxisState.Idle;

@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "master": {
+    "name": "Device 1 (EtherCAT)",
+    "subtype": 111
+  },
+  "devices": [
+    {
+      "id": "rexroth-drive",
+      "name": "-211-T711 (IndraDrive HCS01)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": [
+        "HCS01.1E-W0018-A-03-B-ET-EC-EP-S4-HN-PW",
+        "HCS01"
+      ]
+    },
+    {
+      "id": "cabinet-ek1100",
+      "name": "-A220-K016 (EK1100)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EK1100"]
+    },
+    {
+      "id": "cabinet-el1918-1",
+      "name": "-A220-K016V1 (EL1918)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL1918"]
+    },
+    {
+      "id": "cabinet-el1918-2",
+      "name": "-A220-K016V2 (EL1918)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL1918"]
+    },
+    {
+      "id": "cabinet-el2904",
+      "name": "-A220-K016T1 (EL2904)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL2904"],
+      "metadata": {
+        "safety_address_drawing": 201
+      }
+    },
+    {
+      "id": "cabinet-el1808-1",
+      "name": "-A220-K016A1 (EL1808)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL1808"]
+    },
+    {
+      "id": "cabinet-el1808-2",
+      "name": "-A220-K016A2 (EL1808)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL1808"]
+    },
+    {
+      "id": "cabinet-el1808-3",
+      "name": "-A220-K016A3 (EL1808)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL1808"]
+    },
+    {
+      "id": "cabinet-el1808-4",
+      "name": "-A220-K016A4 (EL1808)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL1808"]
+    },
+    {
+      "id": "cabinet-el2008-1",
+      "name": "-A220-K016B1 (EL2008)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL2008"]
+    },
+    {
+      "id": "cabinet-el2008-2",
+      "name": "-A220-K016B2 (EL2008)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL2008"]
+    },
+    {
+      "id": "cabinet-el2008-3",
+      "name": "-A220-K016B3 (EL2008)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL2008"]
+    },
+    {
+      "id": "cabinet-el4004",
+      "name": "-A220-K016E1 (EL4004)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL4004"]
+    },
+    {
+      "id": "cabinet-el6001",
+      "name": "-A220-K016K1 (EL6001)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9101,
+      "product_candidates": ["EL6001"]
+    },
+    {
+      "id": "cabinet-ek1122",
+      "name": "-A220-K016Z1 (EK1122)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EK1122"]
+    },
+    {
+      "id": "cabinet-el9011",
+      "name": "-A220-K016Z2 (EL9011)",
+      "parent": "cabinet-ek1100",
+      "subtype": 9099,
+      "product_candidates": ["EL9011"]
+    },
+    {
+      "id": "staubli-cpt",
+      "name": "=140+M-A750 (Staubli CPT)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["CPT", "Computer-drawn unit CPT"]
+    },
+    {
+      "id": "aventics-valve",
+      "name": "+M-K020 (Aventics XV03-05)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["XV03/05-XVES-EtherCAT", "XVES-EtherCAT"]
+    },
+    {
+      "id": "ep1957-1",
+      "name": "-K085S1 (EP1957-0022)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EP1957-0022"]
+    },
+    {
+      "id": "ep1957-2",
+      "name": "-K085S2 (EP1957-0022)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EP1957-0022"]
+    },
+    {
+      "id": "balluff-rfid-1",
+      "name": "=111-A830 (Balluff BIS V)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["BIS V-6110-063-C002-SA13", "BIS V-6110"]
+    },
+    {
+      "id": "balluff-rfid-2",
+      "name": "=141-A831 (Balluff BIS V)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["BIS V-6110-063-C002-SA13", "BIS V-6110"]
+    },
+    {
+      "id": "ep1018-1",
+      "name": "=140+E-K016A1 (EP1018-0001)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EP1018-0001"]
+    },
+    {
+      "id": "epp2624-1",
+      "name": "-K016A2 (EPP2624-0002)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EPP2624-0002"]
+    },
+    {
+      "id": "epp2816-1",
+      "name": "-K016M1 (EPP2816-0010)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EPP2816-0010"]
+    },
+    {
+      "id": "epp1018-3",
+      "name": "+E-K016A3 (EPP1018-0001)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EPP1018-0001"]
+    },
+    {
+      "id": "epp1018-4",
+      "name": "+E-K016A4 (EPP1018-0001)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EPP1018-0001"]
+    },
+    {
+      "id": "epp1018-5",
+      "name": "+E-K016A5 (EPP1018-0001)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EPP1018-0001"]
+    },
+    {
+      "id": "epp1018-6",
+      "name": "+E-K016A6 (EPP1018-0001)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EPP1018-0001"]
+    },
+    {
+      "id": "epp1018-7",
+      "name": "+E-K016A7 (EPP1018-0001)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EPP1018-0001"]
+    },
+    {
+      "id": "epp2008-1",
+      "name": "+E-K016B1 (EPP2008-0001)",
+      "parent": "$master",
+      "subtype": 9099,
+      "product_candidates": ["EPP2008-0001"]
+    }
+  ],
+  "policy": {
+    "scan": false,
+    "activate": false,
+    "restart": false
+  }
+}

@@ -1,0 +1,36 @@
+name: 机器模块 + MAIN (SPT)
+slug: spt-machine-module
+category: framework
+family: spt-framework
+style: spt
+archetype: oop
+format: text
+rank: 1
+description: SPT 工程主干 —— Machine Module（EXTENDS FB_PackML_BaseModule）+ MAIN，含子模块注册位；这是最小可跑的 SPT 骨架
+use_when: 新建 SPT 工程、搭机器层主干，或需要一个能跑起来的 PackML 状态机起点
+keywords: [框架, 骨架, 主程序, 机器模块, 新建, 起点, 主干,
+           machine, main, skeleton, packml, spt, statemachine]
+version: "1.0"
+libraries: [SPT Base Types, SPT Event Logger, Tc3_PackML_V3, Tc3_EventLogger]
+requires: []
+params:
+  - {name: MACHINE_NAME,  default: Machine,      desc: 机器模块 FB 名}
+  - {name: MACHINE_LABEL, default: My Machine,   desc: 机器显示名（进日志/报警前缀）}
+notes: |
+  1. MAIN 只做一件事：调 {{MACHINE_NAME}}.CyclicLogic()。别在 MAIN 写业务逻辑。
+  2. HMIPermissions 里的 AllowHMIControl 是必须的 —— 不放行的话
+     SPT 自带的 Visu (V_MachineModule) 点不动状态机。
+  3. 加设备模块：在本 FB 声明区 `Infeed : Infeed;`，然后 Initialize() 的 step 0 里
+     `RegisterSubModule(Infeed);`。设备模块骨架用 fblib add spt-equipment-module。
+  4. 想要机器级报警，再叠 spt-component-base 里那套 tmc + CreateEvents 写法。
+objects:
+  - name: "{{MACHINE_NAME}}"
+    file: Machine
+    kind: fb
+    members:
+      - {name: CyclicLogic,    kind: method, return_type: ""}
+      - {name: Initialize,     kind: method, return_type: BOOL}
+      - {name: HMIPermissions, kind: method, return_type: ""}
+  - name: MAIN
+    file: MAIN
+    kind: program

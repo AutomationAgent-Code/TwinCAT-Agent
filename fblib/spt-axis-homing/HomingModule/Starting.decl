@@ -1,0 +1,2 @@
+// 回零前先使能轴
+METHOD PROTECTED Starting

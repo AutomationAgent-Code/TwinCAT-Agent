@@ -1,0 +1,6 @@
+METHOD SetTarget
+VAR_INPUT
+    lrPosition : LREAL;   // 目标绝对位置
+    lrVelocity : LREAL;   // 速度(>0)
+END_VAR
+(* Start() 之前设定目标 *)

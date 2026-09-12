@@ -1,0 +1,33 @@
+CASE _CommandedMode OF
+    E_PMLUnitMode.Production:
+        CASE SequenceState OF
+            0:
+                NoStateTasksToComplete := FALSE;
+                SequenceState          := SequenceState + 10;
+
+            10:
+                IF {{MASTER_VAR}}.Enable() THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            20:
+                IF {{MASTER_VAR}}.Enabled THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            30: // 从 0 起步，从轴才好对齐
+                IF {{MASTER_VAR}}.MoveAbsolute(0, 0) THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            40:
+                IF NOT {{MASTER_VAR}}.Busy AND NOT {{MASTER_VAR}}.Error THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            50:
+                StateTasksComplete := TRUE;
+        END_CASE
+END_CASE
+
+SUPER^.Starting();

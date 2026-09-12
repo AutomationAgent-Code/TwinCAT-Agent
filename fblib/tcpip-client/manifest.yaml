@@ -1,0 +1,25 @@
+name: FB_TcpIpClient
+slug: tcpip-client
+category: communication
+archetype: oop
+format: text
+description: OOP TCP/IP 客户端，连接管理及 Send/Receive 方法封装在同一个 FB 下
+family: standalone
+style: default
+rank: 10
+use_when: PLC 以面向对象方式连接 TCP 服务端，并通过 Client.Send/Receive 收发数据
+keywords: [tcp, ip, socket, 客户端, 通信, 通讯, client, ethernet, oop, method]
+version: "2.0"
+libraries: [Tc2_TcpIp]
+objects:
+  - name: FB_TcpIpClient
+    kind: fb
+    members:
+      - {name: Cyclic, kind: method}
+      - {name: Send, kind: method}
+      - {name: Receive, kind: method}
+params:
+  - {name: REMOTE_HOST, default: "'127.0.0.1'", desc: 默认服务端 IPv4 地址}
+  - {name: REMOTE_PORT, default: "502", desc: 默认服务端端口}
+  - {name: RECONNECT, default: "T#45S", desc: 默认重连周期}
+  - {name: IO_TIMEOUT, default: "T#5S", desc: 默认收发命令超时}

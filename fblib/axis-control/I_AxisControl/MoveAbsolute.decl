@@ -1,0 +1,6 @@
+METHOD MoveAbsolute : BOOL
+VAR_INPUT
+    lrPosition : LREAL;
+    lrVelocity : LREAL;
+END_VAR
+(* 绝对定位；返回是否受理 *)

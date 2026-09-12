@@ -1,0 +1,25 @@
+(*
+ * 功能：通过 ADS 按符号名写入远端 TwinCAT PLC 变量
+ * 作者：fblib / 版本：1.1
+ * 说明：调用方负责保证目标变量与 pSource/nDataLen 的类型和大小一致。
+ *)
+FUNCTION_BLOCK FB_AdsWriteSymbol
+VAR_INPUT
+    bExecute    : BOOL;                         // TRUE 触发一次写入，完成后撤销以复位
+    sNetId      : T_AmsNetId;                   // 目标控制器 AMS NetId
+    nPort       : T_AmsPort := {{ADS_PORT}};    // 目标 PLC Runtime ADS 端口
+    sSymbolName : STRING(255);                  // 完整符号名，例如 MAIN.nSetpoint
+    pSource     : PVOID;                        // 源缓冲区地址
+    nDataLen    : UDINT;                        // 源缓冲区长度 [range 0..4294967295 byte]
+    tTimeout    : TIME := {{TIMEOUT}};          // ADS 超时 [range 0..T#24H]
+END_VAR
+VAR_OUTPUT
+    bDone       : BOOL;                         // 写入完成
+    bBusy       : BOOL;                         // 正在写入
+    bError      : BOOL;                         // 写入失败
+    nErrId      : UDINT;                        // ADS 错误码
+END_VAR
+VAR
+    eState      : E_AdsWriteSymbolState;        // 事务状态机
+    fbWrite     : FB_WriteAdsSymByName;         // Beckhoff 按符号写入块
+END_VAR

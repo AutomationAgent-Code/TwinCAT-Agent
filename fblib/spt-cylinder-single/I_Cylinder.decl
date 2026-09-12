@@ -1,0 +1,7 @@
+(*
+ * 功能：气缸契约 —— 最小能力集：伸出 / 缩回
+ * 来源：SPT Libraries / SOLID Components / Cylinder
+ * 说明：故意保持最小。带位置反馈的气缸用 I_CylinderWithFeedback 扩展本接口，
+ *       而不是往这里加属性 —— 那会破坏开闭原则(OCP)与接口隔离原则(ISP)。
+ *)
+INTERFACE I_Cylinder

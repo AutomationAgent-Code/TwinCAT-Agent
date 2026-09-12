@@ -1,0 +1,18 @@
+name: FB_AdsReadSymbol
+slug: ads-read-symbol
+category: communication
+archetype: transaction
+format: text
+description: 按符号名读取远端 TwinCAT PLC 变量
+family: standalone
+style: default
+rank: 20
+use_when: 通过 ADS 按变量名读取另一台 TwinCAT PLC 的任意类型变量
+keywords: [ads, ams, 读变量, 符号名, read, symbol, twincat, plc]
+version: "1.0"
+libraries: [Tc2_DataExchange]
+companions: [E_AdsReadSymbolState]
+methods: []
+params:
+  - {name: ADS_PORT, default: "851", desc: 目标 PLC Runtime ADS 端口}
+  - {name: TIMEOUT, default: "T#5S", desc: ADS 读取超时}

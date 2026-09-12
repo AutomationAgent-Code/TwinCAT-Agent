@@ -1,0 +1,2 @@
+// HMI 交互。基类 CyclicLogic 会自动调，不要手动调
+METHOD PROTECTED HMICommunication

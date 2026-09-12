@@ -1,0 +1,9 @@
+// raise 的小包装：自动把组件名塞进第一个字符串参数
+METHOD RaiseAlarm2Args
+VAR_IN_OUT
+    Alarm : FB_TcAlarm;
+END_VAR
+VAR_INPUT
+    String_1 : STRING;
+    String_2 : STRING;
+END_VAR

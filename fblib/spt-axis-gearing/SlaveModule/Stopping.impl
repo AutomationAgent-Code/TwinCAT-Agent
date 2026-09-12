@@ -1,0 +1,26 @@
+CASE SequenceState OF
+    0:
+        NoStateTasksToComplete := FALSE;
+        SequenceState          := SequenceState + 10;
+
+    10: // 耦合中要等主轴先停住，避免带着主轴的速度硬解耦
+        IF {{SLAVE_VAR}}.InGear AND {{SLAVE_VAR}}.Stopped THEN
+            IF {{SLAVE_VAR}}.Stop() THEN
+                SequenceState := SequenceState + 10;
+            END_IF
+        ELSIF NOT {{SLAVE_VAR}}.InGear THEN
+            IF {{SLAVE_VAR}}.Stop() THEN
+                SequenceState := SequenceState + 10;
+            END_IF
+        END_IF
+
+    20:
+        IF {{SLAVE_VAR}}.Stopped THEN
+            SequenceState := SequenceState + 10;
+        END_IF
+
+    30:
+        StateTasksComplete := TRUE;
+END_CASE
+
+SUPER^.Stopping();

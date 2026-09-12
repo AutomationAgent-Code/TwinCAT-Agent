@@ -1,0 +1,9 @@
+(*
+    SPT 组件骨架。三条硬规矩：
+      1. FB 本体不许有代码 —— 全部走方法/属性。
+      2. 不许 VAR_INPUT / VAR_OUTPUT / VAR_IN_OUT —— 配置和数据交换一律用属性。
+      3. 组件要能脱离框架单独在 MAIN 里跑（自测），所以别依赖上层状态机。
+
+    命令契约：方法返回值 = 「命令是否被接受」，不是完成。
+    调用方按 IF C.Cmd() THEN → IF NOT C.Busy AND NOT C.Error THEN 两步走。
+*)

@@ -1,0 +1,2 @@
+// 待机时的处理（刷新状态、等外部命令）。
+// 离开 Wait 态靠 ChangeState(E_PMLCommand.Start) 之类的命令，不是 StateComplete。

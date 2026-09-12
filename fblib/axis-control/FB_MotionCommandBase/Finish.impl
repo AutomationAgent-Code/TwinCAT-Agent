@@ -1,0 +1,5 @@
+_bDone     := bDone;
+_bError    := bError;
+_nErrId    := nErrId;
+_bExecute  := FALSE;
+_bFinished := TRUE;

@@ -1,0 +1,7 @@
+FUNCTION_BLOCK {{MODULE_NAME}} EXTENDS FB_PackML_BaseModule
+VAR
+    // 本模块的组件（气缸、轴、传感器…）在这里声明，Initialize() 里 RegisterComponent
+    // 例: Clamp : FB_Component_Cylinder := (Name := 'Clamp');
+
+    // 上级下来的命令 / 给上级的状态，用属性暴露，别用 VAR_INPUT/VAR_OUTPUT
+END_VAR

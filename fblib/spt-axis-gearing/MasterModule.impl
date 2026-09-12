@@ -1,0 +1,4 @@
+(*
+    虚拟主轴模块。对外只暴露一个 AxisRef 属性（REFERENCE TO AXIS_REF），
+    从轴拿它去 GearIn —— 从轴不认识主轴模块，只认识一个 AXIS_REF，可随时换主。
+*)

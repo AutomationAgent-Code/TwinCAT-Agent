@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.60" creationDateTime="2026-08-05T00:24:44.8344467" />
+  <contentHeader name="PLC" modificationDateTime="2026-08-05T00:24:44.8354582">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous>
+      <pou name="FB_SerialCom" pouType="functionBlock">
+        <interface>
+          <inOutVars>
+            <variable name="bSendString">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bClear">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_SerialCom
+VAR_IN_OUT
+	bSendString		:BOOL;
+	bClear			:BOOL;
+END_VAR
+VAR_INPUT
+	sSendString		:STRING;
+	sSuffix			:STRING := '$R$N';
+END_VAR
+VAR_OUTPUT
+	sLastReceivedString	: STRING;
+	bStringReceived		: BOOL;
+	bReceiveBusy		: BOOL;
+	bReceiveError		: BOOL;
+	eReceiveErrorID		: ComError_t;
+END_VAR
+VAR
+	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
+	TxBufferEL			: ComBuffer;	(* Transmit data buffer; used with all receive function blocks *)
+
+	(* background communication with the EL6001 terminal *)
+	fbEL6001Ctrl		: SerialLineControl;
+	bEL6001CtrlError	: BOOL;
+	eEL6001CtrlErrorID	: ComError_t;
+	(* 	I/O variables for a EL6001 terminal*)
+	stIn_EL6001 AT %I*	: EL6inData22B;	(* linked to the EL6001 in the TwinCAT System Manager *)
+	stOut_EL6001 AT %Q*	: EL6outData22B;(* linked to the EL6001 in the TwinCAT System Manager *)
+
+	Timer				: TON := (PT:=T#1S);
+	fbSend				: SendString;
+	bSendBusy			: BOOL;
+	eSendErrorID		: ComError_t;
+
+	fbReceive			: ReceiveString;
+	sReceivedString		: STRING;
+	bReceiveTimeout		: BOOL;
+	nReceiveCounter		: UDINT;
+
+	nSuffixPosition		: INT;
+	ClearBuffer			: ClearComBuffer;
+	
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inOutVars>
+          <inputVars>
+            <variable name="sSendString">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="sSuffix">
+              <type>
+                <string />
+              </type>
+              <initialValue>
+                <simpleValue value="'$R$N'" />
+              </initialValue>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_SerialCom
+VAR_IN_OUT
+	bSendString		:BOOL;
+	bClear			:BOOL;
+END_VAR
+VAR_INPUT
+	sSendString		:STRING;
+	sSuffix			:STRING := '$R$N';
+END_VAR
+VAR_OUTPUT
+	sLastReceivedString	: STRING;
+	bStringReceived		: BOOL;
+	bReceiveBusy		: BOOL;
+	bReceiveError		: BOOL;
+	eReceiveErrorID		: ComError_t;
+END_VAR
+VAR
+	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
+	TxBufferEL			: ComBuffer;	(* Transmit data buffer; used with all receive function blocks *)
+
+	(* background communication with the EL6001 terminal *)
+	fbEL6001Ctrl		: SerialLineControl;
+	bEL6001CtrlError	: BOOL;
+	eEL6001CtrlErrorID	: ComError_t;
+	(* 	I/O variables for a EL6001 terminal*)
+	stIn_EL6001 AT %I*	: EL6inData22B;	(* linked to the EL6001 in the TwinCAT System Manager *)
+	stOut_EL6001 AT %Q*	: EL6outData22B;(* linked to the EL6001 in the TwinCAT System Manager *)
+
+	Timer				: TON := (PT:=T#1S);
+	fbSend				: SendString;
+	bSendBusy			: BOOL;
+	eSendErrorID		: ComError_t;
+
+	fbReceive			: ReceiveString;
+	sReceivedString		: STRING;
+	bReceiveTimeout		: BOOL;
+	nReceiveCounter		: UDINT;
+
+	nSuffixPosition		: INT;
+	ClearBuffer			: ClearComBuffer;
+	
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <outputVars>
+            <variable name="sLastReceivedString">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="bStringReceived">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bReceiveBusy">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bReceiveError">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="eReceiveErrorID">
+              <type>
+                <derived name="ComError_t" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_SerialCom
+VAR_IN_OUT
+	bSendString		:BOOL;
+	bClear			:BOOL;
+END_VAR
+VAR_INPUT
+	sSendString		:STRING;
+	sSuffix			:STRING := '$R$N';
+END_VAR
+VAR_OUTPUT
+	sLastReceivedString	: STRING;
+	bStringReceived		: BOOL;
+	bReceiveBusy		: BOOL;
+	bReceiveError		: BOOL;
+	eReceiveErrorID		: ComError_t;
+END_VAR
+VAR
+	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
+	TxBufferEL			: ComBuffer;	(* Transmit data buffer; used with all receive function blocks *)
+
+	(* background communication with the EL6001 terminal *)
+	fbEL6001Ctrl		: SerialLineControl;
+	bEL6001CtrlError	: BOOL;
+	eEL6001CtrlErrorID	: ComError_t;
+	(* 	I/O variables for a EL6001 terminal*)
+	stIn_EL6001 AT %I*	: EL6inData22B;	(* linked to the EL6001 in the TwinCAT System Manager *)
+	stOut_EL6001 AT %Q*	: EL6outData22B;(* linked to the EL6001 in the TwinCAT System Manager *)
+
+	Timer				: TON := (PT:=T#1S);
+	fbSend				: SendString;
+	bSendBusy			: BOOL;
+	eSendErrorID		: ComError_t;
+
+	fbReceive			: ReceiveString;
+	sReceivedString		: STRING;
+	bReceiveTimeout		: BOOL;
+	nReceiveCounter		: UDINT;
+
+	nSuffixPosition		: INT;
+	ClearBuffer			: ClearComBuffer;
+	
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </outputVars>
+          <localVars>
+            <variable name="RxBufferEL">
+              <type>
+                <derived name="ComBuffer" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Receive data buffer; used with all receive function blocks </xhtml>
+              </documentation>
+            </variable>
+            <variable name="TxBufferEL">
+              <type>
+                <derived name="ComBuffer" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Transmit data buffer; used with all receive function blocks </xhtml>
+              </documentation>
+            </variable>
+            <variable name="fbEL6001Ctrl">
+              <type>
+                <derived name="SerialLineControl" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> background communication with the EL6001 terminal </xhtml>
+              </documentation>
+            </variable>
+            <variable name="bEL6001CtrlError">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="eEL6001CtrlErrorID">
+              <type>
+                <derived name="ComError_t" />
+              </type>
+            </variable>
+            <variable name="stIn_EL6001" address="%I*">
+              <type>
+                <derived name="EL6inData22B" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> linked to the EL6001 in the TwinCAT System Manager </xhtml>
+              </documentation>
+            </variable>
+            <variable name="stOut_EL6001" address="%Q*">
+              <type>
+                <derived name="EL6outData22B" />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> linked to the EL6001 in the TwinCAT System Manager </xhtml>
+              </documentation>
+            </variable>
+            <variable name="Timer">
+              <type>
+                <derived name="TON" />
+              </type>
+              <initialValue>
+                <structValue>
+                  <value member="PT">
+                    <simpleValue value="TIME#1s0ms" />
+                  </value>
+                </structValue>
+              </initialValue>
+            </variable>
+            <variable name="fbSend">
+              <type>
+                <derived name="SendString" />
+              </type>
+            </variable>
+            <variable name="bSendBusy">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="eSendErrorID">
+              <type>
+                <derived name="ComError_t" />
+              </type>
+            </variable>
+            <variable name="fbReceive">
+              <type>
+                <derived name="ReceiveString" />
+              </type>
+            </variable>
+            <variable name="sReceivedString">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="bReceiveTimeout">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="nReceiveCounter">
+              <type>
+                <UDINT />
+              </type>
+            </variable>
+            <variable name="nSuffixPosition">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="ClearBuffer">
+              <type>
+                <derived name="ClearComBuffer" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_SerialCom
+VAR_IN_OUT
+	bSendString		:BOOL;
+	bClear			:BOOL;
+END_VAR
+VAR_INPUT
+	sSendString		:STRING;
+	sSuffix			:STRING := '$R$N';
+END_VAR
+VAR_OUTPUT
+	sLastReceivedString	: STRING;
+	bStringReceived		: BOOL;
+	bReceiveBusy		: BOOL;
+	bReceiveError		: BOOL;
+	eReceiveErrorID		: ComError_t;
+END_VAR
+VAR
+	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
+	TxBufferEL			: ComBuffer;	(* Transmit data buffer; used with all receive function blocks *)
+
+	(* background communication with the EL6001 terminal *)
+	fbEL6001Ctrl		: SerialLineControl;
+	bEL6001CtrlError	: BOOL;
+	eEL6001CtrlErrorID	: ComError_t;
+	(* 	I/O variables for a EL6001 terminal*)
+	stIn_EL6001 AT %I*	: EL6inData22B;	(* linked to the EL6001 in the TwinCAT System Manager *)
+	stOut_EL6001 AT %Q*	: EL6outData22B;(* linked to the EL6001 in the TwinCAT System Manager *)
+
+	Timer				: TON := (PT:=T#1S);
+	fbSend				: SendString;
+	bSendBusy			: BOOL;
+	eSendErrorID		: ComError_t;
+
+	fbReceive			: ReceiveString;
+	sReceivedString		: STRING;
+	bReceiveTimeout		: BOOL;
+	nReceiveCounter		: UDINT;
+
+	nSuffixPosition		: INT;
+	ClearBuffer			: ClearComBuffer;
+	
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">(* background communication with the EL6001 terminal *)
+fbEL6001Ctrl(
+	Mode:= SERIALLINEMODE_EL6_22B, 
+	pComIn:= ADR(stIn_EL6001), 
+	pComOut:= ADR(stOut_EL6001), 
+	SizeComIn:= SIZEOF(stIn_EL6001), 
+	Error=&gt; , 
+	ErrorID=&gt; , 
+	TxBuffer:= TxBufferEL, 
+	RxBuffer:= RxBufferEL );
+IF fbEL6001Ctrl.Error THEN
+	bEL6001CtrlError := TRUE;
+	eEL6001CtrlErrorID := fbEL6001Ctrl.ErrorID;
+END_IF
+
+IF bSendString THEN
+	fbSend(
+		SendString:= CONCAT(sSendString, sSuffix),
+		TXbuffer:= TxBufferEL,
+		Busy=&gt; bSendBusy,
+		Error=&gt; );
+	sLastReceivedString := '';
+	bSendString := FALSE;
+END_IF
+
+IF fbSend.Error &lt;&gt; COMERROR_NOERROR THEN
+	eSendErrorID := fbSend.Error;
+END_IF			
+			
+//	Receive string data:
+fbReceive(
+	Prefix:= ,
+	Suffix:= sSuffix,
+	Timeout:= T#1s,
+	ReceivedString:= sReceivedString,
+	RXbuffer:= RxBufferEL,
+	StringReceived=&gt; bStringReceived,
+	Busy=&gt; bReceiveBusy,
+	Error=&gt; ,
+	RxTimeout=&gt; bReceiveTimeout );
+	
+IF fbReceive.Error &lt;&gt; COMERROR_NOERROR THEN
+	eReceiveErrorID := fbReceive.Error;
+END_IF
+IF bStringReceived THEN
+	nReceiveCounter := nReceiveCounter + 1;
+	nSuffixPosition := FIND (sReceivedString, sSuffix);
+	sLastReceivedString := DELETE(sReceivedString,2,nSuffixPosition);
+END_IF
+
+IF bClear THEN
+	ClearBuffer(Buffer := RxBufferEL);
+	ClearBuffer(Buffer := TxBufferEL);
+	bClear := FALSE;
+END_IF
+
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_SerialCom
+VAR_IN_OUT
+	bSendString		:BOOL;
+	bClear			:BOOL;
+END_VAR
+VAR_INPUT
+	sSendString		:STRING;
+	sSuffix			:STRING := '$R$N';
+END_VAR
+VAR_OUTPUT
+	sLastReceivedString	: STRING;
+	bStringReceived		: BOOL;
+	bReceiveBusy		: BOOL;
+	bReceiveError		: BOOL;
+	eReceiveErrorID		: ComError_t;
+END_VAR
+VAR
+	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
+	TxBufferEL			: ComBuffer;	(* Transmit data buffer; used with all receive function blocks *)
+
+	(* background communication with the EL6001 terminal *)
+	fbEL6001Ctrl		: SerialLineControl;
+	bEL6001CtrlError	: BOOL;
+	eEL6001CtrlErrorID	: ComError_t;
+	(* 	I/O variables for a EL6001 terminal*)
+	stIn_EL6001 AT %I*	: EL6inData22B;	(* linked to the EL6001 in the TwinCAT System Manager *)
+	stOut_EL6001 AT %Q*	: EL6outData22B;(* linked to the EL6001 in the TwinCAT System Manager *)
+
+	Timer				: TON := (PT:=T#1S);
+	fbSend				: SendString;
+	bSendBusy			: BOOL;
+	eSendErrorID		: ComError_t;
+
+	fbReceive			: ReceiveString;
+	sReceivedString		: STRING;
+	bReceiveTimeout		: BOOL;
+	nReceiveCounter		: UDINT;
+
+	nSuffixPosition		: INT;
+	ClearBuffer			: ClearComBuffer;
+	
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>181e7c70-138b-446a-a6f5-34e588388885</ObjectId>
+          </data>
+        </addData>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="FB_SerialCom" ObjectId="181e7c70-138b-446a-a6f5-34e588388885" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

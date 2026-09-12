@@ -1,0 +1,23 @@
+CASE _CurrentMode OF
+    E_PMLUnitMode.Production:
+        CASE SequenceState OF
+            0:
+                NoStateTasksToComplete := FALSE;
+                SequenceState          := SequenceState + 10;
+
+            10:
+                IF {{AXIS_VAR}}.Stop() THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            20:
+                IF {{AXIS_VAR}}.Stopped THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            30:
+                StateTasksComplete := TRUE;
+        END_CASE
+END_CASE
+
+SUPER^.Completing();

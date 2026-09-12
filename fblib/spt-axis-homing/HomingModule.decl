@@ -1,0 +1,17 @@
+FUNCTION_BLOCK {{MODULE_NAME}} EXTENDS FB_PackML_BaseModule
+VAR
+    {{AXIS_VAR}} : FB_Component_BasicAxis := (Name := '{{AXIS_LABEL}}');
+    AxisHomed    : BOOL;
+
+    // 回零命令（HMI/上层置位，本模块自清）
+    HomeAbs      : BOOL;
+    HomeHardStop : BOOL;
+    HomeSetPos   : BOOL;
+    HomeCustom   : BOOL;
+
+    // 四种回零策略：库自带三种 + 本模板的自定义例程
+    AbsHoming      : FB_HomeRoutine_AbsHoming;
+    HardStopHoming : FB_HomeRoutine_HardStop;
+    SetPosition    : FB_HomeRoutine_SetPosition;
+    CustomHoming   : {{ROUTINE_NAME}};
+END_VAR

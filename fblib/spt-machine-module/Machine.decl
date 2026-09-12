@@ -1,0 +1,9 @@
+FUNCTION_BLOCK {{MACHINE_NAME}} EXTENDS FB_PackML_BaseModule
+VAR
+    // 设备模块（EM）在这里声明，然后到 Initialize() 里 RegisterSubModule
+    // 例: Infeed  : Infeed;
+    //     Process : Process;
+
+    // 机器级组件（不需要独立状态机的，比如三色灯、气压开关）在这里声明，
+    // 然后 RegisterComponent
+END_VAR

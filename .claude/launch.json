@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "handcy",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-3.14", "-m", "http.server", "8765", "--directory", "G:/claude/HandCy"],
+      "port": 8765
+    },
+    {
+      "name": "lookbook",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-3.14", "G:/claude/Electric clothes hanger/serve.py"],
+      "port": 8770
+    }
+  ]
+}

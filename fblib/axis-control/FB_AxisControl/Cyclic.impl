@@ -1,0 +1,35 @@
+IF NOT _bInitialized THEN
+    RETURN;
+END_IF
+
+// 1) Axis power - controller's own concern
+_fbPower(Axis := _refAxis, Enable := _bEnable,
+         Enable_Positive := _bEnable, Enable_Negative := _bEnable,
+         Override := {{DEFAULT_OVERRIDE}});
+
+// 2) Error reset - axis-level concern
+_fbReset(Axis := _refAxis, Execute := _bReqReset);
+IF _fbReset.Done OR _fbReset.Error THEN
+    _bReqReset := FALSE;
+    _bError    := FALSE;
+    _nErrId    := 0;
+END_IF
+
+// 3) Drive EVERY command each scan (active or not).
+//    MC blocks must be called cyclically to advance and release the axis -
+//    driving only the active one leaves e.g. MC_Stop holding the axis blocked.
+FOR _nIdx := 1 TO CMD_COUNT DO
+    IF _aCommands[_nIdx] <> 0 THEN
+        _aCommands[_nIdx].Cyclic();
+    END_IF
+END_FOR
+
+// 4) Only the active command's result is consumed (polymorphic)
+IF _iActive <> 0 THEN
+    IF _iActive.Finished THEN
+        _bDone   := _iActive.Done;
+        _bError  := _iActive.Error;
+        _nErrId  := _iActive.ErrorId;
+        _iActive := 0;
+    END_IF
+END_IF

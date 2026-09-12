@@ -1,0 +1,8 @@
+METHOD PUBLIC Send
+VAR_INPUT
+    bExecute  : BOOL;                           // TRUE 触发一次发送，完成后撤销复位
+    pData     : POINTER TO BYTE;                // 发送缓冲区首地址
+    nDataLen  : UDINT;                         // 发送字节数
+    sSrvNetId : T_AmsNetId := '';              // TCP/IP Connection Server AMS NetId
+    tTimeout  : TIME := {{IO_TIMEOUT}};         // 发送超时
+END_VAR

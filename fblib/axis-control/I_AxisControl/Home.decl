@@ -1,0 +1,2 @@
+METHOD Home : BOOL
+(* 回零；返回是否受理 *)

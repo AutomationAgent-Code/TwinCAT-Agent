@@ -1,0 +1,16 @@
+CASE _CommandedMode OF
+    E_PMLUnitMode.Production:
+        CASE SequenceState OF
+            0:
+                NoStateTasksToComplete := FALSE;
+                SequenceState          := SequenceState + 10;
+
+            10: // 起机动作
+                SequenceState := SequenceState + 10;
+
+            20:
+                StateTasksComplete := TRUE;
+        END_CASE
+END_CASE
+
+SUPER^.Starting();

@@ -1,0 +1,21 @@
+(*
+ * 功能：双电磁阀气缸 —— 伸出、缩回各一个输出，两者互锁
+ * 来源：SPT Libraries / SOLID Components / Cylinder / Dual Output
+ * 说明：复用 spt-cylinder-single 带来的 I_Cylinder 契约（同一接口，不同实现 ——
+ *       里氏替换原则 LSP：上层代码拿 I_Cylinder 用，换单阀/双阀实现无需改动）。
+ *       实例化写法：
+ *         fbExt : FB_DigitalOutput(Output := bExtVar);
+ *         fbRet : FB_DigitalOutput(Output := bRetVar);
+ *         fbCyl : FB_CylinderDualOutput(ExtendOutput := fbExt, RetractOutput := fbRet);
+ *)
+FUNCTION_BLOCK FB_CylinderDualOutput IMPLEMENTS I_Cylinder
+VAR
+    ExtendOutput      : I_DigitalOutput;
+    RetractOutput     : I_DigitalOutput;
+
+    // 空对象兜底
+    NullEO            : BOOL;
+    NullExtendOutput  : FB_DigitalOutput(Output := NullEO);
+    NullRO            : BOOL;
+    NullRetractOutput : FB_DigitalOutput(Output := NullRO);
+END_VAR

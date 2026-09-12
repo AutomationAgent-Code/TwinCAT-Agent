@@ -1,0 +1,6 @@
+FUNCTION_BLOCK {{MASTER_NAME}} EXTENDS FB_PackML_BaseModule
+VAR
+    // 虚拟主轴：所有从轴跟随它
+    {{MASTER_VAR}} : FB_Component_BasicAxis := (Name := '{{MASTER_VAR}}');
+    _StartCommand  : BOOL;
+END_VAR

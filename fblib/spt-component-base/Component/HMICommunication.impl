@@ -1,0 +1,13 @@
+// 1) 命令取上升沿，且与基类的命令互斥（同一时刻只准一条命令）
+// HMICommandDescendant_RT(
+//     CLK := (ComponentBase_HMI.Status.HMIControlAvailable AND NOT HMICommandActive_Base)
+//            AND ({{COMP_NAME}}_HMI.Command.DoIt XOR {{COMP_NAME}}_HMI.Command.Undo));
+
+// 2) 告诉基类「我正在处理一条命令」
+// HMICommandActive_Descendant := ComponentBase_HMI.Status.HMIControlAvailable
+//     AND ({{COMP_NAME}}_HMI.Command.DoIt OR {{COMP_NAME}}_HMI.Command.Undo);
+
+// 3) 回写状态
+// {{COMP_NAME}}_HMI.Status.Ready := NOT _Busy AND NOT _Error;
+
+SUPER^.HMICommunication();

@@ -1,0 +1,39 @@
+name: 单轴控制模块 (SPT)
+slug: spt-axis-basic
+category: motion
+family: spt-framework
+style: spt
+archetype: oop
+format: text
+rank: 1
+description: SPT 单轴设备模块 —— FB_Component_BasicAxis 挂在 PackML 状态机上：Starting 使能、Execute 定位、Stopping/Aborting 停机
+use_when: 要写一个轴的控制程序（使能/定位/停止/急停），项目已用 SPT 框架时的默认选择
+keywords: [轴, 单轴, 伺服, 电机, 定位, 使能, axis, servo, moveabsolute, basicaxis]
+version: "1.0"
+libraries: [SPT Base Types, SPT Components, SPT MotionControl, Tc2_MC2, Tc3_PackML_V3]
+requires: []
+params:
+  - {name: MODULE_NAME, default: AxisModule,  desc: 设备模块 FB 名（SPT 风格不带 FB_ 前缀）}
+  - {name: AXIS_VAR,    default: Axis1,       desc: 轴组件实例变量名}
+  - {name: AXIS_LABEL,  default: Axis 1,      desc: 轴显示名（进报警/日志文本）}
+  - {name: VELOCITY,    default: "50.0",      desc: 默认速度}
+  - {name: TARGET_POS,  default: "100.0",     desc: Execute 里的目标位置}
+notes: |
+  落地后还要做三件事：
+  1. 在 NC 里建轴，并把 PLC 实例下生成的 AXIS_REF 链接到 NC 轴（否则 Initialize 卡住，
+     除非把 Parameters_Motion_Control.ALLOW_UNLINKED_NC_AXES 设 TRUE）。
+  2. 在上层 Machine/EM 的 Initialize() 里 RegisterSubModule(本模块)。
+  3. Execute 里的定位逻辑是示例（去 TARGET_POS 再回 0），按工艺改。
+objects:
+  - name: "{{MODULE_NAME}}"
+    file: AxisModule
+    kind: fb
+    members:
+      - {name: CyclicLogic,    kind: method, return_type: ""}
+      - {name: Initialize,     kind: method, return_type: BOOL}
+      - {name: Starting,       kind: method, return_type: ""}
+      - {name: Execute,        kind: method, return_type: ""}
+      - {name: Completing,     kind: method, return_type: ""}
+      - {name: Stopping,       kind: method, return_type: ""}
+      - {name: Aborting,       kind: method, return_type: ""}
+      - {name: HMIPermissions, kind: method, return_type: ""}

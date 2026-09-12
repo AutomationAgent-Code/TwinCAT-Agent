@@ -1,0 +1,2 @@
+METHOD Cyclic
+(* Driven EVERY scan by the controller, active or not - MC blocks require cyclic calls *)

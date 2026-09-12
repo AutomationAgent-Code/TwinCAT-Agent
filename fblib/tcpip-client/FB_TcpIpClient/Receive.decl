@@ -1,0 +1,8 @@
+METHOD PUBLIC Receive
+VAR_INPUT
+    bExecute   : BOOL;                           // TRUE 触发一次轮询，完成后撤销复位
+    pBuffer    : POINTER TO BYTE;                // 接收缓冲区首地址
+    nBufferSize : UDINT;                        // 可写缓冲区容量 [byte]
+    sSrvNetId  : T_AmsNetId := '';              // TCP/IP Connection Server AMS NetId
+    tTimeout   : TIME := {{IO_TIMEOUT}};         // 单次接收命令超时
+END_VAR

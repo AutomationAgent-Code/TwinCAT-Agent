@@ -1,0 +1,6 @@
+FUNCTION_BLOCK {{SLAVE_NAME}} EXTENDS FB_PackML_BaseModule
+VAR
+    // 从轴：BasicSlaveAxis 比 BasicAxis 多了 Master1/RatioMaster1/GearIn/InGear
+    {{SLAVE_VAR}} : FB_Component_BasicSlaveAxis := (Name := '{{SLAVE_VAR}}');
+    _MasterRef    : REFERENCE TO AXIS_REF;
+END_VAR

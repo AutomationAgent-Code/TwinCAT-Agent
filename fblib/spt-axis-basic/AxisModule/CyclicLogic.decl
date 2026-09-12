@@ -1,0 +1,2 @@
+// 本模块所有逻辑的入口。必须每周期被上层调用。
+METHOD PUBLIC CyclicLogic

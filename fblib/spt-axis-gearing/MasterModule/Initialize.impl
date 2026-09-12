@@ -1,0 +1,15 @@
+Initialize := FALSE;
+CASE DescendantSequenceState OF
+    0:
+        RegisterComponent(Component := {{MASTER_VAR}});
+        {{MASTER_VAR}}.Velocity := {{MASTER_VELOCITY}};
+        DescendantSequenceState := DescendantSequenceState + 10;
+
+    10:
+        IF SUPER^.Initialize() THEN
+            DescendantSequenceState := DescendantSequenceState + 10;
+        END_IF
+
+    20:
+        Initialize := TRUE;
+END_CASE

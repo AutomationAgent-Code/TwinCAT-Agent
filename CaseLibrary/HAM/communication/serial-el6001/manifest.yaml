@@ -1,0 +1,16 @@
+id: ham.communication.serial-el6001
+name: HAM EL6001 Serial Communication
+version: "1.0.0"
+publisher: HAM
+category: communication
+subcategory: serial
+type: plcopen
+entry: HAM_Serial_EL6001.xml
+maturity: reference
+description: EL6001 串口字符串发送、后缀接收和缓冲区清理
+objects: [FB_SerialCom]
+libraries: [Tc2_SerialCom]
+hardware: [EL6001]
+keywords: [HAM, serial, EL6001, SendString, ReceiveString]
+notes: 导入后必须把 stIn_EL6001 和 stOut_EL6001 链接到实际端子过程数据。
+

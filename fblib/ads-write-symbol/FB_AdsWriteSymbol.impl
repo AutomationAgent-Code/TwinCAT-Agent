@@ -1,0 +1,42 @@
+// 子 FB 调用区：每个扫描周期只调用一次；状态机仅决定本周期 Write。
+fbWrite(
+    bWrite := (eState = E_AdsWriteSymbolState.Writing),
+    sNetId := sNetId,
+    nPort := nPort,
+    sVarName := sSymbolName,
+    nSrcAddr := pSource,
+    nLen := nDataLen,
+    tTimeout := tTimeout,
+    eComMode := eAdsComModeSecureCom
+);
+
+CASE eState OF
+    E_AdsWriteSymbolState.Idle:
+        bDone := FALSE;
+        bBusy := FALSE;
+        bError := FALSE;
+        nErrId := 0;
+        IF bExecute THEN
+            bBusy := TRUE;
+            eState := E_AdsWriteSymbolState.Writing;
+        END_IF
+
+    E_AdsWriteSymbolState.Writing:
+        bBusy := fbWrite.bBusy;
+        IF fbWrite.bError THEN
+            bBusy := FALSE;
+            bError := TRUE;
+            nErrId := fbWrite.nErrorId;
+            eState := E_AdsWriteSymbolState.Error;
+        ELSIF NOT fbWrite.bBusy THEN
+            bBusy := FALSE;
+            bDone := TRUE;
+            eState := E_AdsWriteSymbolState.Done;
+        END_IF
+
+    E_AdsWriteSymbolState.Done:
+        IF NOT bExecute THEN eState := E_AdsWriteSymbolState.Idle; END_IF
+
+    E_AdsWriteSymbolState.Error:
+        IF NOT bExecute THEN eState := E_AdsWriteSymbolState.Idle; END_IF
+END_CASE

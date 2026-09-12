@@ -1,0 +1,9 @@
+F_ClearAllEventsInClass(Alarms := Alarms);
+
+// 这里补硬件层的复位动作（断阀、清缓存、驱动器复位…）
+
+IF SUPER^.Reset() THEN
+    _Error   := FALSE;
+    _ErrorID := 0;
+    Reset    := TRUE;
+END_IF

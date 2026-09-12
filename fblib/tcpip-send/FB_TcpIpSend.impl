@@ -1,0 +1,44 @@
+// 子 FB 调用区：每个扫描周期只调用一次；状态机仅决定本周期 Execute。
+fbSend(
+    sSrvNetId := sSrvNetId,
+    hSocket := hSocket,
+    cbLen := nDataLen,
+    pSrc := pData,
+    bExecute := (eState = E_TcpIpSendState.Sending),
+    tTimeout := tTimeout
+);
+
+CASE eState OF
+    E_TcpIpSendState.Idle:
+        bDone := FALSE;
+        bBusy := FALSE;
+        bError := FALSE;
+        nErrId := 0;
+        IF bExecute THEN
+            bBusy := TRUE;
+            eState := E_TcpIpSendState.Sending;
+        END_IF
+
+    E_TcpIpSendState.Sending:
+        bBusy := fbSend.bBusy;
+        IF fbSend.bError THEN
+            bBusy := FALSE;
+            bError := TRUE;
+            nErrId := fbSend.nErrId;
+            eState := E_TcpIpSendState.Error;
+        ELSIF NOT fbSend.bBusy THEN
+            bBusy := FALSE;
+            bDone := TRUE;
+            eState := E_TcpIpSendState.Done;
+        END_IF
+
+    E_TcpIpSendState.Done:
+        IF NOT bExecute THEN
+            eState := E_TcpIpSendState.Idle;
+        END_IF
+
+    E_TcpIpSendState.Error:
+        IF NOT bExecute THEN
+            eState := E_TcpIpSendState.Idle;
+        END_IF
+END_CASE

@@ -1,0 +1,25 @@
+name: FB_DigitalInput
+slug: spt-digital-input
+category: device
+archetype: oop
+format: text
+description: 数字量输入组件（SPT SOLID 范式）—— FB_Init 注入硬件 BOOL 引用，经只读属性 IsActive 读取；可作为传感器反馈依赖
+family: standalone
+style: default
+rank: 20
+use_when: 要把一个数字量输入点包成组件（传感器/到位信号）
+keywords: [数字量, 输入, di, 传感器, 到位, digital, input, sensor]
+version: "1.0"
+libraries: []
+objects:
+  - name: I_DigitalInput
+    kind: interface
+    members:
+      - {name: IsActive, kind: property, return_type: BOOL}
+
+  - name: FB_DigitalInput
+    kind: fb
+    members:
+      - {name: FB_Init,  kind: method}
+      - {name: IsActive, kind: property, return_type: BOOL}
+params: []

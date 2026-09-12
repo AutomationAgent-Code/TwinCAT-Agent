@@ -1,0 +1,18 @@
+// 循环服务型：bEnable 时用两个 TON 交替计时翻转 bOut
+IF NOT bEnable THEN
+    bOut := FALSE;
+    tonOn(IN := FALSE);
+    tonOff(IN := FALSE);
+    RETURN;
+END_IF
+
+// 高电平计时：bOut=TRUE 时计 ON_TIME，到点熄灭
+tonOn(IN := bOut, PT := {{ON_TIME}});
+// 低电平计时：bOut=FALSE 时计 OFF_TIME，到点点亮
+tonOff(IN := NOT bOut, PT := {{OFF_TIME}});
+
+IF bOut AND tonOn.Q THEN
+    bOut := FALSE;
+ELSIF NOT bOut AND tonOff.Q THEN
+    bOut := TRUE;
+END_IF

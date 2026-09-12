@@ -1,0 +1,1723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.60" creationDateTime="2026-08-05T00:25:24.1454129" />
+  <contentHeader name="PLC" modificationDateTime="2026-08-05T00:25:24.1454129">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous>
+      <pou name="FC_ConcatAll" pouType="function">
+        <interface>
+          <returnType>
+            <string />
+          </returnType>
+          <inputVars>
+            <variable name="asConcattables">
+              <type>
+                <array>
+                  <dimension lower="0" upper="100" />
+                  <baseType>
+                    <string />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FC_ConcatAll : STRING
+VAR_INPUT
+	asConcattables					:	ARRAY[0..100] OF STRING;
+END_VAR
+VAR
+	i								:	INT;
+	sActual							:	STRING;
+	//bStart							:	BOOL := TRUE;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <localVars>
+            <variable name="i">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="sActual">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FC_ConcatAll : STRING
+VAR_INPUT
+	asConcattables					:	ARRAY[0..100] OF STRING;
+END_VAR
+VAR
+	i								:	INT;
+	sActual							:	STRING;
+	//bStart							:	BOOL := TRUE;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">FOR i := 0 TO 100 BY 1 DO
+	IF asConcattables[i] &lt;&gt; '' THEN
+		sActual := CONCAT(STR1 := sActual , STR2 := asConcattables[i]);
+	END_IF
+END_FOR
+
+FC_ConcatAll := sActual;
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FC_ConcatAll : STRING
+VAR_INPUT
+	asConcattables					:	ARRAY[0..100] OF STRING;
+END_VAR
+VAR
+	i								:	INT;
+	sActual							:	STRING;
+	//bStart							:	BOOL := TRUE;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>eda3c723-dce9-4075-a355-ceb43aca785e</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FUN_Build_String_5" pouType="function">
+        <interface>
+          <returnType>
+            <string length="255" />
+          </returnType>
+          <inputVars>
+            <variable name="sString_1">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_2">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_3">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_4">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_5">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Build_String_5 : String(255)
+VAR_INPUT
+	sString_1			:STRING(255);
+	sString_2			:STRING(255);
+	sString_3			:STRING(255);
+	sString_4			:STRING(255);
+	sString_5			:STRING(255);
+END_VAR
+VAR
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">IF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' THEN
+	
+	FUN_Build_String_5:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,sString_5))));
+	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' THEN
+	
+	FUN_Build_String_5:=concat(sString_1,concat(sString_2,concat(sString_3,sString_4)));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' THEN
+	
+	FUN_Build_String_5:=concat(sString_1,concat(sString_2,sString_3));
+ELSIF sString_1 &lt;&gt; ''AND sString_2 &lt;&gt;'' THEN
+	
+	FUN_Build_String_5:=concat(sString_1,sString_2);
+ELSE
+	FUN_Build_String_5:='';
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Build_String_5 : String(255)
+VAR_INPUT
+	sString_1			:STRING(255);
+	sString_2			:STRING(255);
+	sString_3			:STRING(255);
+	sString_4			:STRING(255);
+	sString_5			:STRING(255);
+END_VAR
+VAR
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>b55a7241-d079-4a6a-9c28-b3615ef3494b</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FUN_Build_String_10" pouType="function">
+        <interface>
+          <returnType>
+            <string length="255" />
+          </returnType>
+          <inputVars>
+            <variable name="sString_1">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_2">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_3">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_4">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_5">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_6">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_7">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_8">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_9">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_10">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Build_String_10 : String(255)
+VAR_INPUT
+	sString_1			:STRING(255);
+	sString_2			:STRING(255);
+	sString_3			:STRING(255);
+	sString_4			:STRING(255);
+	sString_5			:STRING(255);
+	sString_6			:STRING(255);
+	sString_7			:STRING(255);
+	sString_8			:STRING(255);
+	sString_9			:STRING(255);
+	sString_10			:STRING(255);
+END_VAR
+VAR
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">IF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	 THEN
+	
+	FUN_Build_String_10:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,sString_10)))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;'' THEN
+	
+	FUN_Build_String_10:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,sString_9))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;'' THEN
+	
+	FUN_Build_String_10:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,sString_8)))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;'' THEN
+	
+	FUN_Build_String_10:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,sString_7))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;'' THEN
+	
+	FUN_Build_String_10:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,sString_6)))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' THEN
+	
+	FUN_Build_String_10:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,sString_5))));
+	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' THEN
+	
+	FUN_Build_String_10:=concat(sString_1,concat(sString_2,concat(sString_3,sString_4)));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' THEN
+	
+	FUN_Build_String_10:=concat(sString_1,concat(sString_2,sString_3));
+ELSIF sString_1 &lt;&gt; ''AND sString_2 &lt;&gt;'' THEN
+	
+	FUN_Build_String_10:=concat(sString_1,sString_2);
+ELSE
+	FUN_Build_String_10:='';
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Build_String_10 : String(255)
+VAR_INPUT
+	sString_1			:STRING(255);
+	sString_2			:STRING(255);
+	sString_3			:STRING(255);
+	sString_4			:STRING(255);
+	sString_5			:STRING(255);
+	sString_6			:STRING(255);
+	sString_7			:STRING(255);
+	sString_8			:STRING(255);
+	sString_9			:STRING(255);
+	sString_10			:STRING(255);
+END_VAR
+VAR
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>7f51c49d-54c3-40b3-ac1b-b9f041a381cd</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FUN_Build_String_20" pouType="function">
+        <interface>
+          <returnType>
+            <string length="255" />
+          </returnType>
+          <inputVars>
+            <variable name="sString_1">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_2">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_3">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_4">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_5">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_6">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_7">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_8">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_9">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_10">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_11">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_12">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_13">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_14">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_15">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_16">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_17">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_18">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_19">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_20">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Build_String_20 : String(255)
+VAR_INPUT
+	sString_1			:STRING(255);
+	sString_2			:STRING(255);
+	sString_3			:STRING(255);
+	sString_4			:STRING(255);
+	sString_5			:STRING(255);
+	sString_6			:STRING(255);
+	sString_7			:STRING(255);
+	sString_8			:STRING(255);
+	sString_9			:STRING(255);
+	sString_10			:STRING(255);
+	sString_11			:STRING(255);
+	sString_12			:STRING(255);
+	sString_13			:STRING(255);
+	sString_14			:STRING(255);
+	sString_15			:STRING(255);
+	sString_16			:STRING(255);
+	sString_17			:STRING(255);
+	sString_18			:STRING(255);
+	sString_19			:STRING(255);
+	sString_20			:STRING(255);
+END_VAR
+VAR
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">IF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,sString_20)))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	 THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,sString_19))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,sString_18)))))))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,sString_17))))))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,sString_16)))))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''	THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,sString_15))))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,sString_14)))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,sString_13))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,sString_12)))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,sString_11))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	 THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,sString_10)))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,sString_9))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,sString_8)))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,sString_7))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,sString_6)))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,sString_5))));
+	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,concat(sString_3,sString_4)));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,concat(sString_2,sString_3));
+ELSIF sString_1 &lt;&gt; ''AND sString_2 &lt;&gt;'' THEN
+	
+	FUN_Build_String_20:=concat(sString_1,sString_2);
+ELSE
+	FUN_Build_String_20:='';
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Build_String_20 : String(255)
+VAR_INPUT
+	sString_1			:STRING(255);
+	sString_2			:STRING(255);
+	sString_3			:STRING(255);
+	sString_4			:STRING(255);
+	sString_5			:STRING(255);
+	sString_6			:STRING(255);
+	sString_7			:STRING(255);
+	sString_8			:STRING(255);
+	sString_9			:STRING(255);
+	sString_10			:STRING(255);
+	sString_11			:STRING(255);
+	sString_12			:STRING(255);
+	sString_13			:STRING(255);
+	sString_14			:STRING(255);
+	sString_15			:STRING(255);
+	sString_16			:STRING(255);
+	sString_17			:STRING(255);
+	sString_18			:STRING(255);
+	sString_19			:STRING(255);
+	sString_20			:STRING(255);
+END_VAR
+VAR
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>0ff5e140-f592-4251-bc0c-abf8776bbc08</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FUN_Build_String_30" pouType="function">
+        <interface>
+          <returnType>
+            <string length="500" />
+          </returnType>
+          <inputVars>
+            <variable name="sString_1">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_2">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_3">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_4">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_5">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_6">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_7">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_8">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_9">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_10">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_11">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_12">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_13">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_14">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_15">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_16">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_17">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_18">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_19">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_20">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_21">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_22">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_23">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_24">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_25">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_26">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_27">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_28">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_29">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <variable name="sString_30">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Build_String_30 : String(500)
+VAR_INPUT
+	sString_1			:STRING(255);
+	sString_2			:STRING(255);
+	sString_3			:STRING(255);
+	sString_4			:STRING(255);
+	sString_5			:STRING(255);
+	sString_6			:STRING(255);
+	sString_7			:STRING(255);
+	sString_8			:STRING(255);
+	sString_9			:STRING(255);
+	sString_10			:STRING(255);
+	sString_11			:STRING(255);
+	sString_12			:STRING(255);
+	sString_13			:STRING(255);
+	sString_14			:STRING(255);
+	sString_15			:STRING(255);
+	sString_16			:STRING(255);
+	sString_17			:STRING(255);
+	sString_18			:STRING(255);
+	sString_19			:STRING(255);
+	sString_20			:STRING(255);
+	sString_21			:STRING(255);
+	sString_22			:STRING(255);
+	sString_23			:STRING(255);
+	sString_24			:STRING(255);
+	sString_25			:STRING(255);
+	sString_26			:STRING(255);
+	sString_27			:STRING(255);
+	sString_28			:STRING(255);
+	sString_29			:STRING(255);
+	sString_30			:STRING(255);
+END_VAR
+VAR
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">IF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''
+	AND sString_23 &lt;&gt;'' AND sString_24 &lt;&gt;'' AND sString_25 &lt;&gt;'' AND sString_26 &lt;&gt;'' AND sString_27 &lt;&gt;'' AND sString_28 &lt;&gt;'' AND sString_29 &lt;&gt;'' 
+	AND sString_30 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,
+								concat(sString_21,concat(sString_22,concat(sString_23,concat(sString_24,concat(sString_25,concat(sString_26,
+									concat(sString_27,concat(sString_28,concat(sString_29,sString_30)))))))))))))))))))))))))))));
+
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''
+	AND sString_23 &lt;&gt;'' AND sString_24 &lt;&gt;'' AND sString_25 &lt;&gt;'' AND sString_26 &lt;&gt;'' AND sString_27 &lt;&gt;'' AND sString_28 &lt;&gt;'' AND sString_29 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,
+								concat(sString_21,concat(sString_22,concat(sString_23,concat(sString_24,concat(sString_25,concat(sString_26,
+									concat(sString_27,concat(sString_28,sString_29))))))))))))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''
+	AND sString_23 &lt;&gt;'' AND sString_24 &lt;&gt;'' AND sString_25 &lt;&gt;'' AND sString_26 &lt;&gt;'' AND sString_27 &lt;&gt;'' AND sString_28 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,
+								concat(sString_21,concat(sString_22,concat(sString_23,concat(sString_24,concat(sString_25,concat(sString_26,
+									concat(sString_27,sString_28)))))))))))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''
+	AND sString_23 &lt;&gt;'' AND sString_24 &lt;&gt;'' AND sString_25 &lt;&gt;'' AND sString_26 &lt;&gt;'' AND sString_27 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,
+								concat(sString_21,concat(sString_22,concat(sString_23,concat(sString_24,concat(sString_25,concat(sString_26,sString_27))))))))))))))))))))))))));
+
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''
+	AND sString_23 &lt;&gt;'' AND sString_24 &lt;&gt;'' AND sString_25 &lt;&gt;'' AND sString_26 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,
+								concat(sString_21,concat(sString_22,concat(sString_23,concat(sString_24,concat(sString_25,sString_26)))))))))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''
+	AND sString_23 &lt;&gt;'' AND sString_24 &lt;&gt;'' AND sString_25 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,
+								concat(sString_21,concat(sString_22,concat(sString_23,concat(sString_24,sString_25))))))))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''
+	AND sString_23 &lt;&gt;'' AND sString_24 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,
+								concat(sString_21,concat(sString_22,concat(sString_23,sString_24)))))))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''
+	AND sString_23 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,
+								concat(sString_21,concat(sString_22,sString_23))))))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;'' AND sString_22 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,concat(sString_21,sString_22)))))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' AND sString_21 &lt;&gt;''THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,concat(sString_20,sString_21))))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	AND sString_20 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,concat(sString_19,sString_20)))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;''	AND sString_19 &lt;&gt;''	 THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,concat(sString_18,sString_19))))))))))))))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;''	AND sString_18 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,concat(sString_17,sString_18)))))))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	AND sString_17 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,concat(sString_16,sString_17))))))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''
+	AND sString_16 &lt;&gt;''	THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,
+							concat(sString_15,sString_16)))))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;''	AND sString_15 &lt;&gt;''	THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,concat(sString_14,sString_15))))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;''	AND sString_14 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,concat(sString_13,sString_14)))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' AND sString_13 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,concat(sString_12,sString_13))))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;''	AND sString_12 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,concat(sString_11,sString_12)))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	AND sString_11 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,
+						concat(sString_10,sString_11))))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;''	AND sString_10 &lt;&gt;''	 THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,concat(sString_9,sString_10)))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;''
+	AND sString_9 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,concat(sString_8,sString_9))))))));	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;''	AND sString_8 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,concat(sString_7,sString_8)))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;''	AND sString_7 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,concat(sString_6,sString_7))))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' 	AND sString_6 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,concat
+					(sString_5,sString_6)))));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' 	AND sString_5 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,concat(sString_4,sString_5))));
+	
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' 	AND sString_4 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,concat(sString_3,sString_4)));
+ELSIF sString_1 &lt;&gt; ''
+	AND sString_2 &lt;&gt;'' 	AND sString_3 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,concat(sString_2,sString_3));
+ELSIF sString_1 &lt;&gt; ''AND sString_2 &lt;&gt;'' THEN
+	
+	FUN_Build_String_30:=concat(sString_1,sString_2);
+ELSE
+	FUN_Build_String_30:='';
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Build_String_30 : String(500)
+VAR_INPUT
+	sString_1			:STRING(255);
+	sString_2			:STRING(255);
+	sString_3			:STRING(255);
+	sString_4			:STRING(255);
+	sString_5			:STRING(255);
+	sString_6			:STRING(255);
+	sString_7			:STRING(255);
+	sString_8			:STRING(255);
+	sString_9			:STRING(255);
+	sString_10			:STRING(255);
+	sString_11			:STRING(255);
+	sString_12			:STRING(255);
+	sString_13			:STRING(255);
+	sString_14			:STRING(255);
+	sString_15			:STRING(255);
+	sString_16			:STRING(255);
+	sString_17			:STRING(255);
+	sString_18			:STRING(255);
+	sString_19			:STRING(255);
+	sString_20			:STRING(255);
+	sString_21			:STRING(255);
+	sString_22			:STRING(255);
+	sString_23			:STRING(255);
+	sString_24			:STRING(255);
+	sString_25			:STRING(255);
+	sString_26			:STRING(255);
+	sString_27			:STRING(255);
+	sString_28			:STRING(255);
+	sString_29			:STRING(255);
+	sString_30			:STRING(255);
+END_VAR
+VAR
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>8abaf795-2260-43eb-983e-0805607bc31f</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FUN_Concat_String_100" pouType="function">
+        <interface>
+          <returnType>
+            <string length="1000" />
+          </returnType>
+          <inputVars>
+            <variable name="arrString">
+              <type>
+                <array>
+                  <dimension lower="1" upper="100" />
+                  <baseType>
+                    <string length="1000" />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Concat_String_100 : STRING [1000]
+VAR_INPUT
+	arrString:	ARRAY [1..100] OF STRING(1000);
+END_VAR
+VAR
+	i: INT;
+	j: INT;
+	k: INT;
+	iArchive_j		:INT;
+	arrTMP255Byte		:ARRAY [1..1000] OF BYTE;
+	arrAllStringInByte		:ARRAY [1..1000] OF BYTE;
+	sTemp			:STRING(1000);
+	iTest1: INT;
+	iTest2: UINT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <localVars>
+            <variable name="i">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="j">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="k">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="iArchive_j">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="arrTMP255Byte">
+              <type>
+                <array>
+                  <dimension lower="1" upper="1000" />
+                  <baseType>
+                    <BYTE />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="arrAllStringInByte">
+              <type>
+                <array>
+                  <dimension lower="1" upper="1000" />
+                  <baseType>
+                    <BYTE />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="sTemp">
+              <type>
+                <string length="1000" />
+              </type>
+            </variable>
+            <variable name="iTest1">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="iTest2">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Concat_String_100 : STRING [1000]
+VAR_INPUT
+	arrString:	ARRAY [1..100] OF STRING(1000);
+END_VAR
+VAR
+	i: INT;
+	j: INT;
+	k: INT;
+	iArchive_j		:INT;
+	arrTMP255Byte		:ARRAY [1..1000] OF BYTE;
+	arrAllStringInByte		:ARRAY [1..1000] OF BYTE;
+	sTemp			:STRING(1000);
+	iTest1: INT;
+	iTest2: UINT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">//	FUN_Concat_String_100:='ERROR FUN_Concat_String_100 to many input character!!!';
+MEMSET(ADR(arrAllStringInByte),STRING_TO_BYTE(''),SIZEOF(arrAllStringInByte));
+j:=1;
+iArchive_j:=1;
+FOR i:=1 TO 100 DO
+	IF arrString[i] &lt;&gt; ''
+		OR arrString[i+1] &lt;&gt; '' THEN
+			MEMCPY(ADR(arrTMP255Byte),ADR(arrString[i]),1000);
+			
+			k:=1;
+			FOR j:=iArchive_j TO (iArchive_j+1000) DO
+				IF arrTMP255Byte[k] &lt;&gt; 0 THEN
+					arrAllStringInByte[j]:=arrTMP255Byte[k];
+					k:=k+1;
+				ELSE
+					EXIT;
+				END_IF
+			END_FOR
+			iArchive_j:=j;
+			IF iArchive_j &gt;=1000 THEN   //ERROR
+				FUN_Concat_String_100:='ERROR FUN_Concat_String_100 to many input character!!!';
+				EXIT;
+			END_IF
+	ELSIF i &gt; 1 THEN					//OK
+		 MEMCPY(ADR(FUN_Concat_String_100),ADR(arrAllStringInByte),SIZEOF(arrAllStringInByte)); 
+		 EXIT;
+	ELSIF i = 1 THEN					//ERROR
+		FUN_Concat_String_100:='ERROR FUN_Concat_String_100 received no string to the input!!!';
+		EXIT;
+	ELSE
+		EXIT;
+	END_IF	
+END_FOR
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_Concat_String_100 : STRING [1000]
+VAR_INPUT
+	arrString:	ARRAY [1..100] OF STRING(1000);
+END_VAR
+VAR
+	i: INT;
+	j: INT;
+	k: INT;
+	iArchive_j		:INT;
+	arrTMP255Byte		:ARRAY [1..1000] OF BYTE;
+	arrAllStringInByte		:ARRAY [1..1000] OF BYTE;
+	sTemp			:STRING(1000);
+	iTest1: INT;
+	iTest2: UINT;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>a620f81c-99fc-492a-8bfc-f578dc8689ca</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FUN_CutString" pouType="function">
+        <interface>
+          <returnType>
+            <string length="255" />
+          </returnType>
+          <inputVars>
+            <variable name="sRawString">
+              <type>
+                <string length="1000" />
+              </type>
+            </variable>
+            <variable name="sStringStartIdentifier">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="sStringEndIdentifier">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="sDataElementSeparator">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_CutString : STRING(255)
+VAR_INPUT
+	sRawString							:STRING[1000];
+	sStringStartIdentifier				:STRING;
+	sStringEndIdentifier				:STRING;
+	sDataElementSeparator				:STRING;
+END_VAR
+VAR
+	iStringFound						:INT;// 1--&gt; string found 0--&gt; no string
+	sCutString							:STRING;
+	iTemp: INT;
+	sTempString: STRING(1000);
+	iTempStringEnd: INT;
+	iLenghtOfCompleteString: INT;
+	iLenghtofStartIdentifier: INT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <localVars>
+            <variable name="iStringFound">
+              <type>
+                <INT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> 1--&gt; string found 0--&gt; no string</xhtml>
+              </documentation>
+            </variable>
+            <variable name="sCutString">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="iTemp">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="sTempString">
+              <type>
+                <string length="1000" />
+              </type>
+            </variable>
+            <variable name="iTempStringEnd">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="iLenghtOfCompleteString">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="iLenghtofStartIdentifier">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_CutString : STRING(255)
+VAR_INPUT
+	sRawString							:STRING[1000];
+	sStringStartIdentifier				:STRING;
+	sStringEndIdentifier				:STRING;
+	sDataElementSeparator				:STRING;
+END_VAR
+VAR
+	iStringFound						:INT;// 1--&gt; string found 0--&gt; no string
+	sCutString							:STRING;
+	iTemp: INT;
+	sTempString: STRING(1000);
+	iTempStringEnd: INT;
+	iLenghtOfCompleteString: INT;
+	iLenghtofStartIdentifier: INT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">iTemp:=find(sRawString,concat(sDataElementSeparator,sStringStartIdentifier));
+iLenghtOfCompleteString:=len(sRawString);
+iLenghtofStartIdentifier:=len(concat(sDataElementSeparator,sStringStartIdentifier));
+
+IF iTemp &gt; 0 THEN
+	IF iLenghtofStartIdentifier &gt; 1 THEN
+		sTempString:=right(sRawString,(iLenghtOfCompleteString-iTemp-(iLenghtofStartIdentifier-1)));
+	ELSE
+		sTempString:=right(sRawString,(iLenghtOfCompleteString-iTemp));
+	END_IF
+	iTempStringEnd:=find(sTempString,sStringEndIdentifier);
+	IF iTempStringEnd &gt; 0 THEN
+		FUN_CutString:=MID(sTempString,iTempStringEnd-1,1);
+	ELSE
+		FUN_CutString:='';	
+	END_IF
+ELSE
+	FUN_CutString:='';
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION FUN_CutString : STRING(255)
+VAR_INPUT
+	sRawString							:STRING[1000];
+	sStringStartIdentifier				:STRING;
+	sStringEndIdentifier				:STRING;
+	sDataElementSeparator				:STRING;
+END_VAR
+VAR
+	iStringFound						:INT;// 1--&gt; string found 0--&gt; no string
+	sCutString							:STRING;
+	iTemp: INT;
+	sTempString: STRING(1000);
+	iTempStringEnd: INT;
+	iLenghtOfCompleteString: INT;
+	iLenghtofStartIdentifier: INT;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>4142e431-f4b9-4c79-b601-90a05da72869</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_CutString" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="sRawString">
+              <type>
+                <string length="1000" />
+              </type>
+            </variable>
+            <variable name="sStringStartIdentifier">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="sStringEndIdentifier">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="sDataElementSeparator">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_CutString
+VAR_INPUT
+	sRawString							:STRING[1000];
+	sStringStartIdentifier				:STRING;
+	sStringEndIdentifier				:STRING;
+	sDataElementSeparator				:STRING;
+END_VAR
+VAR_OUTPUT
+	iStringFound						:INT;// 1--&gt; string found 0--&gt; no string
+	sCutString							:STRING;
+END_VAR
+VAR
+	iTemp: INT;
+	sTempString: STRING(1000);
+	iTempStringEnd: INT;
+	iLenghtOfCompleteString: INT;
+	iLenghtofStartIdentifier: INT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <outputVars>
+            <variable name="iStringFound">
+              <type>
+                <INT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> 1--&gt; string found 0--&gt; no string</xhtml>
+              </documentation>
+            </variable>
+            <variable name="sCutString">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_CutString
+VAR_INPUT
+	sRawString							:STRING[1000];
+	sStringStartIdentifier				:STRING;
+	sStringEndIdentifier				:STRING;
+	sDataElementSeparator				:STRING;
+END_VAR
+VAR_OUTPUT
+	iStringFound						:INT;// 1--&gt; string found 0--&gt; no string
+	sCutString							:STRING;
+END_VAR
+VAR
+	iTemp: INT;
+	sTempString: STRING(1000);
+	iTempStringEnd: INT;
+	iLenghtOfCompleteString: INT;
+	iLenghtofStartIdentifier: INT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </outputVars>
+          <localVars>
+            <variable name="iTemp">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="sTempString">
+              <type>
+                <string length="1000" />
+              </type>
+            </variable>
+            <variable name="iTempStringEnd">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="iLenghtOfCompleteString">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="iLenghtofStartIdentifier">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_CutString
+VAR_INPUT
+	sRawString							:STRING[1000];
+	sStringStartIdentifier				:STRING;
+	sStringEndIdentifier				:STRING;
+	sDataElementSeparator				:STRING;
+END_VAR
+VAR_OUTPUT
+	iStringFound						:INT;// 1--&gt; string found 0--&gt; no string
+	sCutString							:STRING;
+END_VAR
+VAR
+	iTemp: INT;
+	sTempString: STRING(1000);
+	iTempStringEnd: INT;
+	iLenghtOfCompleteString: INT;
+	iLenghtofStartIdentifier: INT;
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">iTemp:=find(sRawString,concat(sDataElementSeparator,sStringStartIdentifier));
+iLenghtOfCompleteString:=len(sRawString);
+iLenghtofStartIdentifier:=len(concat(sDataElementSeparator,sStringStartIdentifier));
+
+IF iTemp &gt; 0 THEN
+	IF iLenghtofStartIdentifier &gt; 1 THEN
+		sTempString:=right(sRawString,(iLenghtOfCompleteString-iTemp-(iLenghtofStartIdentifier-1)));
+	ELSE
+		sTempString:=right(sRawString,(iLenghtOfCompleteString-iTemp));
+	END_IF
+	iTempStringEnd:=find(sTempString,sStringEndIdentifier);
+	IF iTempStringEnd &gt; 0 THEN
+		sCutString:=MID(sTempString,iTempStringEnd-1,1);
+	ELSE
+		sCutString:='';	
+	END_IF
+ELSE
+	sCutString:='';
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_CutString
+VAR_INPUT
+	sRawString							:STRING[1000];
+	sStringStartIdentifier				:STRING;
+	sStringEndIdentifier				:STRING;
+	sDataElementSeparator				:STRING;
+END_VAR
+VAR_OUTPUT
+	iStringFound						:INT;// 1--&gt; string found 0--&gt; no string
+	sCutString							:STRING;
+END_VAR
+VAR
+	iTemp: INT;
+	sTempString: STRING(1000);
+	iTempStringEnd: INT;
+	iLenghtOfCompleteString: INT;
+	iLenghtofStartIdentifier: INT;
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>6035d3b5-5f22-4e61-ae08-6117120a6c7e</ObjectId>
+          </data>
+        </addData>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="FC_ConcatAll" ObjectId="eda3c723-dce9-4075-a355-ceb43aca785e" />
+        <Object Name="FUN_Build_String_5" ObjectId="b55a7241-d079-4a6a-9c28-b3615ef3494b" />
+        <Object Name="FUN_Build_String_10" ObjectId="7f51c49d-54c3-40b3-ac1b-b9f041a381cd" />
+        <Object Name="FUN_Build_String_20" ObjectId="0ff5e140-f592-4251-bc0c-abf8776bbc08" />
+        <Object Name="FUN_Build_String_30" ObjectId="8abaf795-2260-43eb-983e-0805607bc31f" />
+        <Object Name="FUN_Concat_String_100" ObjectId="a620f81c-99fc-492a-8bfc-f578dc8689ca" />
+        <Object Name="FUN_CutString" ObjectId="4142e431-f4b9-4c79-b601-90a05da72869" />
+        <Object Name="FB_CutString" ObjectId="6035d3b5-5f22-4e61-ae08-6117120a6c7e" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

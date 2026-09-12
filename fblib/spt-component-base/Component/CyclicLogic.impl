@@ -1,0 +1,16 @@
+IF NOT _InitComplete THEN
+    _InitComplete := Initialize();
+    RETURN;
+END_IF
+
+// 组件自己的周期逻辑写在 SUPER 之前
+// ...
+
+SUPER^.CyclicLogic();
+
+// ↓↓↓ 下面这段必须在 SUPER 之后 ↓↓↓
+// SUPER^.CyclicLogic() 里会调 Monitoring()，Monitoring 又把严重度复位成 Verbose，
+// 所以取最高严重度只能放在它后面，否则每周期都被冲掉。
+_CurrentAlarmSeverity := F_GetMaxSeverityRaised(Alarms         := Alarms,
+                                                CurrentSeverity := _CurrentAlarmSeverity);
+_Error := _CurrentAlarmSeverity >= TcEventSeverity.Error;

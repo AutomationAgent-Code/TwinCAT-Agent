@@ -1,0 +1,2 @@
+// 多周期初始化：注册组件 → 调基类 → 返回 TRUE
+METHOD PROTECTED Initialize : BOOL

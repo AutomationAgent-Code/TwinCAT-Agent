@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">TwinCAT Agent</title>
+  <defs>
+    <linearGradient id="red" x1="22" y1="16" x2="105" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff1b11"/>
+      <stop offset="1" stop-color="#c61f18"/>
+    </linearGradient>
+  </defs>
+  <path d="M35 18h17l7 8H36L19 43v21l7 7v23l15 15h15l8 6 8-6h15l15-15V71l7-7V43L92 26H69l7-8h17l25 25v27l-8 8v20l-21 21H75l-11 8-11-8H38L17 98V78l-8-8V43Z" fill="url(#red)"/>
+  <path d="M35 37h58v17H72v48l-8 6-8-6V54H35Z" fill="#fff" stroke="#d9271e" stroke-width="3" stroke-linejoin="miter" paint-order="stroke fill"/>
+  <g fill="none" stroke="url(#red)" stroke-width="6" stroke-linecap="square">
+    <path d="M56 66H45l-8-8h-7"/><path d="M72 66h11l8-8h7"/>
+    <path d="M56 78H30"/><path d="M72 78h26"/>
+    <path d="M56 90H45l-8 8h-7"/><path d="M72 90h11l8 8h7"/>
+  </g>
+  <g fill="#fff" stroke="url(#red)" stroke-width="6">
+    <circle cx="29" cy="58" r="5"/><circle cx="99" cy="58" r="5"/>
+    <circle cx="29" cy="78" r="5"/><circle cx="99" cy="78" r="5"/>
+    <circle cx="29" cy="98" r="5"/><circle cx="99" cy="98" r="5"/>
+  </g>
+  <path d="M64 1c2 10 4 12 14 14-10 2-12 4-14 14-2-10-4-12-14-14C60 13 62 11 64 1Z" fill="#fff" stroke="#ef2d22" stroke-width="2"/>
+</svg>

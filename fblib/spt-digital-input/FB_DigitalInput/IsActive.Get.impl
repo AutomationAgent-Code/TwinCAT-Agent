@@ -1,0 +1,5 @@
+IF __ISVALIDREF(_Input) THEN
+    IsActive := _Input;
+ELSE
+    IsActive := FALSE;
+END_IF

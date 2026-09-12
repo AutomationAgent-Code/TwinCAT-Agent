@@ -1,0 +1,13 @@
+CASE SequenceState OF
+    0:
+        NoStateTasksToComplete := FALSE;
+        SequenceState          := SequenceState + 10;
+
+    10:
+        SequenceState := SequenceState + 10;
+
+    20:
+        StateTasksComplete := TRUE;
+END_CASE
+
+SUPER^.Stopping();

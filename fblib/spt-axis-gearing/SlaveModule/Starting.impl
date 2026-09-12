@@ -1,0 +1,51 @@
+CASE _CommandedMode OF
+    E_PMLUnitMode.Production:
+        CASE SequenceState OF
+            0:
+                NoStateTasksToComplete := FALSE;
+                SequenceState          := SequenceState + 10;
+
+            10:
+                IF {{SLAVE_VAR}}.Enable() THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            20:
+                IF {{SLAVE_VAR}}.Enabled THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            30:
+                IF {{SLAVE_VAR}}.MoveAbsolute(0, 0) THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            40:
+                IF NOT {{SLAVE_VAR}}.Busy AND NOT {{SLAVE_VAR}}.Error THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            50: // 确认主轴可用且在起点，再耦合
+                IF {{SLAVE_VAR}}.Master1.Status.Operational THEN
+                    IF {{SLAVE_VAR}}.Master1.NcToPlc.ActPos = 0.0 THEN
+                        SequenceState := SequenceState + 10;
+                    END_IF
+                END_IF
+
+            60:
+                {{SLAVE_VAR}}.RatioMaster1 := {{GEAR_RATIO}};
+                IF {{SLAVE_VAR}}.GearIn() THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            70:
+                IF {{SLAVE_VAR}}.InGear THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            80:
+                StateTasksComplete := TRUE;
+        END_CASE
+END_CASE
+
+SUPER^.Starting();

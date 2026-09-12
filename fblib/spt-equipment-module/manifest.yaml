@@ -1,0 +1,40 @@
+name: 设备模块骨架 (SPT)
+slug: spt-equipment-module
+category: framework
+family: spt-framework
+style: spt
+archetype: oop
+format: text
+rank: 2
+description: SPT 设备模块（EM）骨架 —— 完整的 Acting/Wait 状态方法分工 + 组件注册 + 组件报警监视位；机器的一个工段就用它
+use_when: 要给机器加一个工段/站（进料、加工、出料），或需要一个能独立跑状态机的模块
+keywords: [设备模块, 工段, 站, 模块, 子模块, 状态方法,
+           equipment, module, submodule, em, station, infeed, outfeed]
+version: "1.0"
+libraries: [SPT Base Types, Tc3_PackML_V3]
+requires: []
+params:
+  - {name: MODULE_NAME, default: EquipmentModule, desc: 设备模块 FB 名}
+notes: |
+  只保留了最常用的状态方法。要点：
+  - Acting 态（Resetting/Starting/Execute/Completing/Stopping/Aborting）末尾调 SUPER^，
+    由基类替你 StateComplete() 并把命令传给下层。
+  - Wait 态（Idle/Stopped/Held…）基类是空的，要写就自己加方法，不用调 SUPER。
+  - **想让本模块脱离上级独立跑状态机，就是不调 SUPER^.<State>()。**
+  - 组件在 Initialize() step 0 里 RegisterComponent，之后组件报警会自动经
+    ComponentMonitor 按严重度反应表驱动本模块状态机，不用自己轮询。
+objects:
+  - name: "{{MODULE_NAME}}"
+    file: EquipmentModule
+    kind: fb
+    members:
+      - {name: CyclicLogic,    kind: method, return_type: ""}
+      - {name: Initialize,     kind: method, return_type: BOOL}
+      - {name: Resetting,      kind: method, return_type: ""}
+      - {name: Starting,       kind: method, return_type: ""}
+      - {name: Execute,        kind: method, return_type: ""}
+      - {name: Completing,     kind: method, return_type: ""}
+      - {name: Stopping,       kind: method, return_type: ""}
+      - {name: Aborting,       kind: method, return_type: ""}
+      - {name: Idle,           kind: method, return_type: ""}
+      - {name: HMIPermissions, kind: method, return_type: ""}

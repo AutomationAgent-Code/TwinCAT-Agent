@@ -1,0 +1,4 @@
+PROGRAM MAIN
+VAR
+    {{MACHINE_NAME}} : {{MACHINE_NAME}} := (Name := '{{MACHINE_LABEL}}');
+END_VAR

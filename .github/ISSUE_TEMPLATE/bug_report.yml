@@ -1,0 +1,108 @@
+name: Bug report
+description: Report a reproducible TwinCAT Agent defect with evidence and recovery status.
+title: "[Bug][P2] "
+labels:
+  - bug
+body:
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: Select the highest impact that is currently observable.
+      options:
+        - "P0 - Safety, security, or production-wide outage; no safe workaround"
+        - "P1 - Core workflow blocked or data integrity at risk; workaround is inadequate"
+        - "P2 - Major degradation with a practical workaround"
+        - "P3 - Minor, cosmetic, documentation, or low-frequency issue"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary and impact
+      description: What failed, who is affected, and what engineering or production impact resulted?
+      placeholder: One concise paragraph. Do not include API keys, licenses, customer projects, or other secrets.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include enough detail to reproduce the issue without exposing confidential data.
+      value: |
+        - TwinCAT Agent version:
+        - TwinCAT build (for example 3.1.4024.x or 3.1.4026.x):
+        - XAE shell / Visual Studio version and bitness:
+        - Windows version:
+        - Python version (if CLI/backend related):
+        - Target controller / architecture:
+        - Installation type (installer, wheel, source):
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Open ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_actual
+    attributes:
+      label: Expected and actual result
+      placeholder: |
+        Expected:
+        Actual:
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Attach sanitized logs, screenshots, error-list output, timestamps, or a minimal project. Redact credentials, license data, System IDs, routes, and customer code.
+      placeholder: Drag files here or paste a sanitized excerpt. Include the exact error text where possible.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: Reproducibility
+      options:
+        - Every time
+        - Intermittent
+        - Once
+        - Not yet reproduced
+    validations:
+      required: true
+
+  - type: textarea
+    id: recovery
+    attributes:
+      label: Recovery and current state
+      description: Record workaround attempts, whether PLC/XAE/runtime state was restored, and any remaining risk.
+      placeholder: |
+        - Recovery actions attempted:
+        - Current XAE / PLC / runtime state:
+        - Workaround available:
+        - Data or configuration requiring validation:
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety and privacy confirmation
+      options:
+        - label: I have removed credentials, private keys, license files, customer code, and personally identifiable information.
+          required: true
+        - label: I have stated whether the controller/runtime was returned to a known safe state.
+          required: true

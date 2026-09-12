@@ -1,0 +1,18 @@
+Initialize := FALSE;
+CASE DescendantSequenceState OF
+    0:
+        RegisterComponent(Component := {{SLAVE_VAR}});
+        DescendantSequenceState := DescendantSequenceState + 10;
+
+    10:
+        IF SUPER^.Initialize() THEN
+            // 组件初始化完成后才能挂主轴引用，且要确认引用有效
+            IF __ISVALIDREF(_MasterRef) THEN
+                {{SLAVE_VAR}}.Master1   REF= _MasterRef;
+                DescendantSequenceState := DescendantSequenceState + 10;
+            END_IF
+        END_IF
+
+    20:
+        Initialize := TRUE;
+END_CASE

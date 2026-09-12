@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.60" creationDateTime="2026-08-05T00:25:24.0474261" />
+  <contentHeader name="PLC" modificationDateTime="2026-08-05T00:25:24.0474261">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous>
+      <pou name="FB_StepTimeOUT_For_FBs" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="iStep">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="sStepStatus">
+              <type>
+                <string />
+              </type>
+            </variable>
+            <variable name="tTimeOut">
+              <type>
+                <TIME />
+              </type>
+              <initialValue>
+                <simpleValue value="TIME#5s0ms" />
+              </initialValue>
+            </variable>
+            <variable name="bEnable">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bResetERROR">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="arrExceptions">
+              <type>
+                <array>
+                  <dimension lower="0" upper="20" />
+                  <baseType>
+                    <UINT />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepTimeOUT_For_FBs
+VAR_INPUT	
+	iStep						:UINT;
+	sStepStatus					:STRING;
+	tTimeOut					:TIME:=	T#5S;		
+	bEnable						:BOOL;	
+	bResetERROR					:BOOL;
+	arrExceptions				:ARRAY[0..20] OF UINT;		
+END_VAR
+VAR_OUTPUT	
+	bERROR						:BOOL;
+	sERROR						:STRING(255);
+END_VAR
+VAR
+	iStepArchive				:UINT;		
+	bStartTimer					:BOOL;		
+	i							:UINT;		
+	bException					:BOOL;			
+	tonTimeOut					:TON;
+	sStepTimeOutERROR_Temp		:STRING[255]:='Step Timeout ERROR';
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </inputVars>
+          <outputVars>
+            <variable name="bERROR">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="sERROR">
+              <type>
+                <string length="255" />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepTimeOUT_For_FBs
+VAR_INPUT	
+	iStep						:UINT;
+	sStepStatus					:STRING;
+	tTimeOut					:TIME:=	T#5S;		
+	bEnable						:BOOL;	
+	bResetERROR					:BOOL;
+	arrExceptions				:ARRAY[0..20] OF UINT;		
+END_VAR
+VAR_OUTPUT	
+	bERROR						:BOOL;
+	sERROR						:STRING(255);
+END_VAR
+VAR
+	iStepArchive				:UINT;		
+	bStartTimer					:BOOL;		
+	i							:UINT;		
+	bException					:BOOL;			
+	tonTimeOut					:TON;
+	sStepTimeOutERROR_Temp		:STRING[255]:='Step Timeout ERROR';
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </outputVars>
+          <localVars>
+            <variable name="iStepArchive">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="bStartTimer">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="i">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="bException">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="tonTimeOut">
+              <type>
+                <derived name="TON" />
+              </type>
+            </variable>
+            <variable name="sStepTimeOutERROR_Temp">
+              <type>
+                <string length="255" />
+              </type>
+              <initialValue>
+                <simpleValue value="'Step Timeout ERROR'" />
+              </initialValue>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepTimeOUT_For_FBs
+VAR_INPUT	
+	iStep						:UINT;
+	sStepStatus					:STRING;
+	tTimeOut					:TIME:=	T#5S;		
+	bEnable						:BOOL;	
+	bResetERROR					:BOOL;
+	arrExceptions				:ARRAY[0..20] OF UINT;		
+END_VAR
+VAR_OUTPUT	
+	bERROR						:BOOL;
+	sERROR						:STRING(255);
+END_VAR
+VAR
+	iStepArchive				:UINT;		
+	bStartTimer					:BOOL;		
+	i							:UINT;		
+	bException					:BOOL;			
+	tonTimeOut					:TON;
+	sStepTimeOutERROR_Temp		:STRING[255]:='Step Timeout ERROR';
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">IF bEnable THEN
+    
+    IF NOT  bERROR THEN
+        // Exception?
+        bException := FALSE;
+        i := 0;
+        FOR i := 0 TO 20 DO
+            IF arrExceptions[i] = iStep THEN // ha tömb egyetlen eleme megegyezik az aktuális lépéssel akkor az kivétel
+                bException := TRUE;
+            END_IF;
+        END_FOR;
+       
+        
+        // NEW Step???
+        IF iStep &lt;&gt; iStepArchive THEN
+            iStepArchive := iStep;
+            bStartTimer := FALSE;
+        ELSIF NOT bException THEN
+            bStartTimer := TRUE;
+        END_IF;
+        
+    END_IF;
+	
+    // Start TimeOut
+    tonTimeOut(IN := bStartTimer,
+                    PT :=tTimeOut);
+    
+    //TimeOut ERROR
+    IF tonTimeOut.Q THEN
+        bERROR := TRUE;
+        sERROR := CONCAT(sStepTimeOutERROR_Temp,CONCAT('  STEP: ' ,CONCAT(INT_TO_STRING(iStep),CONCAT(': ',sStepStatus))));
+        bStartTimer := FALSE;
+    END_IF;
+END_IF;
+
+  // RESET ERROR
+IF bResetERROR
+    OR NOT bEnable THEN
+   		bERROR := FALSE;
+     	sERROR := '';
+    	iStepArchive := 0;
+END_IF;
+
+bERROR;
+sERROR;
+arrExceptions[0];
+arrExceptions[1];
+arrExceptions[2];
+arrExceptions[3];
+arrExceptions[4];
+arrExceptions[5];
+arrExceptions[6];
+arrExceptions[7];
+arrExceptions[8];
+arrExceptions[9];
+arrExceptions[10];
+arrExceptions[11];
+arrExceptions[12];
+arrExceptions[13];
+arrExceptions[14];
+arrExceptions[15];
+arrExceptions[16];
+arrExceptions[17];
+arrExceptions[18];
+arrExceptions[19];
+arrExceptions[20];
+
+
+
+
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_StepTimeOUT_For_FBs
+VAR_INPUT	
+	iStep						:UINT;
+	sStepStatus					:STRING;
+	tTimeOut					:TIME:=	T#5S;		
+	bEnable						:BOOL;	
+	bResetERROR					:BOOL;
+	arrExceptions				:ARRAY[0..20] OF UINT;		
+END_VAR
+VAR_OUTPUT	
+	bERROR						:BOOL;
+	sERROR						:STRING(255);
+END_VAR
+VAR
+	iStepArchive				:UINT;		
+	bStartTimer					:BOOL;		
+	i							:UINT;		
+	bException					:BOOL;			
+	tonTimeOut					:TON;
+	sStepTimeOutERROR_Temp		:STRING[255]:='Step Timeout ERROR';
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>5c1e585e-b90c-45a5-ae10-85219aee1a71</ObjectId>
+          </data>
+        </addData>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="FB_StepTimeOUT_For_FBs" ObjectId="5c1e585e-b90c-45a5-ae10-85219aee1a71" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

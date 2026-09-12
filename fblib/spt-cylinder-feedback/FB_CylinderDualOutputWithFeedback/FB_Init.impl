@@ -1,0 +1,24 @@
+IF ExtendOutput = 0 THEN
+    THIS^.ExtendOutput := NullExtendOutput;
+ELSE
+    THIS^.ExtendOutput := ExtendOutput;
+END_IF
+
+IF RetractOutput = 0 THEN
+    THIS^.RetractOutput := NullRetractOutput;
+ELSE
+    THIS^.RetractOutput := RetractOutput;
+END_IF
+
+IF ExtendSensor = 0 THEN
+    THIS^.ExtendSensor := NullExtendSensor;
+ELSE
+    THIS^.ExtendSensor := ExtendSensor;
+END_IF
+
+IF RetractSensor = 0 THEN
+    THIS^.RetractSensor := NullRetractSensor;
+ELSE
+    THIS^.RetractSensor := RetractSensor;
+END_IF
+FB_Init := TRUE;

@@ -1,0 +1,17 @@
+name: FB_TcpIpSend
+slug: tcpip-send
+category: communication
+archetype: transaction
+format: text
+description: TCP/IP 发送事务，封装 FB_SocketSend，统一完成/忙/错误状态
+family: standalone
+style: default
+rank: 12
+use_when: 已有 TCP socket，需要发送一段字节缓冲区
+keywords: [tcp, socket, 发送, 发报文, send, tx, ethernet]
+version: "1.0"
+libraries: [Tc2_TcpIp]
+companions: [E_TcpIpSendState]
+methods: []
+params:
+  - {name: TIMEOUT, default: "T#5S", desc: 单次发送超时}

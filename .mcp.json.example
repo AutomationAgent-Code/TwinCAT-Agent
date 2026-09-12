@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "knowledge-base": {
+      "type": "http",
+      "url": "http://localhost:9382/mcp",
+      "headers": {
+        "api_key": "YOUR_RAGFLOW_API_KEY"
+      }
+    },
+    "ba-docsearch": {
+      "command": "C:\\Users\\Aurora Home Office\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "args": [
+        "-m",
+        "ba_docsearch.server"
+      ],
+      "env": {
+        "PYTHONPATH": "G:\\claude\\Beckhoff Agent\\ba-docsearch",
+        "PYTHONIOENCODING": "utf-8",
+        "BA_DOCS_ROOT": "G:\\claude\\Beckhoff Agent\\Knowledge base",
+        "BA_DOCS_DB": "G:\\claude\\Beckhoff Agent\\ba-docsearch\\index.db"
+      }
+    },
+    "tc-mcp": {
+      "command": "C:\\Users\\Aurora Home Office\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "args": [
+        "-m",
+        "tc_template.mcp_server"
+      ],
+      "env": {
+        "PYTHONPATH": "G:\\claude\\twin-cat-agent",
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}

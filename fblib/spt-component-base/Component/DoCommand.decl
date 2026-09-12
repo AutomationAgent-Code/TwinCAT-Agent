@@ -1,0 +1,2 @@
+// 命令方法样板。返回值 = 是否被接受（忙就拒），不是完成
+METHOD PUBLIC DoCommand : BOOL

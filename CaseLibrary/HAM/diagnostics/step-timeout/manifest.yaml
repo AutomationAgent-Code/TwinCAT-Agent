@@ -1,0 +1,13 @@
+id: ham.diagnostics.step-timeout
+name: HAM Step Timeout Monitor
+version: "1.0.0"
+publisher: HAM
+category: diagnostics
+subcategory: sequence
+type: plcopen
+entry: HAM_StepTimeout.xml
+maturity: reusable
+description: 监视步骤切换时间，支持步骤例外表和错误文本
+objects: [FB_StepTimeOUT_For_FBs]
+libraries: [Tc2_Standard]
+keywords: [HAM, step, timeout, sequence, diagnostics]

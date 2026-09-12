@@ -1,0 +1,21 @@
+CASE SequenceStep OF
+    10:
+        IF _Axis <> 0 THEN
+            _McHome(Axis       := _Axis.Axis,
+                    Execute    := TRUE,
+                    Position   := _Position,
+                    HomingMode := MC_HomingMode.MC_DefaultHoming,
+                    Options    := _Options);
+
+            IF NOT _McHome.Busy THEN
+                IF _McHome.Error THEN
+                    _Error   := TRUE;
+                    _ErrorID := _McHome.ErrorID;
+                END_IF
+                SequenceStep := 0;
+                _McHome(Axis := _Axis.Axis, Execute := FALSE);   // 复位使能沿
+            END_IF
+        END_IF
+END_CASE
+
+_Busy := SequenceStep <> 0;

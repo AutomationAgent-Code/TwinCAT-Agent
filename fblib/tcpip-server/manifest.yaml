@@ -1,0 +1,19 @@
+name: FB_TcpIpServer
+slug: tcpip-server
+category: communication
+archetype: cyclic
+format: text
+description: 单客户端 TCP/IP 服务端连接管理，封装服务句柄初始化和连接接受
+family: standalone
+style: default
+rank: 11
+use_when: PLC 监听本地 TCP 端口并接受一个客户端连接
+keywords: [tcp, socket, 服务端, 服务器, 监听, server, listen, accept, ethernet]
+version: "1.0"
+libraries: [Tc2_TcpIp]
+companions: []
+methods: []
+params:
+  - {name: LOCAL_HOST, default: "''", desc: 本地监听 IPv4，空字符串表示所有本地接口}
+  - {name: LOCAL_PORT, default: "2000", desc: 本地监听端口}
+  - {name: RECONNECT, default: "T#1S", desc: 接受连接的轮询周期}

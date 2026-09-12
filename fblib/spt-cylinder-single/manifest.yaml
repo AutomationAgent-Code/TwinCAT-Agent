@@ -1,0 +1,28 @@
+name: FB_CylinderSingleOutput
+slug: spt-cylinder-single
+category: device
+archetype: oop
+format: text
+description: 单电磁阀气缸组件（SPT SOLID 范式）—— 弹簧复位型，一个输出控制伸出；依赖 I_DigitalOutput 抽象，内置空对象防未注入崩溃
+family: standalone
+style: default
+rank: 15
+use_when: 单电磁阀（弹簧复位）气缸
+keywords: [气缸, 汽缸, 单阀, 弹簧复位, cylinder, single, solenoid]
+version: "1.0"
+libraries: []
+requires: [spt-digital-output]
+objects:
+  - name: I_Cylinder
+    kind: interface
+    members:
+      - {name: Extend,  kind: method}
+      - {name: Retract, kind: method}
+
+  - name: FB_CylinderSingleOutput
+    kind: fb
+    members:
+      - {name: FB_Init, kind: method}
+      - {name: Extend,  kind: method}
+      - {name: Retract, kind: method}
+params: []

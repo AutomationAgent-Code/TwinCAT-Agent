@@ -1,0 +1,7 @@
+(*
+ * 功能：带位置反馈的气缸契约 —— 在 I_Cylinder 之上增加到位检测
+ * 来源：SPT Libraries / SOLID Components / Cylinder / Dual Output with Sensor Feedback
+ * 说明：用【扩展接口】而不是往 I_Cylinder 里加属性 —— 后者会迫使所有既有实现
+ *       都得实现反馈，破坏开闭原则(OCP)与接口隔离原则(ISP)。
+ *)
+INTERFACE I_CylinderWithFeedback EXTENDS I_Cylinder

@@ -1,0 +1,18 @@
+(*
+ * 功能：运动命令基类 —— 收敛所有命令共有的轴引用、执行标志与结果状态
+ * 作者：fblib / 版本：2.1
+ * 说明：抽象基类，不直接使用。派生类重写 Cyclic()，在其中驱动自己的 MC 功能块，
+ *       并在动作结束时调 Finish() 落结果。
+ *       ⚠ Cyclic() 由控制器【每周期】调用（无论本命令是否活动）—— MC 功能块
+ *       必须被周期性调用才能推进内部状态机并释放轴。
+ *)
+FUNCTION_BLOCK FB_MotionCommandBase IMPLEMENTS I_MotionCommand
+VAR
+    _refAxis   : REFERENCE TO AXIS_REF;   // 由 Init 绑定
+    _bReady    : BOOL;                    // 已绑定轴
+    _bExecute  : BOOL;                    // 传给 MC 块的 Execute
+    _bDone     : BOOL;
+    _bError    : BOOL;
+    _nErrId    : UDINT;
+    _bFinished : BOOL;                    // 本命令已结束（供控制器轮询）
+END_VAR

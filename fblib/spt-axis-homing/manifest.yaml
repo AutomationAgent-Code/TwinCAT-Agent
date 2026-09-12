@@ -1,0 +1,45 @@
+name: 轴回零模块 (SPT)
+slug: spt-axis-homing
+category: motion
+family: spt-framework
+style: spt
+archetype: oop
+format: text
+rank: 2
+description: SPT 回零 —— 四种库内置回零策略（绝对值/硬限位/置位/校准凸轮）任选，外加一个自定义 I_MotionSequence 回零例程模板
+use_when: 轴需要回零/找原点，或库自带回零满足不了要自己写回零序列
+keywords: [回零, 找零, 归零, 原点, 参考点, 校准, 限位, home, homing, reference, calibration]
+version: "1.0"
+libraries: [SPT Base Types, SPT Components, SPT MotionControl, Tc2_MC2, Tc3_PackML_V3]
+requires: []
+params:
+  - {name: MODULE_NAME, default: HomingModule, desc: 设备模块 FB 名}
+  - {name: AXIS_VAR,    default: HAxis,        desc: 轴组件实例变量名}
+  - {name: AXIS_LABEL,  default: Homing Axis,  desc: 轴显示名}
+  - {name: ROUTINE_NAME, default: FB_HomeRoutine_Custom, desc: 自定义回零例程 FB 名}
+  - {name: HOME_POS,    default: "0.0",        desc: 回零后写入的位置}
+notes: |
+  用法：先给 {{AXIS_VAR}}.HomeMethod 赋一个回零策略实例，再调 {{AXIS_VAR}}.Home()。
+  库自带四个：FB_HomeRoutine_AbsHoming / _HardStop / _SetPosition / _CalibrationCam。
+  自定义回零就用本模板带的 {{ROUTINE_NAME}}（IMPLEMENTS I_MotionSequence）改里面的
+  CyclicLogic —— 那才是真正跑 MC 块的地方，Execute() 只负责接命令并起序列。
+  MC 块必须每周期调用，所以逻辑放 CyclicLogic 而不是 Execute。
+objects:
+  - name: "{{ROUTINE_NAME}}"
+    file: FB_HomeRoutine_Custom
+    kind: fb
+    members:
+      - {name: Execute,     kind: method,   return_type: BOOL}
+      - {name: CyclicLogic, kind: method,   return_type: ""}
+      - {name: Axis,        kind: property, return_type: I_BasicAxis,      accessors: [Get, Set]}
+      - {name: Position,    kind: property, return_type: LREAL,            accessors: [Get, Set]}
+      - {name: Options,     kind: property, return_type: ST_HomingOptions, accessors: [Get, Set]}
+  - name: "{{MODULE_NAME}}"
+    file: HomingModule
+    kind: fb
+    members:
+      - {name: CyclicLogic,    kind: method, return_type: ""}
+      - {name: Initialize,     kind: method, return_type: BOOL}
+      - {name: Starting,       kind: method, return_type: ""}
+      - {name: Execute,        kind: method, return_type: ""}
+      - {name: HMIPermissions, kind: method, return_type: ""}

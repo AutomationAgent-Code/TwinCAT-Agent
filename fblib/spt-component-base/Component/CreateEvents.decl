@@ -1,0 +1,2 @@
+// 把 tmc 里的事件类绑到本组件的 Alarms 数组上。由 Initialize() 调用
+METHOD PROTECTED CreateEvents

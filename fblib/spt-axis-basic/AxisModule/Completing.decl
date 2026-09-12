@@ -1,0 +1,2 @@
+// Acting 态：收到 Complete 命令后收尾停轴
+METHOD PROTECTED Completing

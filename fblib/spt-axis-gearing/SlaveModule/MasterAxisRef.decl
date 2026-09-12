@@ -1,0 +1,2 @@
+// 主轴注入口。上层：从轴.MasterAxisRef REF= 主轴.AxisRef;
+PROPERTY MasterAxisRef : REFERENCE TO AXIS_REF

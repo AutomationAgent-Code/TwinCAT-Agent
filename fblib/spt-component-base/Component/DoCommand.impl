@@ -1,0 +1,10 @@
+IF _Busy THEN
+    Trace('DoCommand rejected, component busy');
+    RETURN;                         // 返回 FALSE
+END_IF
+
+// ... 起动作 ...
+// 需要跨周期就在这里置 _Busy := TRUE，由 CyclicLogic 推进到完成后清零；
+// 一拍就能做完的动作则保持 _Busy := FALSE。
+
+DoCommand := TRUE;

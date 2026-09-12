@@ -1,0 +1,2 @@
+METHOD Reset : BOOL
+(* 清除错误 *)

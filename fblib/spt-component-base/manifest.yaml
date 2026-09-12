@@ -1,0 +1,46 @@
+name: 组件骨架 + 报警 + HMI (SPT)
+slug: spt-component-base
+category: framework
+family: spt-framework
+style: spt
+archetype: oop
+format: text
+rank: 3
+description: SPT 组件骨架（EXTENDS FB_ComponentBase）—— 命令契约、tmc 事件类报警（CreateEvents/Monitoring/Reset）、HMI 三段式 Config/Command/Status 全套
+use_when: 要把一个设备/第三方库/外部接口封装成能接 SPT 框架的组件（带报警和 HMI）
+keywords: [组件, 封装, 报警, 告警, 事件, 严重度, hmi, 三段式,
+           component, alarm, event, tmc, severity, wrap, monitoring]
+version: "1.0"
+libraries: [SPT Base Types, SPT Event Logger, Tc3_EventLogger]
+requires: []
+params:
+  - {name: COMP_NAME,   default: MyComponent,   desc: 组件 FB 名}
+  - {name: EVENT_CLASS, default: ComponentEvents, desc: tmc 里事件类的名字（PLC 里用 TC_EVENTS.<它>）}
+  - {name: ALARM_COUNT, default: "5",           desc: 报警数量（要与 tmc 里事件数对上，不含 InitReferenceEvent）}
+notes: |
+  ⚠️ 落地后必须手工做 tmc（COM 建不了事件类，只能在 XAE 的 Type System 里做）：
+  1. System → Type System → 右键 Add New Item，存到项目下 tmcFiles/ 目录，命名 {{EVENT_CLASS}}。
+  2. 右键该项 → Edit Project File → Data Types 右键 Add new event class，改名 {{EVENT_CLASS}}。
+  3. Events 里**第一个事件必须叫 InitReferenceEvent，Pos 0 / Id 1，Severity=Verbose**。
+     后面按 {{ALARM_COUNT}} 个补自己的报警，Display Text 写清楚。
+  4. 名字里**不能有空格**（输入框变红就是），存了会污染 TC_EVENTS/TC_EVENTS_CLASSES，得手工删。
+  5. 关掉编辑器保存 → 双击 tmc → Event Classes 页勾上第一列的复选框 → Rebuild。
+
+  代码上的三个死规矩：
+  - Monitoring() 里 raise 前先查 .bRaised，否则每周期刷一条，能把 ADS 打满。
+  - Monitoring() 必须调 SUPER^ —— 它把 _CurrentAlarmSeverity 复位成 Verbose，
+    不复位就会永远卡在历史最高级，报警清不掉。
+  - CyclicLogic() 里算严重度的代码必须在 SUPER^.CyclicLogic() **之后**。
+objects:
+  - name: "{{COMP_NAME}}"
+    file: Component
+    kind: fb
+    members:
+      - {name: CyclicLogic,       kind: method, return_type: ""}
+      - {name: Initialize,        kind: method, return_type: BOOL}
+      - {name: CreateEvents,      kind: method, return_type: ""}
+      - {name: Monitoring,        kind: method, return_type: ""}
+      - {name: RaiseAlarm2Args,   kind: method, return_type: ""}
+      - {name: Reset,             kind: method, return_type: BOOL}
+      - {name: HMICommunication,  kind: method, return_type: ""}
+      - {name: DoCommand,         kind: method, return_type: BOOL}

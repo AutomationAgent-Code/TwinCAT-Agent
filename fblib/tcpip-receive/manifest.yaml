@@ -1,0 +1,17 @@
+name: FB_TcpIpReceive
+slug: tcpip-receive
+category: communication
+archetype: transaction
+format: text
+description: TCP/IP 单次轮询接收事务，返回本次收到的字节数
+family: standalone
+style: default
+rank: 13
+use_when: 已有 TCP socket，需要轮询接收字节到调用方缓冲区
+keywords: [tcp, socket, 接收, 收报文, receive, rx, polling, ethernet]
+version: "1.0"
+libraries: [Tc2_TcpIp]
+companions: [E_TcpIpReceiveState]
+methods: []
+params:
+  - {name: TIMEOUT, default: "T#5S", desc: 单次接收命令超时}

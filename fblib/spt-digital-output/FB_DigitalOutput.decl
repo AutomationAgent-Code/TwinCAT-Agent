@@ -1,0 +1,12 @@
+(*
+ * 功能：数字量输出组件 —— 把一个硬件 BOOL 输出包成对象
+ * 来源：SPT Libraries / SOLID Components / Digital Output
+ * 说明：硬件变量经 FB_Init 以 REFERENCE 注入（依赖注入），实例化写法：
+ *         bValveVar AT %Q* : BOOL;
+ *         fbValve   : FB_DigitalOutput(Output := bValveVar);
+ *       ⚠ 被注入的硬件变量必须【先于】本组件声明。
+ *)
+FUNCTION_BLOCK FB_DigitalOutput IMPLEMENTS I_DigitalOutput
+VAR
+    _Output : REFERENCE TO BOOL;   // 注入的硬件输出
+END_VAR

@@ -1,0 +1,9 @@
+Start := FALSE;
+IF _bReady THEN
+    _bDone     := FALSE;
+    _bError    := FALSE;
+    _nErrId    := 0;
+    _bFinished := FALSE;
+    _bExecute  := TRUE;
+    Start      := TRUE;
+END_IF

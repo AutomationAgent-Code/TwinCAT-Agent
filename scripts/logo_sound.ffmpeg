@@ -1,0 +1,10 @@
+sine=frequency=52:sample_rate=48000:duration=6,volume=0.055,afade=t=in:st=0:d=0.5,afade=t=out:st=4.8:d=1.2[hum];
+anoisesrc=color=pink:sample_rate=48000:duration=1.65,highpass=f=450,lowpass=f=4200,volume=0.07,afade=t=in:st=0:d=0.18,afade=t=out:st=0.65:d=1.0,adelay=220|220[scan];
+aevalsrc=0.10*sin(2*PI*(115*t+105*t*t))*exp(-1.15*t):s=48000:d=2.0,adelay=680|680[servo];
+sine=frequency=1180:sample_rate=48000:duration=0.045,volume=0.16,afade=t=out:st=0.012:d=0.033,adelay=1450|1450[click1];
+sine=frequency=1320:sample_rate=48000:duration=0.045,volume=0.14,afade=t=out:st=0.012:d=0.033,adelay=1670|1670[click2];
+sine=frequency=1480:sample_rate=48000:duration=0.055,volume=0.13,afade=t=out:st=0.015:d=0.040,adelay=1890|1890[click3];
+sine=frequency=880:sample_rate=48000:duration=0.72,volume=0.10,afade=t=in:st=0:d=0.02,afade=t=out:st=0.08:d=0.64,adelay=3780|3780[chime1];
+sine=frequency=1320:sample_rate=48000:duration=0.62,volume=0.065,afade=t=in:st=0:d=0.02,afade=t=out:st=0.06:d=0.56,adelay=3840|3840[chime2];
+sine=frequency=68:sample_rate=48000:duration=0.52,volume=0.24,afade=t=out:st=0.04:d=0.48,adelay=3600|3600[lock];
+[hum][scan][servo][click1][click2][click3][chime1][chime2][lock]amix=inputs=9:duration=longest:normalize=0,acompressor=threshold=0.16:ratio=3:attack=8:release=160,alimiter=limit=0.82,apad=pad_dur=6,atrim=duration=6[out]

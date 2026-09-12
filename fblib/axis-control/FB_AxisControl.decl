@@ -1,0 +1,41 @@
+(*
+ * 功能：单轴控制器（Tc2_MC2，命令模式）—— 只负责使能与命令调度
+ * 作者：fblib / 版本：2.1
+ * 说明：具体运动逻辑在各 I_MotionCommand 实现类里（FB_MoveAbsoluteCmd 等）。
+ *       本类持有命令数组并【每周期】驱动全部命令（MC 功能块必须周期调用），
+ *       同时只对当前活动命令 _iActive 判定结果。
+ *       新增运动方式：新写一个实现类 + 在 Init 里注册进数组即可。
+ *)
+FUNCTION_BLOCK FB_AxisControl IMPLEMENTS I_AxisControl
+VAR CONSTANT
+    CMD_COUNT     : INT := 3;             // 已注册的命令对象个数
+END_VAR
+VAR
+    _refAxis      : REFERENCE TO AXIS_REF;
+    _bInitialized : BOOL;
+
+    // 使能（控制器自身职责）
+    _fbPower      : MC_Power;
+    _bEnable      : BOOL := TRUE;
+
+    // 错误复位（轴级职责，非运动命令）
+    _fbReset      : MC_Reset;
+    _bReqReset    : BOOL;
+
+    // 命令对象（组合）
+    _fbMoveAbs    : FB_MoveAbsoluteCmd;
+    _fbHome       : FB_HomeCmd;
+    _fbStop       : FB_StopCmd;
+
+    // 全部命令的多态数组 —— 每周期统一驱动
+    _aCommands    : ARRAY[1..CMD_COUNT] OF I_MotionCommand;
+    _nIdx         : INT;
+
+    // 当前活动命令（多态引用，控制器不关心具体类型）
+    _iActive      : I_MotionCommand;
+
+    // 上一条命令的结果
+    _bDone        : BOOL;
+    _bError       : BOOL;
+    _nErrId       : UDINT;
+END_VAR

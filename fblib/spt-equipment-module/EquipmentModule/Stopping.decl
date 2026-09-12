@@ -1,0 +1,2 @@
+// Acting 态：操作员停机（受控停，允许把动作做完）
+METHOD PROTECTED Stopping

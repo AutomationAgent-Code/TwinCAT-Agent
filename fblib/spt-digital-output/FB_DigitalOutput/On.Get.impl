@@ -1,0 +1,5 @@
+IF __ISVALIDREF(_Output) THEN
+    On := _Output;
+ELSE
+    On := FALSE;
+END_IF

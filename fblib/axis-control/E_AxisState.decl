@@ -1,0 +1,12 @@
+{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_AxisState :
+(
+    Disabled := 0,   // 未使能
+    Idle,            // 已使能，待命
+    Homing,          // 回零中
+    Moving,          // 定位中
+    Stopping,        // 停止中
+    Error            // 出错，需 Reset() 复位
+) DINT;
+END_TYPE

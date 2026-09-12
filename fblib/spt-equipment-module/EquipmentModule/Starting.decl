@@ -1,0 +1,2 @@
+// Acting 态：起机准备（使能、上料、加压）
+METHOD PROTECTED Starting

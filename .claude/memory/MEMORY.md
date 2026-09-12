@@ -1,0 +1,16 @@
+- [会话范围与配置连续性事故](context-and-config-incident-20260907.md) — 用户明确要求记住：本对话不等于 XAE 对话；不得混用开发/安装后端导致模型配置切换；不以旧工程结论覆盖新会话
+- [config-mode-and-scanning](config-mode-and-scanning.md) — Config 模式切换、_is_config(7,15)、三级回退、空主站清理、SilentMode 时机
+- [iec-plc-programming-pitfalls](iec-plc-programming-pitfalls.md) — IEC 注释语法、TON 闪烁模式、UDINT 溢出、CiA 402 StatusWord
+- [build-platform-auto-detection](build-platform-auto-detection.md) — TIRS CPUType 检测、状态文件持久化、COM Activate 切换
+- [plc-project-creation-via-com](plc-project-creation-via-com.md) — COM 创建 PLC 项目/POU/GVL 的 SubType、vInfo 格式、代码写入优先级
+- [com-dynamic-dispatch-py314](com-dynamic-dispatch-py314.md) — Python 3.14 下 pywin32 早绑定崩溃，force_dynamic_dispatch 清 gen_py+is_readonly；LastBuildInfo 判编译
+- [pyautogui-removed-com-only](pyautogui-removed-com-only.md) — 写代码全走 COM，live_edit.py 已删；pyautogui 仅留给路由 GUI
+- [route-gui-no-mouse](route-gui-no-mouse.md) — TcAmsRemoteMgr GUI 用 BM_CLICK/WM_SETTEXT 替代 pyautogui，AttachThreadInput 强制窗口前置
+- [deploy-auto-online-verified](deploy-auto-online-verified.md) — deploy 全链路自动 online 带 pyads 验证，suppressUI 抑制弹窗，dismiss_dialogs 零鼠标
+- [library-management-via-com](library-management-via-com.md) — COM 库管理：lib-add/remove, placeholder-add/freeze, repo-add/remove, lib-install/uninstall
+- [twincat-agent-workflow-summary](twincat-agent-workflow-summary.md) — 全链路经验索引（交叉引用汇总）
+- [vsix-isolated-shell-lessons](vsix-isolated-shell-lessons.md) — VSIX 隔离壳踩坑（跨项目）：VSCT 命令行不可靠、devenv /setup 会搞坏 privateregistry.bin、正确路径是 VS IDE F5 Experimental Instance
+- [TwinCAT Agent 后端运维](coagent-backend-operations.md) — 当前 HTTP 模型循环、项目 SQLite、精确 XAE PID、独立 Provider 配置、安全更新；不清空历史恢复
+- [docsearch-integration](docsearch-integration.md) — coAgent 倍福文档搜索(docs_search/docs_read)：Python314 直连 SQLite FTS5、打包位置 data/ba-docs/index.db、更新流程用 Python312 重建
+- [portable-packaging](portable-packaging.md) — 便携测试包构建(scripts/build_portable.ps1)：后端依赖只 websockets、embeddable Python + ._pth 路径无关、扩展机器级安装、不打密钥、PS 脚本须 BOM
+- [file-attachments](file-attachments.md) — 面板文件输入(EPLAN PDF/Excel/图片)：文字提取(pypdf/openpyxl,任何模型)+ 视觉块(Provider vision 开关,多模态)双链路；视觉块本轮首步发、不持久

@@ -1,0 +1,10 @@
+(*
+    SPT 单轴设备模块。FB 本体不许写代码 —— 全部逻辑在方法里。
+
+    状态映射：
+      Starting   使能轴 → 等 Enabled → StateTasksComplete
+      Execute    收到 MoveCommand 后走一趟定位（示例：去 {{TARGET_POS}} 再回 0）
+      Completing 停轴 → 等 Stopped
+      Stopping   同上（操作员按停）
+      Aborting   急停：Stop 或带错也往下走，然后 Disable
+*)

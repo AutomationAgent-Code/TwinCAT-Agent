@@ -1,0 +1,7 @@
+// 模板：条件成立 且 还没 raise 过 → 才 raise。
+// 漏了 bRaised 这一半会每周期刷一条报警，能把事件日志和 ADS 打满。
+// IF NotReachedTimeout AND NOT Alarms[1].bRaised THEN
+//     RaiseAlarm2Args(Alarms[1], CONCAT('ErrorID: ', TO_STRING(_ErrorID)), '');
+// END_IF
+
+SUPER^.Monitoring();   // 必须调：基类在这里把 _CurrentAlarmSeverity 复位成 Verbose

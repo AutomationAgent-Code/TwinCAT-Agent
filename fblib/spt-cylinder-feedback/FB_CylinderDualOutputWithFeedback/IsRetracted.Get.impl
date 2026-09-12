@@ -1,0 +1,1 @@
+IsRetracted := RetractSensor.IsActive;

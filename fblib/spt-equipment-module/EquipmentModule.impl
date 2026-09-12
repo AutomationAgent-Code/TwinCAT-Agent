@@ -1,0 +1,9 @@
+(*
+    设备模块（EM / SubModule）。一个机械上独立的工段。
+
+    分工原则：
+      Acting 态方法  跑完自己的动作，末尾 SUPER^.<State>() 让基类收尾并往下传
+      Wait 态方法    基类是空的，等外部命令；不需要调 SUPER
+      组件报警       不用在这里轮询 —— RegisterComponent 之后，基类的
+                     ComponentMonitor() 会按组件的严重度反应表自动驱动本模块状态机
+*)

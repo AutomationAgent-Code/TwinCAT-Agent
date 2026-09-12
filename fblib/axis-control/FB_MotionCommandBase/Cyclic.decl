@@ -1,0 +1,2 @@
+METHOD Cyclic
+(* Abstract: derived classes drive their own MC block here *)

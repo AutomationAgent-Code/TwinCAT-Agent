@@ -1,0 +1,30 @@
+CASE _CurrentMode OF
+    E_PMLUnitMode.Production:
+        CASE SequenceState OF
+            0:
+                IF _StartCommand THEN
+                    _StartCommand := FALSE;
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            10: // 示例：主轴连续运转，实际按工艺改成 MoveVelocity 或往复
+                IF {{MASTER_VAR}}.MoveAbsolute(1080, 0) THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            20:
+                IF NOT {{MASTER_VAR}}.Busy AND NOT {{MASTER_VAR}}.Error THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            30:
+                IF {{MASTER_VAR}}.MoveAbsolute(0, 0) THEN
+                    SequenceState := SequenceState + 10;
+                END_IF
+
+            40:
+                IF NOT {{MASTER_VAR}}.Busy AND NOT {{MASTER_VAR}}.Error THEN
+                    SequenceState := 10;
+                END_IF
+        END_CASE
+END_CASE

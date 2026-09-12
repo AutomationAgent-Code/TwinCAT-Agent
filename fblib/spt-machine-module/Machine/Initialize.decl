@@ -1,0 +1,2 @@
+// 多周期初始化。注册在 step 0，SUPER 放倒数第二步，最后一步才置 TRUE
+METHOD PROTECTED Initialize : BOOL
