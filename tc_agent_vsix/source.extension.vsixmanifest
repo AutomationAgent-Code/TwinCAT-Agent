@@ -3,7 +3,7 @@
   <Metadata>
     <!-- Stable VSIX installation identity. Keep it unchanged so renamed
          TwinCATAgent.Xae assemblies upgrade the existing product. -->
-    <Identity Id="TcCoAgent.6b6f9d1e-7c4e-4a6b-9e2d-1f0a5c8b3e21" Version="1.0.8.109" Language="en-US" Publisher="TwinCAT Agent" />
+    <Identity Id="TcCoAgent.6b6f9d1e-7c4e-4a6b-9e2d-1f0a5c8b3e21" Version="1.0.8.115" Language="en-US" Publisher="TwinCAT Agent" />
     <DisplayName>TwinCAT Agent</DisplayName>
     <Description xml:space="preserve">TwinCAT XAE 内的 AI 自动化开发助手。</Description>
   </Metadata>

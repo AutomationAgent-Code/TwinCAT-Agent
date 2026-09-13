@@ -10,8 +10,9 @@ import subprocess
 import sys
 import threading
 import traceback
+from datetime import datetime, timezone
 from pathlib import Path
-from tkinter import BooleanVar, PhotoImage, StringVar, Tk, messagebox, ttk
+from tkinter import BooleanVar, PhotoImage, StringVar, Tk, messagebox, scrolledtext, ttk
 
 from installer_common import (
     CREATE_NO_WINDOW,
@@ -58,9 +59,27 @@ def _installer_version() -> str:
 
 APP_VERSION = _installer_version()
 APP_TITLE = f"TwinCAT Agent 安装程序 v{APP_VERSION}"
+AGREEMENT_FILE = "AGREEMENT.txt"
+AGREEMENT_VERSION = "2026-09-14"
 ACCENT = "#078de5"
 BG = "#f3f6f9"
 PANEL = "#ffffff"
+
+
+def _agreement_path() -> Path:
+    """Return the agreement bundled into Setup, with a source-tree fallback."""
+    candidates = (
+        resource_path("assets", AGREEMENT_FILE),
+        Path(__file__).resolve().parent / AGREEMENT_FILE,
+    )
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate
+    raise RuntimeError(f"安装器资源缺失：{AGREEMENT_FILE}")
+
+
+def _agreement_text() -> str:
+    return _agreement_path().read_text(encoding="utf-8-sig").strip()
 
 
 def _preserve_files(root: Path) -> dict[str, bytes]:
@@ -92,7 +111,10 @@ def _install(
     test_root: Path | None = None,
     *,
     embed_xae: bool = True,
+    agreement_accepted: bool = False,
 ) -> Path:
+    if not agreement_accepted:
+        raise RuntimeError("安装前必须阅读并同意《TwinCAT Agent 软件使用协议与数据说明》")
     target = test_root.resolve() if test_root else install_dir().resolve()
     skip_system = test_root is not None
     twincat_version = detect_twincat_version()
@@ -111,7 +133,8 @@ def _install(
     launcher = resource_path("payload", "TwinCAT-Agent.exe")
     uninstaller = resource_path("payload", "TwinCAT-Agent-Uninstall.exe")
     icon = resource_path("assets", "twincat-agent.ico")
-    for required in (payload_dir, launcher, uninstaller, icon):
+    agreement = _agreement_path()
+    for required in (payload_dir, launcher, uninstaller, icon, agreement):
         if required == payload_dir and required.is_dir():
             continue
         if not required.is_file():
@@ -129,6 +152,7 @@ def _install(
         shutil.copy2(launcher, staging / "TwinCAT-Agent.exe")
         shutil.copy2(uninstaller, staging / "TwinCAT-Agent-Uninstall.exe")
         shutil.copy2(icon, staging / "twincat-agent.ico")
+        shutil.copy2(agreement, staging / AGREEMENT_FILE)
 
         previous_root = target
         if not previous_root.exists():
@@ -153,6 +177,9 @@ def _install(
                     "tray_enabled": True,
                     "twincat_version": twincat_version,
                     "xae_shell": str(shell) if shell else None,
+                    "agreement_accepted": bool(agreement_accepted),
+                    "agreement_version": AGREEMENT_VERSION,
+                    "agreement_accepted_at": datetime.now(timezone.utc).isoformat(),
                 },
                 ensure_ascii=False,
                 indent=2,
@@ -261,7 +288,7 @@ class SetupWindow:
         # PyInstaller's default Tk icon is the feather shown in the title bar.
         # Use the same branded ICO as Setup.exe, shortcuts and the launcher.
         self.root.iconbitmap(default=str(resource_path("assets", "twincat-agent.ico")))
-        self.root.geometry("650x570")
+        self.root.geometry("700x760")
         self.root.resizable(False, False)
         self.root.configure(bg=BG)
         self.events: queue.Queue[tuple[str, object]] = queue.Queue()
@@ -278,6 +305,8 @@ class SetupWindow:
         self.embed = BooleanVar(value=self.embed_allowed)
         self.desktop = BooleanVar(value=True)
         self.launch = BooleanVar(value=True)
+        self.agreement = BooleanVar(value=False)
+        self.installing = False
         self.embed_xae = self.embed_allowed
         self.create_desktop = True
         self.launch_after = True
@@ -352,6 +381,38 @@ class SetupWindow:
             foreground="#5e6b78",
             wraplength=570,
         ).pack(anchor="w", pady=(6, 0))
+
+        ttk.Label(
+            panel,
+            text="使用协议与数据说明（安装前请阅读）",
+            foreground="#152235",
+        ).pack(anchor="w", pady=(16, 5))
+        agreement_frame = ttk.Frame(panel, style="Panel.TFrame")
+        agreement_frame.pack(fill="x")
+        self.agreement_view = scrolledtext.ScrolledText(
+            agreement_frame,
+            height=10,
+            width=78,
+            wrap="word",
+            font=("Microsoft YaHei UI", 9),
+            background="#f8fafc",
+            foreground="#334155",
+            relief="solid",
+            borderwidth=1,
+            padx=8,
+            pady=6,
+        )
+        self.agreement_view.insert("1.0", _agreement_text())
+        self.agreement_view.configure(state="disabled")
+        self.agreement_view.pack(fill="x")
+        self.agreement_check = ttk.Checkbutton(
+            panel,
+            text="我已阅读并同意《TwinCAT Agent 软件使用协议与数据说明》",
+            variable=self.agreement,
+            command=self._sync_start_button,
+        )
+        self.agreement_check.pack(anchor="w", pady=(7, 2))
+
         self.embed_check = ttk.Checkbutton(
             panel,
             text="嵌入 TwinCAT XAE（Build 4024 / 4026，需要一次 UAC）",
@@ -379,9 +440,25 @@ class SetupWindow:
             command=self.start,
         )
         self.button.pack(fill="x", ipady=8, pady=(18, 0))
+        self._sync_start_button()
+
+    def _sync_start_button(self) -> None:
+        if not hasattr(self, "button"):
+            return
+        state = "normal" if self.agreement.get() and not self.installing else "disabled"
+        self.button.configure(state=state)
 
     def start(self) -> None:
-        self.button.configure(state="disabled")
+        if not self.agreement.get():
+            messagebox.showwarning(
+                APP_TITLE,
+                "请先阅读并勾选同意《TwinCAT Agent 软件使用协议与数据说明》。",
+                parent=self.root,
+            )
+            return
+        self.installing = True
+        self._sync_start_button()
+        self.agreement_check.configure(state="disabled")
         self.status.set("正在检查安装环境…")
         self.embed_xae = bool(self.embed.get())
         self.create_desktop = bool(self.desktop.get())
@@ -398,6 +475,7 @@ class SetupWindow:
                 self.create_desktop,
                 self.launch_after,
                 embed_xae=self.embed_xae,
+                agreement_accepted=True,
             )
             self.events.put(("done", target))
         except Exception as exc:
@@ -412,6 +490,7 @@ class SetupWindow:
                     self.status.set(text)
                     self.progress["value"] = progress
                 elif kind == "done":
+                    self.installing = False
                     self.status.set("✓ 安装完成")
                     self.progress["value"] = 100
                     self.button.configure(text="完成", command=self.root.destroy)
@@ -425,8 +504,10 @@ class SetupWindow:
                         parent=self.root,
                     )
                 elif kind == "error":
+                    self.installing = False
                     self.status.set("安装失败")
-                    self.button.configure(state="normal")
+                    self.agreement_check.configure(state="normal")
+                    self._sync_start_button()
                     messagebox.showerror(APP_TITLE, str(value), parent=self.root)
         except queue.Empty:
             pass
@@ -451,6 +532,7 @@ def main() -> int:
                 False,
                 target,
                 embed_xae="--no-embed" not in sys.argv,
+                agreement_accepted=True,
             )
             return 0
         except Exception:

@@ -82,6 +82,23 @@ class UnifiedInstallerTests(unittest.TestCase):
         self.assertIn('"--install-extension-native"', source)
         self.assertIn('str(xae_shell_root(shell))', source)
 
+    def test_setup_requires_and_records_agreement_before_install(self) -> None:
+        agreement = (INSTALLER / "AGREEMENT.txt").read_text(encoding="utf-8-sig")
+        setup = (INSTALLER / "setup.py").read_text(encoding="utf-8-sig")
+        build = (ROOT / "scripts" / "build_installer.ps1").read_text(
+            encoding="utf-8-sig"
+        )
+        self.assertIn("TwinCAT Agent 软件使用协议与数据说明", agreement)
+        self.assertIn("AGREEMENT_FILE = \"AGREEMENT.txt\"", setup)
+        self.assertIn("agreement_accepted: bool = False", setup)
+        self.assertIn("if not agreement_accepted:", setup)
+        self.assertIn('"agreement_accepted": bool(agreement_accepted)', setup)
+        self.assertIn('"agreement_accepted_at": datetime.now(timezone.utc).isoformat()', setup)
+        self.assertIn("self.agreement = BooleanVar(value=False)", setup)
+        self.assertIn("我已阅读并同意《TwinCAT Agent 软件使用协议与数据说明》", setup)
+        self.assertIn("self._sync_start_button()", setup)
+        self.assertIn('--add-data "$Agreement;assets"', build)
+
     def test_launcher_uses_browser_for_backend_only_install(self) -> None:
         source = (INSTALLER / "launcher.py").read_text(encoding="utf-8-sig")
         self.assertIn('options.get("embed_xae", True)', source)

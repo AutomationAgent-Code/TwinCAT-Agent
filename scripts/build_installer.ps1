@@ -24,6 +24,7 @@ $Helpers = Join-Path $Build "helpers"
 $PortableDir = Join-Path $Repo "dist\TwinCAT-Agent-Portable"
 $Icon = Join-Path $Assets "twincat-agent.ico"
 $Logo = Join-Path $Assets "twincat-agent-logo-256.png"
+$Agreement = Join-Path $InstallerSrc "AGREEMENT.txt"
 $VersionFile = Join-Path $Repo "VERSION"
 $VersionInfoTemplate = Join-Path $InstallerSrc "version_info.txt"
 
@@ -45,7 +46,7 @@ function Get-Sha256([string]$Path) {
 }
 
 if (-not (Test-Path $Py)) { throw "找不到打包 Python：$Py" }
-foreach ($required in @($Icon, $Logo, $VersionFile, $VersionInfoTemplate)) {
+foreach ($required in @($Icon, $Logo, $Agreement, $VersionFile, $VersionInfoTemplate)) {
     if (-not (Test-Path $required)) { throw "缺少安装器资源：$required" }
 }
 
@@ -122,6 +123,7 @@ Write-Host "3/4 构建单文件 Setup.exe（内嵌完整程序，稍等）..." -
     --add-data "$(Join-Path $Helpers 'TwinCAT-Agent-Uninstall.exe');payload" `
     --add-data "$Icon;assets" `
     --add-data "$Logo;assets" `
+    --add-data "$Agreement;assets" `
     --distpath $Out `
     --workpath (Join-Path $Build "setup-work") `
     --specpath (Join-Path $Build "spec") `

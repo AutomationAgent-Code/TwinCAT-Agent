@@ -14,8 +14,9 @@ dist\TwinCAT-Agent-Setup-v1.0.1.exe
 2. 双击 `TwinCAT-Agent-Setup-v1.0.1.exe`（版本号以后会递增）。
 3. 安装器会自动识别 TwinCAT Build 4024/4026。
 4. 如需 XAE 内嵌面板，保持勾选“嵌入 TwinCAT XAE”。
-5. 点击“立即安装”。只有勾选嵌入时才会请求一次 UAC。
-6. 安装完成后双击桌面的 TwinCAT Agent 图标。
+5. 阅读《TwinCAT Agent 软件使用协议与数据说明》并勾选同意。
+6. 点击“立即安装”。只有勾选嵌入时才会请求一次 UAC。
+7. 安装完成后双击桌面的 TwinCAT Agent 图标。
 
 安装器会自动完成：
 
